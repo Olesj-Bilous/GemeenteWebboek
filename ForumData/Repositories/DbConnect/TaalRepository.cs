@@ -1,10 +1,19 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ForumData.Models;
+using ForumData.Repositories.Interface;
+
 namespace ForumData.Repositories.DbConnect
 {
-    public class TaalRepository
+    public class TaalRepository : ITaal
     {
-        public TaalRepository()
+        private GemeenteForumDbContext context;
+        public TaalRepository(GemeenteForumDbContext context) => this.context = context;
+
+        public async Task<List<Taal>> GetTalenToListAsync()
         {
+            return
+               await context.Talen.ToListAsync();
         }
     }
 }

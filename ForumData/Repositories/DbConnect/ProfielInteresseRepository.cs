@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ForumData.Models;
+using ForumData.Repositories.Interface;
+
 namespace ForumData.Repositories.DbConnect
 {
-    public class ProfielInteresseRepository
+    public class ProfielInteresseRepository : IProfielInteresse
     {
-        public ProfielInteresseRepository()
-        {
-        }
+        private GemeenteForumDbContext context;
+        public ProfielInteresseRepository(GemeenteForumDbContext context) => this.context = context;
+
     }
 }
