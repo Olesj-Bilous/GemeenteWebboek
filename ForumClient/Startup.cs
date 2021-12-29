@@ -45,7 +45,6 @@ namespace ForumClient
             services.AddTransient<IStraat, StraatRepository>();
             services.AddTransient<ITaal, TaalRepository>();
 
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
