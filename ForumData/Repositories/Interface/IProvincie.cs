@@ -6,6 +6,6 @@ namespace ForumData.Repositories.Interface
 {
     public interface IProvincie
     {
-        Task <List<Provincie>> GetProvinciesByIdToListAsync (int id);
+        Task <List<Provincie>> GetProvinciesToListAsync (int id);
     }
 }

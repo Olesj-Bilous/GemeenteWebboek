@@ -8,6 +8,6 @@ namespace ForumData.Repositories.Interface
         Task<Profiel> GetProfielByPersoonAsync(int id);
         Task AddProfielAsync (Profiel nieuwProfiel);
         Task DeleteProfielAsync (Profiel deleteProfiel);
-        Task UpdateProfielAsync (Profiel updateProfiell);
+        Task UpdateProfielAsync (Profiel updateProfiel);
     }
 }
