@@ -1,18 +1,13 @@
-using ForumClient.Data;
 using ForumData.Models;
+using ForumData.Repositories.DbConnect;
+using ForumData.Repositories.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace ForumClient
 {
@@ -34,9 +29,21 @@ namespace ForumClient
               options.UseSqlServer(Configuration.GetConnectionString("EFGemeenteForum"),
               //Migration files dump destitantion
               x => x.MigrationsAssembly("ForumData")));
-              //MaxBatchSize --> zie swimlane "Brainstorm"
+            //MaxBatchSize --> zie swimlane "Brainstorm"
 
-            //Layer services
+            //Layer service
+            services.AddTransient<IAdres, AdresRepository>();
+            services.AddTransient<IAfdeling, AfdelingRepository>();
+            services.AddTransient<IBericht, BerichtRepository>();
+            services.AddTransient<IBerichtType, BerichtTypeRepository>();
+            services.AddTransient<IGemeente, GemeenteRepository>();
+            services.AddTransient<IInteresseSoort, InteresseSoortRepository>();
+            services.AddTransient<IMedewerker, MedewerkerRepository>();
+            services.AddTransient<IProfiel, ProfielRepository>();
+            services.AddTransient<IProfielInteresse, ProfielInteresseRepository>();
+            services.AddTransient<IProvincie, ProvincieRepository>();
+            services.AddTransient<IStraat, StraatRepository>();
+            services.AddTransient<ITaal, TaalRepository>();
 
 
         }
@@ -68,5 +75,7 @@ namespace ForumClient
                 endpoints.MapRazorPages();
             });
         }
+
+        
     }
 }
