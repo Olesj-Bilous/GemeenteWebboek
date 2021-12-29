@@ -12,12 +12,13 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task AddMedewerkerAsync(Medewerker nieuwMedewerker)
         {
-            await context.Personen.Add(nieuwMedewerker);
+            await context.Personen.AddAsync(nieuwMedewerker);
         }
 
         public async Task DeleteMedewerkerAsync(Medewerker deleteMedewerker)
         {
-            await context.Personen.Remove(deleteMedewerker);
+            context.Personen.Remove(deleteMedewerker);
+            await context.SaveChangesAsync();
         }
 
         public async Task<Medewerker> GetMedewerkerOpPersoonIdAsync(int id)
@@ -28,7 +29,6 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task UpdateMedewerkerAsync(Medewerker updateMedewerker)
         {
-            return
                 context.Personen.Update(updateMedewerker);
                 await context.SaveChangesAsync();
 

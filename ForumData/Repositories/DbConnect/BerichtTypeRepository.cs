@@ -12,12 +12,13 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task AddBerichtTypeAsync(BerichtType nieuwBerichtType)
         {
-            await context.BerichtTypes.Add(nieuwBerichtType);
+            await context.BerichtTypes.AddAsync(nieuwBerichtType);
         }
 
         public async Task DeleteBerichtTypeAsync(BerichtType deleteBerichtType)
         {
-            await context.BerichtTypes.Remove(deleteBerichtType);
+           context.BerichtTypes.Remove(deleteBerichtType);
+            await context.SaveChangesAsync();
         }
 
         public async Task<BerichtType> GetBerichtTypeByIdAsync(int id)

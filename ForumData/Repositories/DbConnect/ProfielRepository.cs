@@ -12,12 +12,13 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task AddProfielAsync(Profiel nieuwProfiel)
         {
-            await context.Personen.Add(nieuwProfiel);
+            await context.Personen.AddAsync(nieuwProfiel);
         }
 
         public async Task DeleteProfielAsync(Profiel deleteProfiel)
         {
-            await context.Personen.Remove(deleteProfiel);
+            context.Personen.Remove(deleteProfiel);
+            await context.SaveChangesAsync();
         }
 
         public async Task<Profiel> GetProfielByPersoonAsync(int id)
@@ -28,9 +29,8 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task UpdateProfielAsync(Profiel updateProfiel)
         {
-            return
                 context.Personen.Update(updateProfiel);
-                context.SaveChangesAsync();
+                await context.SaveChangesAsync();
         }
     }
 }

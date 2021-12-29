@@ -9,7 +9,7 @@ namespace ForumData.Repositories.DbConnect
         private GemeenteForumDbContext context;
         public AfdelingRepository(GemeenteForumDbContext context) => this.context = context;
 
-        public Task<Afdeling> GetAfdelingByIdAsync(int id)
+        public async Task<Afdeling> GetAfdelingByIdAsync(int id)
         {
             return
                 await context.Afdelingen.FindAsync(id);

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using ForumData.Models;
 using ForumData.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumData.Repositories.DbConnect
 {

@@ -12,12 +12,13 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task AddBerichtAsync(Bericht newBericht)
         {
-            await context.Berichten.Add(newBericht);
+            await context.Berichten.AddAsync(newBericht);
         }
 
-        public async Task DeleteBerichtAsync(IBericht deleteBericht)
+        public async Task DeleteBerichtAsync(Bericht deleteBericht)
         {
-            await context.Berichten.Remove(deleteBericht);
+            context.Berichten.Remove(deleteBericht);
+            await context.SaveChangesAsync();
         }
 
         public async Task<Bericht> GetBerichtByIdAsync(int id)
@@ -26,7 +27,7 @@ namespace ForumData.Repositories.DbConnect
                 await context.Berichten.FindAsync(id);
         }
 
-        public async Task UpdateBerichtAsync(IBericht aangepastBericht)
+        public async Task UpdateBerichtAsync(Bericht aangepastBericht)
         {
             context.Berichten.Update(aangepastBericht);
             await context.SaveChangesAsync();
