@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 
-namespace ForumData.Models
+namespace ForumData.Entities
 {
     public class GemeenteForumDbContext : DbContext
     {
@@ -20,7 +20,7 @@ namespace ForumData.Models
         public DbSet<Bericht> Berichten { get; set; }
         public DbSet<BerichtType> BerichtTypes { get; set; }
         public DbSet<Gemeente> Gemeenten { get; set; }
-        public DbSet<InteresseSoort> InteresseSoorten { get; set; }
+        public DbSet<Interesse> Interesses { get; set; }
         public DbSet<Persoon> Personen { get; set; }
         public DbSet<ProfielInteresse> ProfielInteresses { get; set; }
         public DbSet<Provincie> Provincies { get; set; }
