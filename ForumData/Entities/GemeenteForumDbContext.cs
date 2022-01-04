@@ -22,7 +22,7 @@ namespace ForumData.Entities
         public DbSet<Gemeente> Gemeenten { get; set; }
         public DbSet<Interesse> Interesses { get; set; }
         public DbSet<Persoon> Personen { get; set; }
-        public DbSet<ProfielInteresse> ProfielInteresses { get; set; }
+        public DbSet<ProfielInteresse> ProfielenInteresses { get; set; }
         public DbSet<Provincie> Provincies { get; set; }
         public DbSet<Straat> Straten { get; set; }
         public DbSet<Taal> Talen { get; set; }
