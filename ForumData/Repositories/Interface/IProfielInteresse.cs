@@ -1,5 +1,4 @@
-﻿using ForumData.Models;
-
+﻿using ForumData.Entities;
 namespace ForumData.Repositories.Interface
 {
     public interface IProfielInteresse

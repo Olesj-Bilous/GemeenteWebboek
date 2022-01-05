@@ -1,6 +1,7 @@
-using ForumData.Models;
+using ForumWeb.Models;
 using ForumData.Repositories.DbConnect;
 using ForumData.Repositories.Interface;
+using ForumData.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 
-namespace ForumClient
+namespace ForumWeb
 {
     public class Startup
     {
@@ -32,18 +33,18 @@ namespace ForumClient
             //MaxBatchSize --> zie swimlane "Brainstorm"
 
             //Layer service
-            services.AddTransient<IAdres, AdresRepository>();
-            services.AddTransient<IAfdeling, AfdelingRepository>();
-            services.AddTransient<IBericht, BerichtRepository>();
-            services.AddTransient<IBerichtType, BerichtTypeRepository>();
-            services.AddTransient<IGemeente, GemeenteRepository>();
-            services.AddTransient<IInteresseSoort, InteresseSoortRepository>();
-            services.AddTransient<IMedewerker, MedewerkerRepository>();
-            services.AddTransient<IProfiel, ProfielRepository>();
+            services.AddTransient<IAdresRepository, AdresRepository>();
+            services.AddTransient<IAfdelingRepository, AfdelingRepository>();
+            services.AddTransient<IBerichtRepository, BerichtRepository>();
+            services.AddTransient<IBerichtTypeRepository, BerichtTypeRepository>();
+            services.AddTransient<IGemeenteRepository, GemeenteRepository>();
+            services.AddTransient<IInteresseRepository, InteresseRepository>();
+            services.AddTransient<IMedewerkerRepository, MedewerkerRepository>();
+            services.AddTransient<IProfielRepository, ProfielRepository>();
             services.AddTransient<IProfielInteresse, ProfielInteresseRepository>();
-            services.AddTransient<IProvincie, ProvincieRepository>();
-            services.AddTransient<IStraat, StraatRepository>();
-            services.AddTransient<ITaal, TaalRepository>();
+            services.AddTransient<IProvincieRepository, ProvincieRepository>();
+            services.AddTransient<IStraatRepository, StraatRepository>();
+            services.AddTransient<ITaalRepository, TaalRepository>();
 
         }
 

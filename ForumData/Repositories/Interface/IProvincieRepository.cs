@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ForumData.Models;
-
+using ForumData.Entities;
 namespace ForumData.Repositories.Interface
 {
-    public interface IProvincie
+    public interface IProvincieRepository
     {
         Task <List<Provincie>> GetProvinciesToListAsync ();
     }

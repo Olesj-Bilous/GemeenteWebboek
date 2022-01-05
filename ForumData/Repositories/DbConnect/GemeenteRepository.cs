@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ForumData.Models;
+using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumData.Repositories.DbConnect
 {
-    public class GemeenteRepository : IGemeente
+    public class GemeenteRepository : IGemeenteRepository
     {
         private GemeenteForumDbContext context;
         public GemeenteRepository(GemeenteForumDbContext context) => this.context = context;
@@ -20,8 +21,7 @@ namespace ForumData.Repositories.DbConnect
         public async Task<List<Gemeente>> GetGemeentesMet1FilterToListAsync(string filter)
         {
             return
-                await context.Gemeenten
-                .Where(f => f.GemeenteNaam.Contains(filter)).ToListAsync();
+                await context.Gemeenten.Where(f => f.GemeenteNaam.Contains(filter)).ToListAsync();
         }
     }
 }

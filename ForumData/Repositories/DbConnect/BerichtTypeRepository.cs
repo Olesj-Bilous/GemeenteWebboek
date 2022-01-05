@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using ForumData.Models;
+using ForumData.Entities;
 using ForumData.Repositories.Interface;
 
 namespace ForumData.Repositories.DbConnect
 {
-    public class BerichtTypeRepository: IBerichtType
+    public class BerichtTypeRepository: IBerichtTypeRepository
     {
         private GemeenteForumDbContext context;
         public BerichtTypeRepository(GemeenteForumDbContext context) => this.context = context;

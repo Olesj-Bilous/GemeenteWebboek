@@ -1,35 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ForumData.Models;
+using ForumData.Entities;
 using ForumData.Repositories.Interface;
 
 namespace ForumData.Repositories.DbConnect
 {
-    public class MedewerkerRepository: IMedewerker
+    public class MedewerkerRepository: IMedewerkerRepository
     {
         private GemeenteForumDbContext context;
         public MedewerkerRepository(GemeenteForumDbContext context) => this.context = context;
 
         public async Task AddMedewerkerAsync(Medewerker nieuwMedewerker)
         {
-            await context.Personen.AddAsync(nieuwMedewerker);
+            await context.Medewerkers.AddAsync(nieuwMedewerker);
         }
 
         public async Task DeleteMedewerkerAsync(Medewerker deleteMedewerker)
         {
-            context.Personen.Remove(deleteMedewerker);
+            context.Medewerkers.Remove(deleteMedewerker);
             await context.SaveChangesAsync();
         }
 
         public async Task<Medewerker> GetMedewerkerOpPersoonIdAsync(int id)
         {
-            return
-                 await context.Personen.FindAsync(id);
+            return await context.Medewerkers.FindAsync(id);
         }
 
         public async Task UpdateMedewerkerAsync(Medewerker updateMedewerker)
         {
-                context.Personen.Update(updateMedewerker);
+                context.Medewerkers.Update(updateMedewerker);
                 await context.SaveChangesAsync();
 
         }

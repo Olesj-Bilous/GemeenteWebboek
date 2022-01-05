@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using ForumData.Models;
+using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumData.Repositories.DbConnect
 {
-    public class AdresRepository : IAdres
+    public class AdresRepository : IAdresRepository
     {
         private GemeenteForumDbContext context;
         public AdresRepository(GemeenteForumDbContext context) => this.context = context;
@@ -16,7 +17,7 @@ namespace ForumData.Repositories.DbConnect
             return
                 await context.Adressen
                 .Where(f => f.Straat.StraatNaam == straat && f.HuisNr == huisNr && f.BusNr == busNr)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
         }
     }
 }

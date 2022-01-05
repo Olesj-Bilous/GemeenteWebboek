@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using ForumData.Models;
-
+using ForumData.Entities;
 namespace ForumData.Repositories.Interface
 {
-    public interface IMedewerker
+    public interface IMedewerkerRepository
     {
         Task<Medewerker> GetMedewerkerOpPersoonIdAsync (int id);
         Task AddMedewerkerAsync (Medewerker nieuwMedewerker);

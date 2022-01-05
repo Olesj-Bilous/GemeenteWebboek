@@ -1,4 +1,4 @@
-﻿using ForumData.Models;
+﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
 
 namespace ForumData.Repositories.DbConnect

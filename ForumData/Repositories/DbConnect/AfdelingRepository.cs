@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using ForumData.Models;
+using ForumData.Entities;
 using ForumData.Repositories.Interface;
 
 namespace ForumData.Repositories.DbConnect
 {
-    public class AfdelingRepository : IAfdeling
+    public class AfdelingRepository : IAfdelingRepository
     {
         private GemeenteForumDbContext context;
         public AfdelingRepository(GemeenteForumDbContext context) => this.context = context;

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ForumData.Models;
+using ForumData.Entities;
 using ForumData.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace ForumData.Repositories.DbConnect
 {
-    public class ProvincieRepository :IProvincie
+    public class ProvincieRepository :IProvincieRepository
     {
         private GemeenteForumDbContext context;
         public ProvincieRepository(GemeenteForumDbContext context) => this.context = context;

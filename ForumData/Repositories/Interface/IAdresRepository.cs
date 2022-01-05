@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using ForumData.Models;
-
+using ForumData.Entities;
 namespace ForumData.Repositories.Interface
 {
-    public interface IAdres
+    public interface IAdresRepository
     {
         Task<Adres> CheckAdresAsync (string straat, string huisNr, string busNr);
 

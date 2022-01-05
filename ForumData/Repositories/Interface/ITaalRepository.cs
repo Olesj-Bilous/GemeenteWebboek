@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ForumData.Models;
+using ForumData.Entities;
 
 namespace ForumData.Repositories.Interface
 {
-    public interface ITaal
+    public interface ITaalRepository
     {
         Task<List<Taal>> GetTalenToListAsync();
     }

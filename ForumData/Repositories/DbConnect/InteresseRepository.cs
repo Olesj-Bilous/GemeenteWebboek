@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ForumData.Repositories.DbConnect
 {
-    public class TaalRepository : ITaalRepository
+    public class InteresseRepository : IInteresseRepository
     {
         private GemeenteForumDbContext context;
-        public TaalRepository(GemeenteForumDbContext context) => this.context = context;
+        public InteresseRepository(GemeenteForumDbContext context) => this.context = context;
 
-        public async Task<List<Taal>> GetTalenToListAsync()
+        public async Task<List<Interesse>> GetInteressesToListAsync()
         {
-            return await context.Talen.ToListAsync();
+            return await context.Interesses.ToListAsync();
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ForumData.Models;
+using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumData.Repositories.DbConnect
 {
-    public class StraatRepository : IStraat
+    public class StraatRepository : IStraatRepository
     {
         private GemeenteForumDbContext context;
         public StraatRepository(GemeenteForumDbContext context) => this.context = context;

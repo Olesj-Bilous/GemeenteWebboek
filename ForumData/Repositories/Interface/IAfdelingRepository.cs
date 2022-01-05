@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using ForumData.Models;
-
+using ForumData.Entities;
 namespace ForumData.Repositories.Interface
 {
-    public interface IAfdeling
+    public interface IAfdelingRepository
     {
         Task<Afdeling> GetAfdelingByIdAsync(int id);
     }

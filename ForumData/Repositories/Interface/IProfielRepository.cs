@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using ForumData.Models;
-
+using ForumData.Entities;
 namespace ForumData.Repositories.Interface
 {
-    public interface IProfiel
+    public interface IProfielRepository
     {
         Task<Profiel> GetProfielByPersoonAsync(int id);
         Task AddProfielAsync (Profiel nieuwProfiel);
