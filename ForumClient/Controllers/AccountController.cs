@@ -19,8 +19,8 @@ namespace ForumWeb.Controllers
         public IActionResult Index()
         {
             AccountViewModel model = new AccountViewModel();
-            model.Gebruiker = 
-                HttpContext.Session.GetObject<bool>("IsMedewerker") 
+            model.Gebruiker 
+                = HttpContext.Session.GetObject<bool>("IsMedewerker") 
                 ? HttpContext.Session.GetObject<Medewerker>("Gebruiker")
                 : HttpContext.Session.GetObject<Profiel>("Gebruiker");
             return View(model);
