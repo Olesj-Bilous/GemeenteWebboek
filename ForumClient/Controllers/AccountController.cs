@@ -19,7 +19,10 @@ namespace ForumWeb.Controllers
         public IActionResult Index()
         {
             AccountViewModel model = new AccountViewModel();
-            model.Gebruiker = HttpContext.Session.GetObject<Persoon>("Gebruiker");
+            model.Gebruiker = 
+                HttpContext.Session.GetObject<bool>("IsMedewerker") 
+                ? HttpContext.Session.GetObject<Medewerker>("Gebruiker")
+                : HttpContext.Session.GetObject<Profiel>("Gebruiker");
             return View(model);
         }
 
@@ -37,6 +40,7 @@ namespace ForumWeb.Controllers
                 if (gebruiker is not null)
                 {
                     HttpContext.Session.SetObject("Gebruiker", gebruiker);
+                    HttpContext.Session.SetObject("IsMedewerker", gebruiker is Medewerker);
                     return RedirectToAction("Index");
                 }
                 else
