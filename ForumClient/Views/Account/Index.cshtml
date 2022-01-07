@@ -1,0 +1,13 @@
+﻿@model AccountViewModel
+@{
+    ViewData["Title"] = "Account";
+}
+
+@if (Model.Gebruiker is null)
+{
+    <a class="btn btn-primary" asp-controller="Account" asp-action="Inloggen">Inloggen</a>
+}
+else 
+{
+    <p>Welkom @Model.Gebruiker.VoorNaam @Model.Gebruiker.FamilieNaam.</p>
+}

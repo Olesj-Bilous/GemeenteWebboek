@@ -1,5 +1,6 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Model.Repositories.Configuration;
+using Model.Repositories.Seeding;
 
 namespace ForumData.Entities
 {
@@ -8,7 +9,6 @@ namespace ForumData.Entities
         //PROPERTIES
         // unitTesting? --> zie swimlane "Brainstorm"
         //private bool TestMode = false;
-
 
         //CONSTRUCTOR
         public GemeenteForumDbContext(DbContextOptions<GemeenteForumDbContext> options) : base(options) { }
@@ -49,33 +49,33 @@ namespace ForumData.Entities
         {
 
             //configuration
-            //modelBuilder.ApplyConfiguration(new AdresConfiguration());
-            //modelBuilder.ApplyConfiguration(new AfdelingConfiguration());
-            //modelBuilder.ApplyConfiguration(new BerichtConfiguratie());
-            //modelBuilder.ApplyConfiguration(new BerichtTypeConfiguration());
-            //modelBuilder.ApplyConfiguration(new GemeenteConfiguration());
-            //modelBuilder.ApplyConfiguration(new InteresseSoortConfiguration());
-            //modelBuilder.ApplyConfiguration(new PersoonConfiguratie());
-            //modelBuilder.ApplyConfiguration(new ProfielInteresseConfiguration());
-            //modelBuilder.ApplyConfiguration(new ProvincieConfiguration());
-            //modelBuilder.ApplyConfiguration(new StraatConfiguration());
-            //modelBuilder.ApplyConfiguration(new TaalConfiguration());
+            modelBuilder.ApplyConfiguration(new AdresConfiguration());
+            modelBuilder.ApplyConfiguration(new AfdelingConfiguration());
+            modelBuilder.ApplyConfiguration(new BerichtConfiguration());
+            modelBuilder.ApplyConfiguration(new BerichtTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new GemeenteConfiguration());
+            modelBuilder.ApplyConfiguration(new InteresseConfiguration());
+            modelBuilder.ApplyConfiguration(new PersoonConfiguration());
+            modelBuilder.ApplyConfiguration(new MedewerkerConfiguration());
+            modelBuilder.ApplyConfiguration(new ProfielConfiguration());
+            modelBuilder.ApplyConfiguration(new ProvincieConfiguration());
+            modelBuilder.ApplyConfiguration(new ProfielInteresseConfiguration());
+            modelBuilder.ApplyConfiguration(new ProvincieConfiguration());
+            modelBuilder.ApplyConfiguration(new StraatConfiguration());
+            modelBuilder.ApplyConfiguration(new TaalConfiguration());
 
-            ////seeding
+            //seeding
             //if (!testMode)
             //{
-
-            //    modelBuilder.ApplyConfiguration(new AdresSeeding());
-            //    modelBuilder.ApplyConfiguration(new AfdelingSeeding());
-            //    modelBuilder.ApplyConfiguration(new BerichtTypeSeeding());
-            //    modelBuilder.ApplyConfiguration(new GemeenteSeeding());
-            //    modelBuilder.ApplyConfiguration(new InteresseSoortSeeding());
-            //    modelBuilder.ApplyConfiguration(new BeheerderSeeding());
-            //    modelBuilder.ApplyConfiguration(new ProvincieSeeding());
-            //    modelBuilder.ApplyConfiguration(new StraatSeeding());
-            //    modelBuilder.ApplyConfiguration(new TaalSeeding());
-            //    modelBuilder.ApplyConfiguration(new ProfielSeeding());
-
+                modelBuilder.ApplyConfiguration(new TaalSeeding());
+                modelBuilder.ApplyConfiguration(new ProvincieSeeding());
+                modelBuilder.ApplyConfiguration(new GemeenteSeeding());
+                modelBuilder.ApplyConfiguration(new StraatSeeding());
+                modelBuilder.ApplyConfiguration(new AdresSeeding());
+                modelBuilder.ApplyConfiguration(new AfdelingSeeding());
+                modelBuilder.ApplyConfiguration(new BerichtTypeSeeding());
+                modelBuilder.ApplyConfiguration(new InteresseSeeding());
+                modelBuilder.ApplyConfiguration(new MedewerkerSeeding());
             //}
         }
     }
