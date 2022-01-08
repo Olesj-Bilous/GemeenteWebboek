@@ -20,28 +20,17 @@ namespace Model.Repositories.Configuration
             builder.Property(b => b.BerichtId)
                 .ValueGeneratedOnAdd();
 
-            builder.HasIndex(b => b.GemeenteId)
-                .HasDatabaseName("Idx_GemeenteId");
-
             builder.HasOne(b => b.HoofdBericht)
                 .WithMany(c => c.OnderBerichten)
                 .HasForeignKey(b => b.HoofdBerichtId);
 
             builder.HasOne(b => b.Profiel)
                 .WithMany(c => c.Berichten)
-                .HasForeignKey(b => b.ProfielId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(b => b.Gemeente)
-                .WithMany(c => c.Berichten)
-                .HasForeignKey(b => b.GemeenteId);
+                .HasForeignKey(b => b.ProfielId);
 
             builder.HasOne(b => b.BerichtType)
                 .WithMany(c => c.Berichten)
                 .HasForeignKey(b => b.BerichtTypeId);
-
-            builder.Property(b => b.GemeenteId)
-                .IsRequired();
 
             builder.Property(b => b.ProfielId)
                 .IsRequired();
