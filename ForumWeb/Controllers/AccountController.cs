@@ -18,12 +18,7 @@ namespace ForumWeb.Controllers
         }
         public IActionResult Index()
         {
-            AccountViewModel model = new AccountViewModel();
-            model.Gebruiker 
-                = HttpContext.Session.GetObject<bool>("IsMedewerker") 
-                ? HttpContext.Session.GetObject<Medewerker>("Gebruiker")
-                : HttpContext.Session.GetObject<Profiel>("Gebruiker");
-            return View(model);
+            return View(HttpContext.Session.GetUser());
         }
 
         public IActionResult Inloggen()
@@ -56,7 +51,8 @@ namespace ForumWeb.Controllers
 
         public IActionResult Uitloggen()
         {
-            return View();
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
         }
     }
 }

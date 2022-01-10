@@ -1,13 +1,13 @@
-﻿@model AccountViewModel
+﻿@using ForumData.Entities 
+@model Persoon
 @{
     ViewData["Title"] = "Account";
 }
-
-@if (Model.Gebruiker is null)
+@if (Model is null)
 {
     <a class="btn btn-primary" asp-controller="Account" asp-action="Inloggen">Inloggen</a>
 }
-else 
+else
 {
-    <p>Welkom @Model.Gebruiker.VoorNaam @Model.Gebruiker.FamilieNaam.</p>
+    <a class="btn btn-primary" asp-controller="Account" asp-action="Uitloggen">Uitloggen</a>
 }

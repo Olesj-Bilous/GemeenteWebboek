@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ForumData.Entities;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ namespace ForumWeb
     //met dank aan https://www.talkingdotnet.com/store-complex-objects-in-asp-net-core-session/
     public static class SessionExtensions
     {
+        public static Persoon GetUser(this ISession session)
+        {
+            return session.GetObject<bool>("IsMedewerker")
+                ? session.GetObject<Medewerker>("Gebruiker")
+                : session.GetObject<Profiel>("Gebruiker");
+        }
         public static void SetObject(this ISession session, string key, object value)
         {
             session.SetString(key, JsonConvert.SerializeObject(value));
