@@ -13,9 +13,14 @@ namespace ForumWeb
     {
         public static Persoon GetUser(this ISession session)
         {
-            return session.GetObject<bool>("IsMedewerker")
-                ? session.GetObject<Medewerker>("Gebruiker")
-                : session.GetObject<Profiel>("Gebruiker");
+            bool? isMedewerker = session.GetBoolean("IsMedewerker");
+            if (isMedewerker is not null)
+                return (bool)isMedewerker
+                    ? session.GetObject<Medewerker>("Gebruiker")
+                    : session.GetObject<Profiel>("Gebruiker");
+            else
+                return null;
+
         }
         public static void SetObject(this ISession session, string key, object value)
         {
@@ -35,11 +40,7 @@ namespace ForumWeb
         public static bool? GetBoolean(this ISession session, string key)
         {
             byte[] data = session.Get(key);
-            if (data is null)
-            {
-                return null;
-            }
-            return BitConverter.ToBoolean(data, 0);
+            return data is null ? null : BitConverter.ToBoolean(data, 0);
         }
     }
 }

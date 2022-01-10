@@ -1,0 +1,108 @@
+﻿@model RegistrerenViewModel
+@{
+    ViewData["Title"] = "Registreren";
+}
+
+
+
+<form asp-action="Registreren" method="post">
+    @if (Model.RegistrerenGelukt is not null)
+    {
+        @if (!(bool)Model.RegistrerenGelukt)
+        {
+            <h3 class="text-danger">Er liep iets fout bij het registreren van uw profiel. Probeer opnieuw</h3>
+        }
+    }
+
+    <div class="mt-2">
+        <label asp-for="VoorNaam"></label>
+        <span asp-validation-for="VoorNaam" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="VoorNaam" /></div>
+
+    <div class="mt-2">
+        <label asp-for="FamilieNaam"></label>
+        <span asp-validation-for="FamilieNaam" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="FamilieNaam" /></div>
+
+    <div class="mt-2">
+        <label asp-for="GeboorteDatum"></label>
+        <span asp-validation-for="GeboorteDatum" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="GeboorteDatum" type="date" /></div>
+
+    <div class="mt-2">
+        <label asp-for="TelefoonNr"></label>
+        <span asp-validation-for="TelefoonNr" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="TelefoonNr" /></div>
+
+    <div class="mt-2">
+        <label asp-for="KennismakingTekst"></label>
+        <span asp-validation-for="KennismakingTekst" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="KennismakingTekst" /></div>
+
+    <div class="mt-2">
+        <label asp-for="EmailAdres"></label>
+        <span asp-validation-for="EmailAdres" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="EmailAdres" /></div>
+
+    <div class="mt-2">
+        <label asp-for="BeroepTekst"></label>
+        <span asp-validation-for="BeroepTekst" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="BeroepTekst" /></div>
+
+    <div class="mt-2">
+        <label asp-for="FirmaNaam"></label>
+        <span asp-validation-for="FirmaNaam" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="FirmaNaam" /></div>
+
+    <div class="mt-2">
+        <label asp-for="FacebookNaam"></label>
+        <span asp-validation-for="FacebookNaam" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="FacebookNaam" /></div>
+
+    <div class="mt-2">
+        <label asp-for="WebsiteAdres"></label>
+        <span asp-validation-for="WebsiteAdres" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="WebsiteAdres" /></div>
+
+    <div class="mt-2">
+        <label asp-for="Geslacht"></label>
+        <span asp-validation-for="Geslacht" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><select asp-for="Geslacht" asp-items="Model.Geslachten"></select></div>
+
+    <div class="mt-2">
+        <label asp-for="WoontHierSinds"></label>
+        <span asp-validation-for="WoontHierSinds" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="WoontHierSinds" type="date" /></div>
+
+    <div class="mt-2">
+        <label asp-for="Taal"></label>
+        <span asp-validation-for="Taal" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><select asp-for="Taal" asp-items="Model.Talen"></select></div>
+
+    <div class="mt-2">
+        <label asp-for="LoginNaam"></label>
+        <span asp-validation-for="LoginNaam" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="LoginNaam" /></div>
+
+    <div class="mt-2">
+        <label asp-for="LoginPaswoord"></label>
+        <span asp-validation-for="LoginPaswoord" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><input asp-for="LoginPaswoord" /></div>
+
+    <div class="mt-3"><input type="submit" value="Registreren" /></div>
+</form>

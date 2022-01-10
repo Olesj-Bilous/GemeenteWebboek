@@ -6,6 +6,8 @@ namespace ForumData.Repositories.Interface
 {
     public interface ITaalRepository
     {
-        Task<List<Taal>> GetTalenToListAsync();
+        Task<List<Taal>> GetTalenAsync();
+
+        List<Taal> GetTalen();
     }
 }

@@ -15,6 +15,12 @@ namespace ForumData.Repositories.DbConnect
             await context.Profielen.AddAsync(nieuwProfiel);
         }
 
+        public void AddProfiel(Profiel profiel)
+        {
+            context.Profielen.Add(profiel);
+            context.SaveChanges();
+        }
+
         public async Task DeleteProfielAsync(Profiel deleteProfiel)
         {
             context.Profielen.Remove(deleteProfiel);
