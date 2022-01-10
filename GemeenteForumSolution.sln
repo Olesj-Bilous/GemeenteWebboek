@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForumWeb", "ForumClient\ForumWeb.csproj", "{221E9021-59CC-4296-AB5D-ADB83E32A36A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForumWeb", "ForumWeb\ForumWeb.csproj", "{221E9021-59CC-4296-AB5D-ADB83E32A36A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForumService", "ForumService\ForumService.csproj", "{89A9A627-0EFD-40C2-885F-DEEF4BFBF81F}"
 EndProject
