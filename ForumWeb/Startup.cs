@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
+using ForumService;
 
 namespace ForumWeb
 {
@@ -45,6 +46,8 @@ namespace ForumWeb
             services.AddTransient<IProfielInteresse, ProfielInteresseRepository>();
             services.AddTransient<IProvincieRepository, ProvincieRepository>();
             services.AddTransient<IStraatRepository, StraatRepository>();
+
+            services.AddTransient<TaalService>();
             services.AddTransient<ITaalRepository, TaalRepository>();
 
         }

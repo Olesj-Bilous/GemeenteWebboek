@@ -1,5 +1,6 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using ForumService;
 using ForumWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,12 +15,12 @@ namespace ForumWeb.Controllers
     {
         private readonly IPersoonRepository persoonRepo;
         private readonly IProfielRepository profielRepo;
-        private readonly ITaalRepository taalRepo;
-        public AccountController(IPersoonRepository persoonRepo, IProfielRepository profielRepo, ITaalRepository taalRepo)
+        private TaalService taalService;
+        public AccountController(IPersoonRepository persoonRepo, IProfielRepository profielRepo, TaalService taalService)
         {
             this.persoonRepo = persoonRepo;
             this.profielRepo = profielRepo;
-            this.taalRepo = taalRepo;
+            this.taalService = taalService;
         }
         public IActionResult Index()
         {
@@ -68,7 +69,7 @@ namespace ForumWeb.Controllers
         {
             RegistrerenViewModel model = new RegistrerenViewModel();
             model.Geslacht = "M";
-            List<Taal> Talen = taalRepo.GetTalen();
+            List<Taal> Talen = taalService.GetTalen();
             foreach (Taal taal in Talen)
             {
                 model.Talen.Add(new SelectListItem { Value = taal.TaalCode, Text = taal.TaalNaam });
@@ -94,7 +95,7 @@ namespace ForumWeb.Controllers
                 profiel.WebsiteAdres = model.WebsiteAdres;
                 profiel.Geslacht = model.Geslacht == "M" ? Geslacht.M : Geslacht.V;
                 profiel.WoontHierSinds = model.WoontHierSinds;
-                profiel.Taal = taalRepo.GetTalen().Where(t => t.TaalCode == model.Taal).FirstOrDefault();
+                profiel.Taal = taalService.GetTaalByCode(model.Taal);
 
                 try
                 {
