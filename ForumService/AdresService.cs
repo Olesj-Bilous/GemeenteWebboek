@@ -1,12 +1,20 @@
-﻿using System;
+﻿using ForumData.Entities;
+using ForumData.Repositories.Interface;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ForumService
 {
-    class AdresService
+    public class AdresService
     {
+        //INJECTION
+        private IAdresRepository adresRepository;
+        public AdresService(IAdresRepository adresRepository) => this.adresRepository = adresRepository;
+
+        //METHODS
+        public async Task<Adres> CheckAdresAsync(string straat, string huisNr, string busNr)
+        {
+            return await adresRepository.CheckAdresAsync(straat, huisNr, busNr);
+        }
     }
 }

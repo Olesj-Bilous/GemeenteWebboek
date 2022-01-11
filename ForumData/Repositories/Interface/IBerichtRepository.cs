@@ -9,6 +9,5 @@ namespace ForumData.Repositories.Interface
         Task AddBerichtAsync(Bericht newBericht);
         Task DeleteBerichtAsync (Bericht deleteBericht);
         Task UpdateBerichtAsync (Bericht aangepastBericht);
-
     }
 }
