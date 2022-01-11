@@ -68,13 +68,7 @@ namespace ForumWeb.Controllers
         public IActionResult Registreren()
         {
             RegistrerenViewModel model = new RegistrerenViewModel();
-            model.Geslacht = "M";
-            List<Taal> Talen = taalService.GetTalen();
-            foreach (Taal taal in Talen)
-            {
-                model.Talen.Add(new SelectListItem { Value = taal.TaalCode, Text = taal.TaalNaam });
-            }
-            model.Taal = Talen.FirstOrDefault().TaalCode;
+            model.SetTalen(taalService.GetTalen());
             return View(model);
         }
 
@@ -100,7 +94,7 @@ namespace ForumWeb.Controllers
                 try
                 {
                     profielRepo.AddProfiel(profiel);
-                } 
+                }
                 catch (Exception)
                 {
                     model.RegistrerenGelukt = false;
@@ -116,5 +110,7 @@ namespace ForumWeb.Controllers
                 return View(model);
             }
         }
+
+
     }
 }

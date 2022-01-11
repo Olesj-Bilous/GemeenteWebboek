@@ -12,6 +12,8 @@ namespace ForumWeb.Models
     {
         public bool? RegistrerenGelukt { get; set; }
 
+        public Profiel Profiel { get; set; }
+
         [Required]
         [Display(Name="Voornaam*")]
         public string VoorNaam { get; set; }
@@ -50,7 +52,7 @@ namespace ForumWeb.Models
 
         [Required]
         [Display(Name = "Geslacht*")]
-        public string Geslacht { get; set; }
+        public string Geslacht { get; set; } = "M";
 
         public List<SelectListItem> Geslachten { get; } = new List<SelectListItem>
         {
@@ -67,6 +69,15 @@ namespace ForumWeb.Models
         public string Taal { get; set; }
 
         public List<SelectListItem> Talen { get; set; } = new List<SelectListItem>();
+
+        public void SetTalen(List<Taal> talen)
+        {
+            foreach (Taal taal in talen)
+            {
+                Talen.Add(new SelectListItem { Value = taal.TaalCode, Text = taal.TaalNaam });
+            }
+            Taal = Talen.FirstOrDefault().Value;
+        }
 
     //    [Display(Name = "Geboorteplaats")]
     //    public Gemeente GeboortePlaats { get; set; }
