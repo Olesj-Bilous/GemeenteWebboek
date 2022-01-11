@@ -1,4 +1,8 @@
 ﻿@model RegistrerenViewModel
+@section Scripts
+{ 
+    <script src="~/js/registreren.js"></script>
+}
 @{
     ViewData["Title"] = "Registreren";
 }
@@ -91,6 +95,25 @@
         <span asp-validation-for="Taal" class="font-weight-bold text-danger"></span>
     </div>
     <div><select asp-for="Taal" asp-items="Model.Talen"></select></div>
+
+    <div class="mt-2">
+        <label asp-for="GeboortePlaats"></label>
+        <span asp-validation-for="GeboortePlaats" class="font-weight-bold text-danger"></span>
+    </div>
+    <div>
+        <label>
+            Geef een aantal letters van uw geboorteplaats in
+            <input id="GeboortePlaatsInput" />
+        </label>
+        <button id="GeboortePlaatsButton" type="button">Zoeken</button>
+        <select id="GeboortePlaatsSelect" asp-for="GeboortePlaats" asp-items="Model.Gemeenten"></select>
+    </div>
+
+    @*<div class="mt-2">
+        <label asp-for="WoonPlaats"></label>
+        <span asp-validation-for="WoonPlaats" class="font-weight-bold text-danger"></span>
+    </div>
+    <div><select asp-for="WoonPlaats" asp-items="Model.Gemeenten"></select></div>*@
 
     <div class="mt-2">
         <label asp-for="LoginNaam"></label>

@@ -5,7 +5,8 @@ namespace ForumData.Repositories.Interface
 {
     public interface IGemeenteRepository
     {
-        Task <List<Gemeente>> GetGemeentesMet1FilterToListAsync(string filter);
-        Task <Gemeente> GetGemeenteByIdAsync (int id);
+        List<Gemeente> GetGemeenten();
+        Task<List<Gemeente>> GetGemeentesMet1FilterToListAsync(string filter);
+        Task<Gemeente> GetGemeenteByIdAsync (int id);
     }
 }

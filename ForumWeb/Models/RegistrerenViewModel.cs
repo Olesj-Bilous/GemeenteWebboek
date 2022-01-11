@@ -79,27 +79,36 @@ namespace ForumWeb.Models
             Taal = Talen.FirstOrDefault().Value;
         }
 
-    //    [Display(Name = "Geboorteplaats")]
-    //    public Gemeente GeboortePlaats { get; set; }
+        [Display(Name = "Geboorteplaats")]
+        public string GeboortePlaats { get; set; }
 
-    //    public List<SelectListItem> Gemeenten { get; set; }
+        public List<SelectListItem> Gemeenten { get; set; } = new List<SelectListItem>();
 
-    //    [Required]
-    //    [Display(Name = "Woonplaats*")]
-    //    public Gemeente WoonPlaats { get; set; }
+        public void SetGemeenten(List<Gemeente> gemeenten)
+        {
+            foreach (Gemeente gemeente in gemeenten)
+            {
+                Gemeenten.Add(new SelectListItem { Value = gemeente.GemeenteNaam, Text = gemeente.GemeenteNaam });
+            }
+            WoonPlaats = Gemeenten.FirstOrDefault().Value;
+        }
 
-    //    [Required]
-    //    [Display(Name = "Straatnaam*")]
-    //    public string StraatNaam { get; set; }
-    //    public List<SelectListItem> Straa { get; set; }
+        [Required]
+        [Display(Name = "Woonplaats*")]
+        public string WoonPlaats { get; set; }
 
-    //[Required]
-    //    [Display(Name = "Huisnummer*")]
-    //    public string HuisNr { get; set; }
+        //    [Required]
+        //    [Display(Name = "Straatnaam*")]
+        //    public string StraatNaam { get; set; }
+        //    public List<SelectListItem> Straa { get; set; }
 
-    //    [Required]
-    //    [Display(Name = "Busnummer*")]
-    //    public string BusNr { get; set; }
+        //[Required]
+        //    [Display(Name = "Huisnummer*")]
+        //    public string HuisNr { get; set; }
+
+        //    [Required]
+        //    [Display(Name = "Busnummer*")]
+        //    public string BusNr { get; set; }
 
         [Required]
         [Display(Name = "Loginnaam*")]

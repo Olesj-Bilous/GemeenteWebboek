@@ -15,11 +15,14 @@ namespace ForumWeb.Controllers
     {
         private readonly IPersoonRepository persoonRepo;
         private readonly IProfielRepository profielRepo;
+        private readonly IGemeenteRepository gemeenteRepo;
         private TaalService taalService;
-        public AccountController(IPersoonRepository persoonRepo, IProfielRepository profielRepo, TaalService taalService)
+        public AccountController(IPersoonRepository persoonRepo, IProfielRepository profielRepo, 
+            IGemeenteRepository gemeenteRepo, TaalService taalService)
         {
             this.persoonRepo = persoonRepo;
             this.profielRepo = profielRepo;
+            this.gemeenteRepo = gemeenteRepo;
             this.taalService = taalService;
         }
         public IActionResult Index()
@@ -69,6 +72,7 @@ namespace ForumWeb.Controllers
         {
             RegistrerenViewModel model = new RegistrerenViewModel();
             model.SetTalen(taalService.GetTalen());
+            model.SetGemeenten(gemeenteRepo.GetGemeenten());
             return View(model);
         }
 
