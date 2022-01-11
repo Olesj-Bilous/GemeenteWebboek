@@ -27,7 +27,7 @@ namespace ForumData.Repositories.DbConnect
             await context.SaveChangesAsync();
         }
 
-        public async Task<Profiel> GetProfielByPersoonAsync(int id)
+        public async Task<Profiel> GetProfielByPersoonIdAsync(int id)
         {
             return
                 await context.Profielen.FindAsync(id);
