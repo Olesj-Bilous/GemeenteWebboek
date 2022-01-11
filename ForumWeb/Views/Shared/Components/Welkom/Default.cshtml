@@ -1,0 +1,22 @@
+﻿@using ForumData.Entities 
+@model Persoon
+@if (Model is not null)
+{
+    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">
+        @Model.VoorNaam @Model.FamilieNaam:
+        @if (Model is Medewerker)
+        {
+            <span>Medewerker</span>
+        }
+        else
+        {
+            <span>Profiel</span>
+        }
+    </a>
+}
+else
+{
+    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">
+        Account
+    </a>
+}

@@ -9,10 +9,9 @@ namespace ForumData.Entities
     public class Bericht
     {
         public Bericht() { }
-        public Bericht(BerichtType type, Gemeente gemeente, Profiel profiel, DateTime datum, string titel, string tekst)
+        public Bericht(BerichtType type, Profiel profiel, DateTime datum, string titel, string tekst)
         {
             BerichtType = type;
-            Gemeente = gemeente;
             Profiel = profiel;
             BerichtTijdstip = datum;
             BerichtTitel = titel;
@@ -21,8 +20,6 @@ namespace ForumData.Entities
         public int BerichtId { get; set; }
         public int? HoofdBerichtId { get; set; }
         public virtual Bericht HoofdBericht { get; set; }
-        public int GemeenteId { get; set; }
-        public virtual Gemeente Gemeente { get; set; }
         public int ProfielId { get; set; }
         public virtual Profiel Profiel { get; set; }
         public int BerichtTypeId { get; set; }

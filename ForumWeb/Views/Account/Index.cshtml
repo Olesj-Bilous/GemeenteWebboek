@@ -1,0 +1,13 @@
+﻿@using ForumData.Entities 
+@model Persoon
+@{
+    ViewData["Title"] = "Account";
+}
+@if (Model is null)
+{
+    <a class="btn btn-primary" asp-controller="Account" asp-action="Inloggen">Inloggen</a>
+}
+else
+{
+    <a class="btn btn-primary" asp-controller="Account" asp-action="Uitloggen">Uitloggen</a>
+}

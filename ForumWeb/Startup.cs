@@ -1,4 +1,3 @@
-using ForumWeb.Models;
 using ForumData.Repositories.DbConnect;
 using ForumData.Repositories.Interface;
 using ForumData.Entities;
@@ -8,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Microsoft.AspNetCore.Http;
 
 namespace ForumWeb
 {
@@ -24,13 +23,14 @@ namespace ForumWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSession();
             //Database connection
             services.AddDbContext<GemeenteForumDbContext>(options =>
-              //connectionstring
               options.UseSqlServer(Configuration.GetConnectionString("EFGemeenteForum"),
-              //Migration files dump destitantion
               x => x.MigrationsAssembly("ForumData")));
-            //MaxBatchSize --> zie swimlane "Brainstorm"
+
 
             //Layer service
             services.AddTransient<IAdresRepository, AdresRepository>();
@@ -39,6 +39,7 @@ namespace ForumWeb
             services.AddTransient<IBerichtTypeRepository, BerichtTypeRepository>();
             services.AddTransient<IGemeenteRepository, GemeenteRepository>();
             services.AddTransient<IInteresseRepository, InteresseRepository>();
+            services.AddTransient<IPersoonRepository, PersoonRepository>();
             services.AddTransient<IMedewerkerRepository, MedewerkerRepository>();
             services.AddTransient<IProfielRepository, ProfielRepository>();
             services.AddTransient<IProfielInteresse, ProfielInteresseRepository>();
@@ -61,6 +62,8 @@ namespace ForumWeb
                 app.UseExceptionHandler("/Home/Error");
                 
             }
+
+            app.UseSession();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -72,7 +75,6 @@ namespace ForumWeb
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
             });
         }
 
