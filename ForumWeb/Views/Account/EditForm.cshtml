@@ -1,0 +1,9 @@
+﻿@model ForumData.Entities.Persoon
+   
+@{ ViewData["Title"] = "uw profiel gegevens aanpassen"; }
+
+<h2>Persoonsgevevens wijzigen</h2>
+<form asp-action="Edit" method="post">
+    <label asp-for="VoorNaam"></label>
+    <input asp-for="VoorNaam" />
+</form>

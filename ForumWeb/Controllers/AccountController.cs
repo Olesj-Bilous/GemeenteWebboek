@@ -82,6 +82,12 @@ namespace ForumWeb.Controllers
             return View(IngelogdProfiel);
         }
 
+        [HttpGet]
+        public IActionResult EditForm(int Id)
+        {
+            return View(persoonService.GetPersoonById(Id));
+        }
+
         public IActionResult Uitloggen()
         {
             HttpContext.Session.Clear();

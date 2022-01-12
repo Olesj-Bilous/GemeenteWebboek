@@ -13,6 +13,11 @@ namespace ForumData.Repositories.DbConnect
         private GemeenteForumDbContext context;
         public PersoonRepository(GemeenteForumDbContext context) => this.context = context;
 
+        public async Task <Persoon> GetPersoonById(int Id)
+        {
+            return await context.Personen.FindAsync(Id);
+        }
+
         public Persoon GetPersoonByLoginNaamAndPaswoord(string naam, string pas)
         {
             return context.Personen.Where(p => p.LoginNaam == naam && p.LoginPaswoord == pas).FirstOrDefault();
