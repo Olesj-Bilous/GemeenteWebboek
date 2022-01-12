@@ -1,0 +1,38 @@
+﻿@using ForumData.Entities
+@model ForumData.Entities.Medewerker
+@{
+    ViewData["Title"] = "profiel beheer";
+    var persoonDetail = new PersoonDetailViewModel();
+    persoonDetail.Id = Model.PersoonId;
+    persoonDetail.Voornaam = Model.VoorNaam;
+    persoonDetail.FamilieNaam = Model.FamilieNaam;
+    persoonDetail.Straatnaam = "STRAAT NAAM";
+    persoonDetail.HuisNr = "11111111 ";
+    persoonDetail.BusNr = "1111111 ";
+    persoonDetail.Postcode = 1111111;
+    persoonDetail.Gemeente = "GEEN GEMEENTE ";
+    persoonDetail.TelefoonNr = Model.TelefoonNr;
+    persoonDetail.GeboorteDatum = Model.GeboorteDatum;
+    persoonDetail.Geslacht = Model.Geslacht;
+    persoonDetail.LoginNaam = Model.LoginNaam;
+    persoonDetail.Geblokkeerd = Model.Geblokkeerd;
+    persoonDetail.LoginTal = Model.LoginTal;
+    persoonDetail.LoginFaalTal = Model.LoginFaalTal;
+
+}
+
+<p>Welkom op je medewerkers pagina @Model.VoorNaam @Model.FamilieNaam</p>
+<button class="btn btn-primary" id="show-partial">Details medewerker </button>
+<p></p>
+<div style="display:none;" id="partialDetail">
+
+    <partial name="PersoonDetail", model="persoonDetail" />
+ 
+</div>
+
+@section Scripts
+{
+    <script>
+        $('#show-partial').click(function () { $('#partialDetail').show(); });
+    </script>
+}

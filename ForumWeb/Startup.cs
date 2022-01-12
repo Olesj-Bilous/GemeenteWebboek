@@ -23,9 +23,11 @@ namespace ForumWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Sessionstate
             services.AddControllersWithViews();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
+            
             //Database connection
             services.AddDbContext<GemeenteForumDbContext>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("EFGemeenteForum"),
@@ -64,6 +66,7 @@ namespace ForumWeb
             }
 
             app.UseSession();
+            
             app.UseStaticFiles();
 
             app.UseRouting();

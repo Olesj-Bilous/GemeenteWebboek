@@ -1,0 +1,52 @@
+﻿@model PersoonDetailViewModel
+    
+@{
+    ViewData["Title"] = "Persoon details";
+}
+
+<h2>Uw detail gegevens</h2>
+<table class="profieltabel">
+    <tbody>
+        <tr>
+            <td>Voornaam</td>
+            <td>@Model.Voornaam</td>
+        </tr>
+        <tr>
+            <td>Familienaam</td>
+            <td>@Model.FamilieNaam</td>
+        </tr>
+        <tr>
+            <td>adres</td>
+            <td>@Model.Straatnaam @Model.HuisNr @Model.BusNr</td>
+            <td>Aanvullen</td>
+        </tr>
+        <tr>
+            <td>Telefoonnummer</td>
+            <td>@Model.TelefoonNr</td>
+        </tr>
+        <tr>
+            <td>Geboortedatum</td>
+            <td>@Model.GeboorteDatum</td>
+        </tr>
+        <tr>
+            <td>Geslacht</td>
+            <td>@Model.Geslacht</td>
+        </tr>
+        <tr>
+            <td>Login naam</td>
+            <td>@Model.LoginNaam</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>@Model.Geblokkeerd</td>
+        </tr>
+        <tr>
+            <td># ingelogd</td>
+            <td>@Model.LoginTal</td>
+        </tr>
+        <tr>
+            <td># verkeerd ingelogd</td>
+            <td>Aanvullen</td>
+        </tr>
+    </tbody>
+</table>

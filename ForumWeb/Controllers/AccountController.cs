@@ -1,6 +1,7 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
 using ForumWeb.Models;
+using ForumService
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,14 @@ namespace ForumWeb.Controllers
 {
     public class AccountController : Controller
     {
+        //VERANDEREN NAAR SERVICE LEVEL??
         private readonly IPersoonRepository persoonRepo;
-        public AccountController(IPersoonRepository persoonRepo)
+
+        private PersoonService persoonService;
+        public AccountController(IPersoonRepository persoonRepo, PersoonService persoonService)
         {
             this.persoonRepo = persoonRepo;
+            this.persoonService = persoonService;
         }
         public IActionResult Index()
         {
@@ -36,7 +41,7 @@ namespace ForumWeb.Controllers
                 {
                     HttpContext.Session.SetObject("Gebruiker", gebruiker);
                     HttpContext.Session.SetObject("IsMedewerker", gebruiker is Medewerker);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("index");
                 }
                 else
                 {
@@ -47,6 +52,34 @@ namespace ForumWeb.Controllers
             {
                 return View(model);
             }
+        }
+
+        public IActionResult ProfielBeheer()
+        {
+
+            Persoon IngelogdPersoon = HttpContext.Session.GetUser();
+            if (IngelogdPersoon is Profiel)
+            {
+                return RedirectToAction("ProfielPage", IngelogdPersoon);
+            }
+            if (IngelogdPersoon is Medewerker)
+            {
+                return RedirectToAction("MedewerkerPage", IngelogdPersoon);
+            }
+            else
+            {
+                return RedirectToAction("Inloggen");
+            }
+        }       
+
+        public IActionResult MedewerkerPage(Medewerker IngelogdMedewerker)
+        {   
+            return View(IngelogdMedewerker);
+        }
+
+        public IActionResult ProfielPage(Profiel IngelogdProfiel)
+        {   
+            return View(IngelogdProfiel);
         }
 
         public IActionResult Uitloggen()
