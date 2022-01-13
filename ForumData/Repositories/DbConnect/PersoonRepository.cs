@@ -13,7 +13,7 @@ namespace ForumData.Repositories.DbConnect
         private GemeenteForumDbContext context;
         public PersoonRepository(GemeenteForumDbContext context) => this.context = context;
 
-        public async Task <Persoon> GetPersoonById(int Id)
+        public async Task <Persoon> GetPersoonByIdAsync(int Id)
         {
             return await context.Personen.FindAsync(Id);
         }
@@ -21,6 +21,12 @@ namespace ForumData.Repositories.DbConnect
         public Persoon GetPersoonByLoginNaamAndPaswoord(string naam, string pas)
         {
             return context.Personen.Where(p => p.LoginNaam == naam && p.LoginPaswoord == pas).FirstOrDefault();
+        }
+
+        public async Task UpdatePersoonAsync(Persoon updatePersoon)
+        {
+            context.Personen.Update(updatePersoon);
+            await context.SaveChangesAsync();
         }
     }
 }

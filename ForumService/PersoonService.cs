@@ -11,9 +11,19 @@ namespace ForumService
         public PersoonService(IPersoonRepository persoonRepository) => this.persoonRepository = persoonRepository;
 
         //METHODS
-        public async Task<Persoon> GetPersoonById(int Id)
+        public async Task<Persoon> GetPersoonByIdAsync(int Id)
         {
-            return await persoonRepository.GetPersoonById(Id);
+            return await persoonRepository.GetPersoonByIdAsync(Id);
+        }
+
+        public async Task UpdatePersoonAsync(Persoon updatePersoon)
+        {
+            await persoonRepository.UpdatePersoonAsync(updatePersoon);
+        }
+
+       public Persoon GetPersoonByLoginNaamAndPaswoord(string naam, string pas)
+        {
+            return persoonRepository.GetPersoonByLoginNaamAndPaswoord(naam, pas);
         }
     }
 }

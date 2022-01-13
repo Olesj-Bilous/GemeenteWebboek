@@ -1,7 +1,7 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
 using ForumWeb.Models;
-using ForumService
+using ForumService;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,13 +12,10 @@ namespace ForumWeb.Controllers
 {
     public class AccountController : Controller
     {
-        //VERANDEREN NAAR SERVICE LEVEL??
-        private readonly IPersoonRepository persoonRepo;
-
+    
         private PersoonService persoonService;
         public AccountController(IPersoonRepository persoonRepo, PersoonService persoonService)
         {
-            this.persoonRepo = persoonRepo;
             this.persoonService = persoonService;
         }
         public IActionResult Index()
@@ -36,7 +33,7 @@ namespace ForumWeb.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                Persoon gebruiker = persoonRepo.GetPersoonByLoginNaamAndPaswoord(model.Naam, model.Paswoord);
+                Persoon gebruiker = persoonService.GetPersoonByLoginNaamAndPaswoord(model.Naam, model.Paswoord);
                 if (gebruiker is not null)
                 {
                     HttpContext.Session.SetObject("Gebruiker", gebruiker);
@@ -83,9 +80,22 @@ namespace ForumWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditForm(int Id)
+        public async Task<IActionResult> EditForm(int Id)
         {
-            return View(persoonService.GetPersoonById(Id));
+            return View(await persoonService.GetPersoonByIdAsync(Id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Persoon updatePersoon)
+        {
+            if (this.ModelState.IsValid)
+            {
+                await persoonService.UpdatePersoonAsync(updatePersoon);
+                return RedirectToAction("ProfielBeheer");
+            }else
+            {
+                return View("EditForm", updatePersoon);
+            }
         }
 
         public IActionResult Uitloggen()

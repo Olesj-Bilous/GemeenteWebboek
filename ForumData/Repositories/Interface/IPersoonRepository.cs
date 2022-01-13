@@ -10,6 +10,7 @@ namespace ForumData.Repositories.Interface
     public interface IPersoonRepository
     {
         public Persoon GetPersoonByLoginNaamAndPaswoord(string naam, string pas);
-        public Task <Persoon> GetPersoonById(int Id);
+        public Task <Persoon> GetPersoonByIdAsync(int Id);
+        Task UpdatePersoonAsync(Persoon updatePersoon);
     }
 }
