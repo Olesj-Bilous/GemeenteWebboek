@@ -19,9 +19,23 @@ namespace Model.Repositories.Seeding
                     AdresId = 1,
                     StraatId = 1,
                     HuisNr = "7",
-#nullable enable
+                    #nullable enable
                     BusNr = (string?)null,
-#nullable disable
+                    #nullable disable
+                },
+                new 
+                { 
+                    AdresId = 2, 
+                    StraatId = 1, 
+                    HuisNr = "90", 
+                    BusNr = "-" 
+                },
+                new
+                { 
+                    AdresId = 3,
+                    StraatId = 2,
+                    HuisNr = "50",
+                    BusNr = "6"
                 }
             );
         }

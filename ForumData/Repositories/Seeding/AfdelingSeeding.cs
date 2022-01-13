@@ -21,6 +21,24 @@ namespace Model.Repositories.Seeding
                     AfdelingCode = "DEV",
                     AfdelingNaam = "Ontwikkeling",
                     AfdelingTekst = "Testen van de site"
+                },
+                new 
+                { 
+                    AfdelingId = 2,
+                    AfdelingCode = "VERK",
+                    AfdelingNaam = "Verkoop"
+                },
+                new
+                { 
+                    AfdelingId = 3,
+                    AfdelingCode = "BOEK",
+                    AfdelingNaam = "Boekhouding"
+                },
+                new 
+                { 
+                    AfdelingId = 4,
+                    AfdelingCode = "AANK",
+                    AfdelingNaam = "Aankoop"
                 }
             );
         }

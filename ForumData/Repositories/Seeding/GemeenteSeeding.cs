@@ -68,6 +68,102 @@ namespace Model.Repositories.Seeding
                     ProvincieId = 1,
                     HoofdGemeenteId = 5,
                     TaalId = 1
+                },
+                new 
+                { 
+                    GemeenteId = 8700, 
+                    GemeenteNaam = "Aarsele", 
+                    PostCode = 8700, 
+                    ProvincieId = 5, 
+                    TaalId = 1 
+                },
+
+                new 
+                { 
+                    GemeenteId = 1730,
+                    GemeenteNaam = "Beernem",
+                    PostCode = 8730,
+                    ProvincieId = 5,
+                    TaalId = 1
+                },
+                new 
+                { 
+                    GemeenteId = 1731,
+                    GemeenteNaam = "Oedelem",
+                    PostCode = 8730,
+                    ProvincieId = 5,
+                    HoofdGemeenteId = 1730,
+                    TaalId = 1 
+                },
+                new
+                { 
+                    GemeenteId = 1732,
+                    GemeenteNaam = "Sint-Joris",
+                    PostCode = 8730,
+                    ProvincieId = 5,
+                    HoofdGemeenteId = 1730,
+                    TaalId = 1
+                },
+
+                new
+                { 
+                    GemeenteId = 1790,
+                    GemeenteNaam = "Oostkamp",
+                    PostCode = 8020,
+                    ProvincieId = 5,
+                    TaalId = 1
+                },
+                new
+                { 
+                    GemeenteId = 1791,
+                    GemeenteNaam = "Hertsberghe",
+                    PostCode = 8020,
+                    ProvincieId = 5,
+                    HoofdGemeenteId = 1790,
+                    TaalId = 1 
+                },
+                new
+                { 
+                    GemeenteId = 1792,
+                    GemeenteNaam = "Ruddervoorde",
+                    PostCode = 8020,
+                    ProvincieId = 5,
+                    HoofdGemeenteId = 1790,
+                    TaalId = 1
+                },
+                new
+                { 
+                    GemeenteId = 1793,
+                    GemeenteNaam = "Waardamme",
+                    PostCode = 8020,
+                    ProvincieId = 5,
+                    HoofdGemeenteId = 1790,
+                    TaalId = 1
+                },
+
+                new  
+                { 
+                    GemeenteId = 1820,
+                    GemeenteNaam = "Zuienkerke",
+                    PostCode = 8377,
+                    ProvincieId = 5,
+                    TaalId = 1
+                },
+                new
+                { 
+                    GemeenteId = 1810,
+                    GemeenteNaam = "Zedelgem",
+                    PostCode = 8210,
+                    ProvincieId = 5,
+                    TaalId = 1
+                },
+                new  
+                { 
+                    GemeenteId = 1800,
+                    GemeenteNaam = "Torhout",
+                    PostCode = 8220,
+                    ProvincieId = 5,
+                    TaalId = 1
                 }
             );
         }

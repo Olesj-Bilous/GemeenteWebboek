@@ -31,8 +31,57 @@ namespace Model.Repositories.Seeding
                     LoginTal = 0,
                     TaalId = 1,
                     AfdelingId = 1
-                }
-            );
+                },
+
+                new Medewerker { 
+                    PersoonId = 002, 
+                    VoorNaam = "Piet", 
+                    FamilieNaam = "Pieters", 
+                    Geslacht = Geslacht.M,
+                    GeboorteDatum = new DateTime(1981, 1, 1),
+                    AdresId = 1, 
+                    TaalId = 2, 
+                    GeboortePlaatsId = 1790, 
+                    TelefoonNr = "02/22222222", 
+                    AfdelingId = 2, 
+                    LoginNaam = "Piet", 
+                    LoginPaswoord = "Baard", 
+                    LoginTal = 0, 
+                    LoginFaalTal = 0
+                },
+                 new Medewerker { 
+                     PersoonId = 003,
+                     VoorNaam = "Linda",
+                     FamilieNaam = "Jorissens",
+                     Geslacht = Geslacht.V,
+                     GeboorteDatum = new DateTime(1982, 1, 1),
+                     AdresId = 1,
+                     TaalId = 2,
+                     GeboortePlaatsId = 1810,
+                     TelefoonNr = "03/33333333",
+                     AfdelingId = 3,
+                     LoginNaam = "Linda",
+                     LoginPaswoord = "Baard",
+                     LoginTal = 0,
+                     LoginFaalTal = 0
+                 },
+                 new Medewerker { 
+                     PersoonId = 004,
+                     VoorNaam = "Korneel",
+                     FamilieNaam = "Korneelissens",
+                     Geslacht = Geslacht.M,
+                     GeboorteDatum = new DateTime(1983, 1, 1),
+                     AdresId = 1,
+                     TaalId = 2,
+                     GeboortePlaatsId = 8700,
+                     TelefoonNr = "04/44444444",
+                     AfdelingId = 1,
+                     LoginNaam = "Korneel",
+                     LoginPaswoord = "Baard",
+                     LoginTal = 0,
+                     LoginFaalTal = 0
+                 }
+            ) ;
         }
     }
 }

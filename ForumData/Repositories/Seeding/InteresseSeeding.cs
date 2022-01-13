@@ -29,6 +29,43 @@ namespace Model.Repositories.Seeding
                 {
                     InteresseId = 3,
                     InteresseNaam = "Wandelen",
+                },
+
+                new
+                { 
+                    InteresseId = 4,
+                    InteresseNaam = "Fietsen" 
+                },
+                new 
+                { 
+                    InteresseId = 5, 
+                    InteresseNaam = "ICT"
+                },
+                new
+                { 
+                    InteresseId = 6,
+                    InteresseNaam = "Klussen" 
+                },
+              
+                new  
+                { 
+                    InteresseId = 7,
+                    InteresseNaam = "Natuur"
+                },
+                new
+                { 
+                    InteresseId = 8,
+                    InteresseNaam = "TV kijken"
+                },
+                new 
+                { 
+                    InteresseId = 9,
+                    InteresseNaam = "Vrijwilligerswerk"
+                },
+                new  
+                { 
+                    InteresseId = 10,
+                    InteresseNaam = "Zwemmen"
                 }
             );
         }

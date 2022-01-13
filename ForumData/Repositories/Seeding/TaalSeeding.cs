@@ -26,7 +26,8 @@ namespace Model.Repositories.Seeding
                     TaalId = 2,
                     TaalCode = "FR",
                     TaalNaam = "Frans"
-                }
+                },
+                new { TaalId = 3, TaalCode = "en", TaalNaam = "Engels" }
             );
         }
     }
