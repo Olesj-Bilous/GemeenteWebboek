@@ -34,7 +34,7 @@ namespace Model.Repositories.Seeding
                 },
 
                 new Medewerker { 
-                    PersoonId = 002, 
+                    PersoonId = 2, 
                     VoorNaam = "Piet", 
                     FamilieNaam = "Pieters", 
                     Geslacht = Geslacht.M,
@@ -50,7 +50,7 @@ namespace Model.Repositories.Seeding
                     LoginFaalTal = 0
                 },
                  new Medewerker { 
-                     PersoonId = 003,
+                     PersoonId = 3,
                      VoorNaam = "Linda",
                      FamilieNaam = "Jorissens",
                      Geslacht = Geslacht.V,
@@ -66,7 +66,7 @@ namespace Model.Repositories.Seeding
                      LoginFaalTal = 0
                  },
                  new Medewerker { 
-                     PersoonId = 004,
+                     PersoonId = 4,
                      VoorNaam = "Korneel",
                      FamilieNaam = "Korneelissens",
                      Geslacht = Geslacht.M,

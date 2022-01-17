@@ -38,7 +38,7 @@
 <p>Welkom op je profiel pagina @Model.VoorNaam @Model.FamilieNaam</p>
 <button class="btn btn-primary" id="show-partial">Details profiel </button>
 <p></p>
-<div style="display:none;" id="partialDetailPofiel">
+<div style="display:none;" id="partialDetail">
    <partial name="PersoonDetail", model="persoonDetail" />
    <partial name="ProfielDetail", model="profielDetail" />
 </div>
@@ -48,6 +48,6 @@
 @section Scripts
 {
     <script>
-        $('#show-partial').click(function () { $('#partialDetailProfiel').show(); })
+        $('#show-partial').click(function () { $('#partialDetail').show(); })
     </script>
 }

@@ -76,7 +76,7 @@ namespace ForumData.Entities
                 modelBuilder.ApplyConfiguration(new BerichtTypeSeeding());
                 modelBuilder.ApplyConfiguration(new InteresseSeeding());
                 modelBuilder.ApplyConfiguration(new MedewerkerSeeding());
-                modelBuilder.ApplyConfiguration(new ProfielConfiguration());
+                modelBuilder.ApplyConfiguration(new ProfielSeeding());
             //}
         }
     }

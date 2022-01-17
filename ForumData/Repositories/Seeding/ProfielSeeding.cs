@@ -16,15 +16,15 @@ namespace Model.Repositories.Seeding
             builder.HasData
                 (
 
-                    new
+                    new Profiel
                     {
                         //persoon gegevens
-                        PersoonId = 006,
+                        PersoonId = 6,
                         VoorNaam = "Dummy",
                         FamilieNaam = "Tester",
                         Geslacht = Geslacht.V,
                         GeboorteDatum = new DateTime(1984, 01, 10),
-                        AdresId= 2,
+                        AdresId= 1,
                         GeboortePlaatsId = 1732,
                         TelefoonNr = "124578910",
                         LoginNaam = "Dummy",
@@ -42,15 +42,15 @@ namespace Model.Repositories.Seeding
                         GoedkeuringTijdstip = DateTime.Now,
                         LaatstBijgewerkt = DateTime.Now,
                     },
-                    new
+                    new Profiel
                     {
                         //persoon gegevens
-                        PersoonId = 007,
+                        PersoonId = 7,
                         VoorNaam = "Marie",
                         FamilieNaam = "HeiligeGeest",
                         Geslacht = Geslacht.V,
                         GeboorteDatum = new DateTime(1500, 06,16 ),
-                        AdresId = 5,
+                        AdresId = 1,
                         GeboortePlaatsId = 8700,
                         TelefoonNr = "666-666-666",
                         LoginNaam = "Marie",
