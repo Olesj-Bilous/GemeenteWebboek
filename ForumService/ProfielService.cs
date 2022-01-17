@@ -27,9 +27,9 @@ namespace ForumService
              return await profielRepository.GetProfielByPersoonIdAsync(Id);
         }
 
-        public async Task UpdateProfielAsync(Profiel updateProfiel)
+        public void UpdateProfiel(Profiel updateProfiel)
         {
-            await profielRepository.UpdateProfielAsync(updateProfiel);
+            profielRepository.UpdateProfiel(updateProfiel);
         }
     }
 }

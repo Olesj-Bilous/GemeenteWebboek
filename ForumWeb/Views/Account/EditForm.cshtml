@@ -3,13 +3,19 @@
 @{ ViewData["Title"] = "uw profiel gegevens aanpassen"; }
 
 <h2>Persoonsgevevens wijzigen</h2>
-<form asp-action="Edit" method="post" class="form-group">
-    <label asp-for="PersoonId">Persoon Id</label>
-    <input asp-for="PersoonId" type="hidden" />
-    <label asp-for="VoorNaam">Voornaam</label>
-    <input asp-for="VoorNaam" />
-    <label asp-for="FamilieNaam">Familienaam</label>
-    <input asp-for="FamilieNaam" />
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="PersoonId">Persoon Id</label>
+        <input asp-for="PersoonId" type="hidden" />
+    </div>
+    <div class="form-group">
+        <label asp-for="VoorNaam">Voornaam</label>
+        <input asp-for="VoorNaam" />
+    </div>
+    <div class="form-group" ^>
+        <label asp-for="FamilieNaam">Familienaam</label>
+        <input asp-for="FamilieNaam" />
+    </div>
     @*<label asp-for="Adres.Straat.StraatNaam">Straatnaam</label>*@
     @*<input asp-for="Adres.Straat.StraatNaam" />*@
     @*<label asp-for="Adres.HuisNr">Huisnummer</label>*@
@@ -18,14 +24,25 @@
     @*<input asp-for="Adres.BusNr" />*@
     @*<label>Postcode</label>*@
     @*<label>Gemeente naam</label>*@
-    <label asp-for="GeboorteDatum">Geboorte datum</label>
-    <input asp-for="GeboorteDatum" />
-    <label asp-for="Geslacht">Geslacht </label>
-    <input asp-for="Geslacht" />
-    <label asp-for="LoginNaam">Login naam</label>
-    <input asp-for="LoginNaam" />
-    <label asp-for="LoginPaswoord">Login paswoord</label>
-    <input asp-for="LoginPaswoord" />
+
+    <div class="form-group">
+        <label asp-for="GeboorteDatum">Geboorte datum</label>
+        <input asp-for="GeboorteDatum" />
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Geslacht">Geslacht </label>
+        <input asp-for="Geslacht" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LoginNaam">Login naam</label>
+        <input asp-for="LoginNaam" />
+    </div>
+    <div class="form-group">
+        <label asp-for="LoginPaswoord">Login paswoord</label>
+        <input asp-for="LoginPaswoord" />
+    </div>
 
     <input type="submit" value="Wijzigen" />
     <div asp-validation-summary="All"></div>

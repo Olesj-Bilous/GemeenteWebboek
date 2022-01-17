@@ -92,11 +92,11 @@ namespace ForumWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Profiel updateProfiel)
+        public IActionResult Edit(Profiel updateProfiel)
         {
             if (this.ModelState.IsValid)
             {
-                    await profielService.UpdateProfielAsync(updateProfiel);
+                    profielService.UpdateProfiel(updateProfiel);
                     return RedirectToAction("ProfielBeheer");
             }else
             {

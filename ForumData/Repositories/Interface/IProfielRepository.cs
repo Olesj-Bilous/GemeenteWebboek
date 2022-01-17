@@ -7,6 +7,6 @@ namespace ForumData.Repositories.Interface
         Task<Profiel> GetProfielByPersoonIdAsync(int id);
         Task AddProfielAsync (Profiel nieuwProfiel);
         Task DeleteProfielAsync (Profiel deleteProfiel);
-        Task UpdateProfielAsync (Profiel updateProfiel);
+        void UpdateProfiel (Profiel updateProfiel);
     }
 }

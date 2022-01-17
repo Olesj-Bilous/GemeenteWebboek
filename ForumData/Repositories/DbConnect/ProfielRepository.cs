@@ -27,10 +27,11 @@ namespace ForumData.Repositories.DbConnect
                 await context.Profielen.FindAsync(id);
         }
 
-        public async Task UpdateProfielAsync(Profiel updateProfiel)
+        public void UpdateProfiel(Profiel updateProfiel)
         {
-                context.Profielen.Update(updateProfiel);
-                await context.SaveChangesAsync();
+            var update = context.Profielen.Attach(updateProfiel);
+            update.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }
