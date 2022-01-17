@@ -1,5 +1,6 @@
-﻿@model PersoonDetailViewModel
-    
+﻿@using ForumData.Entities
+@model PersoonDetailViewModel
+
 @{
     ViewData["Title"] = "Persoon details";
 }
@@ -50,4 +51,13 @@
         </tr>
     </tbody>
 </table>
-<button class="btn btn-primary" asp-action="EditForm" formmethod="get" asp-route-id="@Model.Id"></button>
+
+@if (Model.Id >3)
+{
+    <a class="btn btn-primary" asp-action="EditForm" method="get" asp-route-id="@Model.Id">Wijzigen</a>
+} else
+            {
+                <p></p>
+                <p>WIJZIGEN DOORVOEREN?</p>    
+                <p>Medewerker gegevens wijzigen ==> vraag admin</p>
+            }

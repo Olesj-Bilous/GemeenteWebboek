@@ -1,5 +1,6 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +11,19 @@ namespace ForumData.Repositories.DbConnect
 {
     public class PersoonRepository : IPersoonRepository
     {
+        //INJECTIE
         private GemeenteForumDbContext context;
         public PersoonRepository(GemeenteForumDbContext context) => this.context = context;
 
-        public async Task <Persoon> GetPersoonByIdAsync(int Id)
+        //METHODS
+        public async Task<Persoon> GetPersoonByIdAsync(int Id)
         {
             return await context.Personen.FindAsync(Id);
         }
 
-        public Persoon GetPersoonByLoginNaamAndPaswoord(string naam, string pas)
+        public async Task<Persoon> GetPersoonByLoginNaamAndPaswoordAsync(string naam, string pas)
         {
-            return context.Personen.Where(p => p.LoginNaam == naam && p.LoginPaswoord == pas).FirstOrDefault();
+            return await context.Personen.Where(p => p.LoginNaam == naam && p.LoginPaswoord == pas).FirstOrDefaultAsync();
         }
 
         public async Task UpdatePersoonAsync(Persoon updatePersoon)

@@ -14,10 +14,16 @@ namespace ForumWeb.Controllers
     {
     
         private PersoonService persoonService;
-        public AccountController(IPersoonRepository persoonRepo, PersoonService persoonService)
+        private ProfielService profielService;
+        private MedewerkerService medewerkerService;
+
+        public AccountController(PersoonService persoonService, ProfielService profielService, MedewerkerService medewerkerService)
         {
+            this.medewerkerService = medewerkerService;
+            this.profielService = profielService;
             this.persoonService = persoonService;
         }
+        
         public IActionResult Index()
         {
             return View(HttpContext.Session.GetUser());
@@ -29,11 +35,11 @@ namespace ForumWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Inloggen(InloggenViewModel model)
+        public async Task<IActionResult> Inloggen(InloggenViewModel model)
         {
             if (this.ModelState.IsValid)
             {
-                Persoon gebruiker = persoonService.GetPersoonByLoginNaamAndPaswoord(model.Naam, model.Paswoord);
+                Persoon gebruiker = await persoonService.GetPersoonByLoginNaamAndPaswoordAsync(model.Naam, model.Paswoord);
                 if (gebruiker is not null)
                 {
                     HttpContext.Session.SetObject("Gebruiker", gebruiker);
@@ -86,15 +92,15 @@ namespace ForumWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Persoon updatePersoon)
+        public async Task<IActionResult> Edit(Profiel updateProfiel)
         {
             if (this.ModelState.IsValid)
             {
-                await persoonService.UpdatePersoonAsync(updatePersoon);
-                return RedirectToAction("ProfielBeheer");
+                    await profielService.UpdateProfielAsync(updateProfiel);
+                    return RedirectToAction("ProfielBeheer");
             }else
             {
-                return View("EditForm", updatePersoon);
+                return View("EditForm", updateProfiel);
             }
         }
 
