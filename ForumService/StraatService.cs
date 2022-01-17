@@ -27,5 +27,10 @@ namespace ForumService
         {
             return GetStraten().Where(s => s.GemeenteId == gemeenteId && s.StraatNaam.Contains(filter)).ToList();
         }
+
+        public Straat GetStraatByNaamAndGemeente(string naam, Gemeente gemeente)
+        {
+            return GetStraten().Where(s => s.StraatNaam == naam && s.Gemeente == gemeente).FirstOrDefault();
+        }
     }
 }

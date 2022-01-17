@@ -15,14 +15,17 @@ namespace ForumWeb.Controllers
     {
         private readonly IPersoonRepository persoonRepo;
         private readonly IProfielRepository profielRepo;
+        private readonly AdresService adresService;
         private readonly GemeenteService gemeenteService;
         private readonly StraatService straatService;
         private readonly TaalService taalService;
         public AccountController(IPersoonRepository persoonRepo, IProfielRepository profielRepo, 
+            AdresService adresService,
             GemeenteService gemeenteService, StraatService straatService, TaalService taalService)
         {
             this.persoonRepo = persoonRepo;
             this.profielRepo = profielRepo;
+            this.adresService = adresService;
             this.gemeenteService = gemeenteService;
             this.straatService = straatService;
             this.taalService = taalService;

@@ -35,6 +35,12 @@ namespace ForumWeb.Controllers
                 profiel.Geslacht = model.Geslacht == "M" ? Geslacht.M : Geslacht.V;
                 profiel.WoontHierSinds = model.WoontHierSinds;
                 profiel.Taal = taalService.GetTaalById(int.Parse(model.Taal));
+                profiel.GeboortePlaats = gemeenteService.GetGemeenteById(int.Parse(model.GeboortePlaats));
+
+                //adres
+                Gemeente woonPlaats = gemeenteService.GetGemeenteById(int.Parse(model.WoonPlaats));
+                Straat straat = straatService.GetStraatByNaamAndGemeente(model.StraatNaam, woonPlaats);
+                profiel.Adres = adresService.GetOrCreateAndReturnAdres(straat, model.HuisNr, model.BusNr);
 
                 try
                 {
