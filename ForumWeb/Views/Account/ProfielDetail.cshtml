@@ -1,0 +1,59 @@
+﻿@model ProfielDetailViewModel
+
+@{
+    ViewData["Title"] = "Profiel details";
+}
+
+<h2>Uw profiel gegevens</h2>
+<table class="profieltabel">
+    <tbody>
+        <tr>
+            <td>U woont hier sinds</td>
+            <td>@Model.WoontHierSinds</td>
+        </tr>
+        <tr>
+            <td>Email adres</td>
+            <td>@Model.EmailAdres</td>
+        </tr>
+        <tr>
+            <td>Facebook profiel</td>
+            <td>@Model.FacebookNaam</td>
+        </tr>
+        <tr>
+            <td>Website adres</td>
+            <td>@Model.WebsiteAdres</td>
+        </tr>
+        <tr>
+            <td>Beroep</td>
+            <td>@Model.BeroepTekst</td>
+        </tr>
+        <tr>
+            <td>Firma</td>
+            <td>@Model.FirmaNaam</td>
+        </tr>
+        <tr>
+            <td>Profiel goedgekeurd op: </td>
+            <td>@Model.GoedkeuringTijdstip</td>
+        </tr>
+        <tr>
+            <td>Profiel aangemaakt op: </td>
+            <td>@Model.AanmaakTijdstip</td>
+        </tr>
+        <tr>
+            <td>Profiel laatste wijziging: </td>
+            <td>@Model.LaatstBijgewerkt</td>
+        </tr>
+        <tr>
+            <td>Kennismakings test</td>
+            <td>@Model.KennismakingTekst</td>
+        </tr>
+        <tr>
+            <td>Interresses</td>
+            @foreach (var interesse in Model.ProfielInteresses)
+            {
+                <td>@interesse.Interesse.InteresseNaam</td>
+                <td>INTERRESE TEKST</td>
+            }
+        </tr>
+    </tbody>
+</table>

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
+using ForumService;
 
 namespace ForumWeb
 {
@@ -23,9 +24,11 @@ namespace ForumWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Sessionstate
             services.AddControllersWithViews();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
+            
             //Database connection
             services.AddDbContext<GemeenteForumDbContext>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("EFGemeenteForum"),
@@ -33,6 +36,20 @@ namespace ForumWeb
 
 
             //Layer service
+            services.AddTransient<AdresService>();
+            services.AddTransient<AfdelingService>();
+            services.AddTransient<BerichtService>();
+            services.AddTransient<BerichtTypeService>();
+            services.AddTransient<GemeenteService>();
+            services.AddTransient<InteresseService>();
+            services.AddTransient<MedewerkerService>();
+            services.AddTransient<PersoonService>();
+            services.AddTransient<ProfielInteresseService>();
+            services.AddTransient<ProfielService>();
+            services.AddTransient<ProvincieService>();
+            services.AddTransient<StraatService>();
+            services.AddTransient<TaalService>();
+
             services.AddTransient<IAdresRepository, AdresRepository>();
             services.AddTransient<IAfdelingRepository, AfdelingRepository>();
             services.AddTransient<IBerichtRepository, BerichtRepository>();
@@ -64,6 +81,7 @@ namespace ForumWeb
             }
 
             app.UseSession();
+            
             app.UseStaticFiles();
 
             app.UseRouting();

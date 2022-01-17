@@ -1,0 +1,53 @@
+﻿@using ForumData.Entities
+@model ForumData.Entities.Profiel
+@{
+    ViewData["Title"] = "profiel beheer";
+    var persoonDetail = new PersoonDetailViewModel();
+    persoonDetail.Id = Model.PersoonId;
+    persoonDetail.Voornaam = Model.VoorNaam;
+    persoonDetail.FamilieNaam = Model.FamilieNaam;
+    persoonDetail.Straatnaam = "STRAAT NAAM ";
+    persoonDetail.HuisNr = "111111 ";
+    persoonDetail.BusNr = "111111 ";
+    persoonDetail.Postcode = 1111111;
+    persoonDetail.Gemeente = "GEEN GEMEENTE ";
+    persoonDetail.TelefoonNr = Model.TelefoonNr;
+    persoonDetail.GeboorteDatum = Model.GeboorteDatum;
+    persoonDetail.Geslacht = Model.Geslacht;
+    persoonDetail.LoginNaam = Model.LoginNaam;
+    persoonDetail.Geblokkeerd = Model.Geblokkeerd;
+    persoonDetail.LoginTal = Model.LoginTal;
+    persoonDetail.LoginFaalTal = Model.LoginFaalTal;
+
+    var profielDetail = new ProfielDetailViewModel();
+    profielDetail.WoontHierSinds = Model.WoontHierSinds;
+    profielDetail.EmailAdres = Model.EmailAdres;
+    profielDetail.FacebookNaam = Model.FacebookNaam;
+    profielDetail.WebsiteAdres = Model.WebsiteAdres;
+    profielDetail.BeroepTekst = Model.BeroepTekst;
+    profielDetail.FirmaNaam = Model.FirmaNaam;
+    profielDetail.GoedkeuringTijdstip = Model.GoedkeuringTijdstip;
+    profielDetail.AanmaakTijdstip = Model.AanmaakTijdstip;
+    profielDetail.LaatstBijgewerkt = Model.LaatstBijgewerkt;
+    profielDetail.KennismakingTekst = Model.KennismakingTekst;
+    profielDetail.ProfielInteresses = Model.ProfielInteresses;
+    
+
+}
+
+<p>Welkom op je profiel pagina @Model.VoorNaam @Model.FamilieNaam</p>
+<button class="btn btn-primary" id="show-partial">Details profiel </button>
+<p></p>
+<div style="display:none;" id="partialDetailPofiel">
+   <partial name="PersoonDetail", model="persoonDetail" />
+   <partial name="ProfielDetail", model="profielDetail" />
+</div>
+
+
+
+@section Scripts
+{
+    <script>
+        $('#show-partial').click(function () { $('#partialDetailProfiel').show(); })
+    </script>
+}

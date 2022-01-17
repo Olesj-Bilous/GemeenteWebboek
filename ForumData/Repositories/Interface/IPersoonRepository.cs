@@ -9,6 +9,8 @@ namespace ForumData.Repositories.Interface
 {
     public interface IPersoonRepository
     {
-        public Persoon GetPersoonByLoginNaamAndPaswoord(string naam, string pas);
+        Task <Persoon> GetPersoonByLoginNaamAndPaswoordAsync(string naam, string pas);
+        Task <Persoon> GetPersoonByIdAsync(int Id);
+        Task UpdatePersoonAsync(Persoon updatePersoon);
     }
 }

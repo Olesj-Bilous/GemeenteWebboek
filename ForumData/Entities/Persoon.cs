@@ -17,10 +17,10 @@ namespace ForumData.Entities
         public int AdresId { get; set; }
         public virtual Adres Adres { get; set; }
         public int? GeboortePlaatsId { get; set; }
-#nullable enable
+        #nullable enable
         public virtual Gemeente? GeboortePlaats { get; set; }
         public string? TelefoonNr { get; set; }
-#nullable disable
+        #nullable disable
         public bool Geblokkeerd { get; set; } = false;
         public string LoginNaam { get; set; }
         public string LoginPaswoord { get; set; }
