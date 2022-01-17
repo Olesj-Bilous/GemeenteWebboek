@@ -18,6 +18,11 @@ namespace ForumService
             return await taalRepository.GetTalenAsync();
         }
 
+        public Taal GetTaalById(int id)
+        {
+            return taalRepository.GetTaalById(id);
+        }
+
         public List<Taal> GetTalen()
         {
             return taalRepository.GetTalen();

@@ -16,6 +16,12 @@ namespace ForumData.Repositories.DbConnect
         {
             return context.Gemeenten.ToList();
         }
+
+        public Gemeente GetGemeenteById(int id)
+        {
+            return context.Gemeenten.Find(id);
+        }
+
         public async Task<Gemeente> GetGemeenteByIdAsync(int id)
         {
             return

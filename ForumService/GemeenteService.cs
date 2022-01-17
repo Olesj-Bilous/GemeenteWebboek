@@ -1,6 +1,7 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ForumService
@@ -21,6 +22,19 @@ namespace ForumService
         {
             return await gemeenteRepository.GetGemeenteByIdAsync(Id);
         }
+        public List<Gemeente> GetGemeenten()
+        {
+            return gemeenteRepository.GetGemeenten();
+        }
 
+        public List<Gemeente> GetGemeentenByFilter(string filter)
+        {
+            return GetGemeenten().Where(g => g.GemeenteNaam.Contains(filter)).ToList();
+        }
+
+        public Gemeente GetGemeenteById(int id)
+        {
+            return gemeenteRepository.GetGemeenteById(id);
+        }
     }
 }

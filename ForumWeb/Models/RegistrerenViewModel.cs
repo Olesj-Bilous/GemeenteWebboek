@@ -11,8 +11,14 @@ namespace ForumWeb.Models
     public class RegistrerenViewModel
     {
         public bool? RegistrerenGelukt { get; set; }
+        
+        public List<SelectListItem> Geslachten { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "M", Text = "Man" },
+            new SelectListItem { Value = "V", Text = "Vrouw" }
+        };
 
-        public Profiel Profiel { get; set; }
+        public List<SelectListItem> Talen { get; set; } = new List<SelectListItem>();
 
         [Required]
         [Display(Name="Voornaam*")]
@@ -54,12 +60,6 @@ namespace ForumWeb.Models
         [Display(Name = "Geslacht*")]
         public string Geslacht { get; set; } = "M";
 
-        public List<SelectListItem> Geslachten { get; } = new List<SelectListItem>
-        {
-            new SelectListItem { Value = "M", Text = "Man" },
-            new SelectListItem { Value = "V", Text = "Vrouw" }
-        };
-
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Woont hier sinds")]
         public DateTime? WoontHierSinds { get; set; }
@@ -68,47 +68,24 @@ namespace ForumWeb.Models
         [Display(Name = "Taal*")]
         public string Taal { get; set; }
 
-        public List<SelectListItem> Talen { get; set; } = new List<SelectListItem>();
-
-        public void SetTalen(List<Taal> talen)
-        {
-            foreach (Taal taal in talen)
-            {
-                Talen.Add(new SelectListItem { Value = taal.TaalCode, Text = taal.TaalNaam });
-            }
-            Taal = Talen.FirstOrDefault().Value;
-        }
-
         [Display(Name = "Geboorteplaats")]
         public string GeboortePlaats { get; set; }
-
-        public List<SelectListItem> Gemeenten { get; set; } = new List<SelectListItem>();
-
-        public void SetGemeenten(List<Gemeente> gemeenten)
-        {
-            foreach (Gemeente gemeente in gemeenten)
-            {
-                Gemeenten.Add(new SelectListItem { Value = gemeente.GemeenteNaam, Text = gemeente.GemeenteNaam });
-            }
-            WoonPlaats = Gemeenten.FirstOrDefault().Value;
-        }
 
         [Required]
         [Display(Name = "Woonplaats*")]
         public string WoonPlaats { get; set; }
 
-        //    [Required]
-        //    [Display(Name = "Straatnaam*")]
-        //    public string StraatNaam { get; set; }
-        //    public List<SelectListItem> Straa { get; set; }
+        [Required]
+        [Display(Name = "Straatnaam*")]
+        public string StraatNaam { get; set; }
 
-        //[Required]
-        //    [Display(Name = "Huisnummer*")]
-        //    public string HuisNr { get; set; }
+        [Required]
+        [Display(Name = "Huisnummer*")]
+        public string HuisNr { get; set; }
 
-        //    [Required]
-        //    [Display(Name = "Busnummer*")]
-        //    public string BusNr { get; set; }
+        [Required]
+        [Display(Name = "Busnummer*")]
+        public string BusNr { get; set; }
 
         [Required]
         [Display(Name = "Loginnaam*")]

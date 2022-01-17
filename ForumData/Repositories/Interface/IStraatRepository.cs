@@ -7,6 +7,7 @@ namespace ForumData.Repositories.Interface
     public interface IStraatRepository
     {
         Task<List<Straat>> GetStratenMet2FiltersToListAsync(string filter1, string filter2);
-
+        Straat GetStraatById(int id);
+        List<Straat> GetStraten();
     }
 }

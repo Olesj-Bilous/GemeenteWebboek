@@ -1,22 +1,25 @@
-﻿document.getElementById("GeboortePlaatsButton").onclick = FilterGemeenten;
+﻿const geboortePlaatsButton = document.getElementById("GeboortePlaatsButton");
+geboortePlaatsButton.naam = "Geboorte";
+geboortePlaatsButton.onclick = FilterGemeenten;
 
-function SetHidden(element, sleutel) {
-    if (element.value.includes(sleutel)) {
-        element.hidden = false;
-    }
-    else {
-        element.hidden = true;
-    }
-}
+const woonPlaatsButton = document.getElementById("WoonPlaatsButton");
+woonPlaatsButton.naam = "Woon";
+woonPlaatsButton.onclick = FilterGemeenten;
 
-function FilterGemeenten()
+async function FilterGemeenten(e)
 {
-    const sleutel = document.getElementById("GeboortePlaatsInput").value.toString();
-    const select = document.getElementById("GeboortePlaatsSelect");
+    const filter = document.getElementById(e.currentTarget.naam + "PlaatsInput").value;
+    const select = document.getElementById(e.currentTarget.naam + "PlaatsSelect");
 
-    for (const element of select.children) {
-        SetHidden(element, sleutel);
+    const response = await fetch(`http://localhost:5000/select/${filter}`);
+    const items = await response.json();
+    console.log(items);
+    for (const i of items)
+    {
+        const option = document.createElement("option");
+        option.value = i.value;
+        option.text = i.text;
+        select.appendChild(option);
     }
-
-    //selected index wijzigen
+    select.hidden = false;
 }

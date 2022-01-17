@@ -11,18 +11,20 @@ using System.Threading.Tasks;
 
 namespace ForumWeb.Controllers
 {
-    public class AccountController : Controller
+    public partial class AccountController : Controller
     {
         private readonly IPersoonRepository persoonRepo;
         private readonly IProfielRepository profielRepo;
-        private readonly IGemeenteRepository gemeenteRepo;
-        private TaalService taalService;
+        private readonly GemeenteService gemeenteService;
+        private readonly StraatService straatService;
+        private readonly TaalService taalService;
         public AccountController(IPersoonRepository persoonRepo, IProfielRepository profielRepo, 
-            IGemeenteRepository gemeenteRepo, TaalService taalService)
+            GemeenteService gemeenteService, StraatService straatService, TaalService taalService)
         {
             this.persoonRepo = persoonRepo;
             this.profielRepo = profielRepo;
-            this.gemeenteRepo = gemeenteRepo;
+            this.gemeenteService = gemeenteService;
+            this.straatService = straatService;
             this.taalService = taalService;
         }
         public IActionResult Index()
@@ -67,54 +69,5 @@ namespace ForumWeb.Controllers
             HttpContext.Session.Clear();
             return View("Index", new AccountViewModel());
         }
-
-        public IActionResult Registreren()
-        {
-            RegistrerenViewModel model = new RegistrerenViewModel();
-            model.SetTalen(taalService.GetTalen());
-            model.SetGemeenten(gemeenteRepo.GetGemeenten());
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult Registreren(RegistrerenViewModel model)
-        {
-            if (this.ModelState.IsValid)
-            {
-                Profiel profiel = new Profiel();
-                profiel.VoorNaam = model.VoorNaam;
-                profiel.FamilieNaam = model.FamilieNaam;
-                profiel.GeboorteDatum = model.GeboorteDatum;
-                profiel.TelefoonNr = model.TelefoonNr;
-                profiel.KennismakingTekst = model.KennismakingTekst;
-                profiel.EmailAdres = model.EmailAdres;
-                profiel.BeroepTekst = model.BeroepTekst;
-                profiel.FirmaNaam = model.FirmaNaam;
-                profiel.WebsiteAdres = model.WebsiteAdres;
-                profiel.Geslacht = model.Geslacht == "M" ? Geslacht.M : Geslacht.V;
-                profiel.WoontHierSinds = model.WoontHierSinds;
-                profiel.Taal = taalService.GetTaalByCode(model.Taal);
-
-                try
-                {
-                    profielRepo.AddProfiel(profiel);
-                }
-                catch (Exception)
-                {
-                    model.RegistrerenGelukt = false;
-                    return View(model);
-                }
-
-                AccountViewModel accModel = new AccountViewModel();
-                accModel.RegistrerenGelukt = true;
-                return View("Index", accModel);
-            }
-            else
-            {
-                return View(model);
-            }
-        }
-
-
     }
 }

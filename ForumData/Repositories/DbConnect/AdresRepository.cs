@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ForumData.Entities;
 using ForumData.Repositories.Interface;
@@ -18,6 +19,11 @@ namespace ForumData.Repositories.DbConnect
                 await context.Adressen
                 .Where(f => f.Straat.StraatNaam == straat && f.HuisNr == huisNr && f.BusNr == busNr)
                 .FirstOrDefaultAsync();
+        }
+
+        public List<Adres> GetAdressen()
+        {
+            return context.Adressen.ToList();
         }
     }
 }

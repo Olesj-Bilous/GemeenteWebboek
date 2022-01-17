@@ -6,6 +6,7 @@ namespace ForumData.Repositories.Interface
     public interface IGemeenteRepository
     {
         List<Gemeente> GetGemeenten();
+        Gemeente GetGemeenteById(int id);
         Task<List<Gemeente>> GetGemeentesMet1FilterToListAsync(string filter);
         Task<Gemeente> GetGemeenteByIdAsync (int id);
     }

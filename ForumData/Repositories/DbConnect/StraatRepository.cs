@@ -19,5 +19,15 @@ namespace ForumData.Repositories.DbConnect
                 .Where(f => f.Gemeente.GemeenteNaam.Contains(filter1) && f.StraatNaam.Contains(filter2))
                 .ToListAsync();
         }
+
+        public Straat GetStraatById(int id)
+        {
+            return context.Straten.Find(id);
+        }
+
+        public List<Straat> GetStraten()
+        {
+            return context.Straten.ToList();
+        }
     }
 }

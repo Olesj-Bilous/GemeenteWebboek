@@ -38,13 +38,18 @@ namespace ForumWeb
             services.AddTransient<IAfdelingRepository, AfdelingRepository>();
             services.AddTransient<IBerichtRepository, BerichtRepository>();
             services.AddTransient<IBerichtTypeRepository, BerichtTypeRepository>();
+
+            services.AddTransient<GemeenteService>();
             services.AddTransient<IGemeenteRepository, GemeenteRepository>();
+
             services.AddTransient<IInteresseRepository, InteresseRepository>();
             services.AddTransient<IPersoonRepository, PersoonRepository>();
             services.AddTransient<IMedewerkerRepository, MedewerkerRepository>();
             services.AddTransient<IProfielRepository, ProfielRepository>();
             services.AddTransient<IProfielInteresse, ProfielInteresseRepository>();
             services.AddTransient<IProvincieRepository, ProvincieRepository>();
+
+            services.AddTransient<StraatService>();
             services.AddTransient<IStraatRepository, StraatRepository>();
 
             services.AddTransient<TaalService>();
@@ -68,7 +73,6 @@ namespace ForumWeb
 
             app.UseSession();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthorization();

@@ -1,6 +1,7 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ForumService
@@ -15,6 +16,11 @@ namespace ForumService
         public async Task<Adres> CheckAdresAsync(string straat, string huisNr, string busNr)
         {
             return await adresRepository.CheckAdresAsync(straat, huisNr, busNr);
+        }
+
+        public List<Adres> GetAdressen()
+        {
+            return adresRepository.GetAdressen();
         }
     }
 }

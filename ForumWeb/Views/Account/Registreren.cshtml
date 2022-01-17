@@ -9,7 +9,7 @@
 
 
 
-<form asp-action="Registreren" method="post">
+<form asp-action="DetailRegistreren" method="post">
     @if (Model.RegistrerenGelukt is not null)
     {
         @if (!(bool)Model.RegistrerenGelukt)
@@ -96,6 +96,7 @@
     </div>
     <div><select asp-for="Taal" asp-items="Model.Talen"></select></div>
 
+
     <div class="mt-2">
         <label asp-for="GeboortePlaats"></label>
         <span asp-validation-for="GeboortePlaats" class="font-weight-bold text-danger"></span>
@@ -106,14 +107,34 @@
             <input id="GeboortePlaatsInput" />
         </label>
         <button id="GeboortePlaatsButton" type="button">Zoeken</button>
-        <select id="GeboortePlaatsSelect" asp-for="GeboortePlaats" asp-items="Model.Gemeenten"></select>
+        <select hidden id="GeboortePlaatsSelect" asp-for="GeboortePlaats"></select>
     </div>
 
-    @*<div class="mt-2">
+    <div class="mt-2">
         <label asp-for="WoonPlaats"></label>
         <span asp-validation-for="WoonPlaats" class="font-weight-bold text-danger"></span>
     </div>
-    <div><select asp-for="WoonPlaats" asp-items="Model.Gemeenten"></select></div>*@
+    <div>
+        <label>
+            Geef een aantal letters van uw woonplaats in
+            <input id="WoonPlaatsInput" />
+        </label>
+        <button id="WoonPlaatsButton" type="button">Zoeken</button>
+        <select hidden id="WoonPlaatsSelect" asp-for="WoonPlaats"></select>
+    </div>
+
+    <div class="mt-2">
+        <label asp-for="StraatNaam"></label>
+        <span asp-validation-for="StraatNaam" class="font-weight-bold text-danger"></span>
+    </div>
+    <div>
+        <label>
+            Geef een aantal letters van uw straatnaam in
+            <input id="StraatNaamInput" />
+        </label>
+        <button id="StraatNaamButton" type="button">Zoeken</button>
+        <select hidden id="StraatNaamSelect" asp-for="StraatNaam"></select>
+    </div>
 
     <div class="mt-2">
         <label asp-for="LoginNaam"></label>

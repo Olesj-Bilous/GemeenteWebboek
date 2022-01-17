@@ -17,6 +17,11 @@ namespace ForumData.Repositories.DbConnect
             return await context.Talen.ToListAsync();
         }
 
+        public Taal GetTaalById(int id)
+        {
+            return context.Talen.Find(id);
+        }
+
         public List<Taal> GetTalen()
         {
             return context.Talen.ToList();
