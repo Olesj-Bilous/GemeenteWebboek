@@ -1,4 +1,4 @@
-﻿//prepare caller for listener identification and assign listener
+﻿//prepare callers for listener identification and assign listener
 const geboortePlaatsButton = document.getElementById("GeboortePlaatsButton");
 geboortePlaatsButton.naam = "GeboortePlaats";
 geboortePlaatsButton.onclick = FilterItems;
@@ -62,6 +62,16 @@ async function FilterItems(e)
             warning.classList.add("font-weight-bold");
             warning.classList.add("text-danger");
             document.getElementById("Search" + naam +"Div").appendChild(warning);
+        }
+
+        //hide next step in process from user
+        document.getElementById(naam + "Div").hidden = true;
+        if (naam == "WoonPlaats") {
+            document.getElementById("SearchStraatDiv").hidden = true;
+
+        //clear target of previous items if necessary
+        while (select.firstChild)
+            select.removeChild(select.lastChild);
         }
     }
 }
