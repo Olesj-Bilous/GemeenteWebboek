@@ -34,9 +34,10 @@ namespace ForumWeb.Controllers
         [HttpGet("Straten/{gemeenteId}/{filter}")]
         public ActionResult GetStratenByGemeenteIdAndFilter(int gemeenteId, string filter)
         {
-            return base.Ok(straatService
+            List<SelectListItem> items = straatService
                 .GetStratenByGemeenteIdAndFilter(gemeenteId, filter)
-                .ToSelectList(s => s.StraatId.ToString(), s => s.StraatNaam));
+                .ToSelectList(s => s.StraatId.ToString(), s => s.StraatNaam);
+            return items.Any() ? base.Ok(items) : base.NotFound();
         }
     }
 }

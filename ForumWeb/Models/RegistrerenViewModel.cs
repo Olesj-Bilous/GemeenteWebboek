@@ -6,8 +6,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-//gemeente- en straatfilters zouden niet case sensitive moeten zijn
-//
+//bij nieuwe gefaalde zoekopdracht gemeenten/straten: clear select en hide containing div
+//paswoord moet verdubbeld worden
+//andere datatypes instellen: email, telefoonnr, etc
 
 namespace ForumWeb.Models
 {

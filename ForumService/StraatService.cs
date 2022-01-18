@@ -1,5 +1,6 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,7 +31,11 @@ namespace ForumService
 
         public List<Straat> GetStratenByGemeenteIdAndFilter(int gemeenteId, string filter)
         {
-            return GetStraten().Where(s => s.GemeenteId == gemeenteId && s.StraatNaam.Contains(filter)).ToList();
+            return GetStraten()
+                .Where(s 
+                    => s.GemeenteId == gemeenteId 
+                    && s.StraatNaam.Contains(filter, StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
 
         //public Straat GetStraatByNaamAndGemeente(string naam, Gemeente gemeente)

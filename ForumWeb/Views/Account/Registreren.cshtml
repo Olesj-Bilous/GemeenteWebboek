@@ -97,7 +97,8 @@
     <div><select asp-for="Taal" asp-items="Model.Talen"></select></div>
 
 
-    <div class="mt-2">
+    <div id="SearchGeboortePlaatsDiv" class="mt-2">
+        <p><span asp-validation-for="GeboortePlaats" class="font-weight-bold text-danger"></span></p>
         <label>
             Geef een aantal letters van uw geboorteplaats in
             <input id="GeboortePlaatsInput" />
@@ -106,11 +107,11 @@
     </div>
     <div id="GeboortePlaatsDiv" hidden>
         <label asp-for="GeboortePlaats"></label>
-        <span asp-validation-for="GeboortePlaats" class="font-weight-bold text-danger"></span>
         <select id="GeboortePlaatsSelect" asp-for="GeboortePlaats"></select>
     </div>
 
-    <div class="mt-2">
+    <div id="SearchWoonPlaatsDiv" class="mt-2">
+        <p><span asp-validation-for="WoonPlaats" class="font-weight-bold text-danger"></span></p>
         <label>
             Geef een aantal letters van uw woonplaats in
             <input id="WoonPlaatsInput" />
@@ -119,11 +120,13 @@
     </div>
     <div id="WoonPlaatsDiv" hidden>
         <label asp-for="WoonPlaats"></label>
-        <span asp-validation-for="WoonPlaats" class="font-weight-bold text-danger"></span>
         <select id="WoonPlaatsSelect" asp-for="WoonPlaats"></select>
     </div>
 
     <div id="SearchStraatDiv" class="mt-2" hidden>
+        <p>
+            <span asp-validation-for="Straat" class="font-weight-bold text-danger"></span>
+        </p>
         <label>
             Geef een aantal letters van uw straatnaam in
             <input id="StraatInput" />
@@ -132,7 +135,6 @@
     </div>
     <div id="StraatDiv" hidden>
         <label asp-for="Straat"></label>
-        <span asp-validation-for="Straat" class="font-weight-bold text-danger"></span>
         <select id="StraatSelect" asp-for="Straat"></select>
     </div>
 
