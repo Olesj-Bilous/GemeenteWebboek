@@ -9,7 +9,7 @@
 
 
 
-<form asp-action="DetailRegistreren" method="post">
+<form asp-action="Registreren" method="post">
     @if (Model.RegistrerenGelukt is not null)
     {
         @if (!(bool)Model.RegistrerenGelukt)
@@ -98,43 +98,55 @@
 
 
     <div class="mt-2">
-        <label asp-for="GeboortePlaats"></label>
-        <span asp-validation-for="GeboortePlaats" class="font-weight-bold text-danger"></span>
-    </div>
-    <div>
         <label>
             Geef een aantal letters van uw geboorteplaats in
             <input id="GeboortePlaatsInput" />
         </label>
         <button id="GeboortePlaatsButton" type="button">Zoeken</button>
-        <select hidden id="GeboortePlaatsSelect" asp-for="GeboortePlaats"></select>
+    </div>
+    <div id="GeboortePlaatsDiv" hidden>
+        <label asp-for="GeboortePlaats"></label>
+        <span asp-validation-for="GeboortePlaats" class="font-weight-bold text-danger"></span>
+        <select id="GeboortePlaatsSelect" asp-for="GeboortePlaats"></select>
     </div>
 
     <div class="mt-2">
-        <label asp-for="WoonPlaats"></label>
-        <span asp-validation-for="WoonPlaats" class="font-weight-bold text-danger"></span>
-    </div>
-    <div>
         <label>
             Geef een aantal letters van uw woonplaats in
             <input id="WoonPlaatsInput" />
         </label>
         <button id="WoonPlaatsButton" type="button">Zoeken</button>
-        <select hidden id="WoonPlaatsSelect" asp-for="WoonPlaats"></select>
+    </div>
+    <div id="WoonPlaatsDiv" hidden>
+        <label asp-for="WoonPlaats"></label>
+        <span asp-validation-for="WoonPlaats" class="font-weight-bold text-danger"></span>
+        <select id="WoonPlaatsSelect" asp-for="WoonPlaats"></select>
+    </div>
+
+    <div id="SearchStraatDiv" class="mt-2" hidden>
+        <label>
+            Geef een aantal letters van uw straatnaam in
+            <input id="StraatInput" />
+        </label>
+        <button id="StraatButton" type="button">Zoeken</button>
+    </div>
+    <div id="StraatDiv" hidden>
+        <label asp-for="Straat"></label>
+        <span asp-validation-for="Straat" class="font-weight-bold text-danger"></span>
+        <select id="StraatSelect" asp-for="Straat"></select>
     </div>
 
     <div class="mt-2">
-        <label asp-for="StraatNaam"></label>
-        <span asp-validation-for="StraatNaam" class="font-weight-bold text-danger"></span>
+        <label asp-for="HuisNr"></label>
+        <span asp-validation-for="HuisNr" class="font-weight-bold text-danger"></span>
     </div>
-    <div>
-        <label>
-            Geef een aantal letters van uw straatnaam in
-            <input id="StraatNaamInput" />
-        </label>
-        <button id="StraatNaamButton" type="button">Zoeken</button>
-        <select hidden id="StraatNaamSelect" asp-for="StraatNaam"></select>
+    <div><input asp-for="HuisNr" /></div>
+
+    <div class="mt-2">
+        <label asp-for="BusNr"></label>
+        <span asp-validation-for="BusNr" class="font-weight-bold text-danger"></span>
     </div>
+    <div><input asp-for="BusNr" /></div>
 
     <div class="mt-2">
         <label asp-for="LoginNaam"></label>

@@ -18,6 +18,11 @@ namespace ForumService
             return await straatRepository.GetStratenMet2FiltersToListAsync(filter1, filter2);
         }
 
+        public Straat GetStraatById(int id)
+        {
+            return straatRepository.GetStraatById(id);
+        }
+
         public List<Straat> GetStraten()
         {
             return straatRepository.GetStraten();
@@ -28,9 +33,9 @@ namespace ForumService
             return GetStraten().Where(s => s.GemeenteId == gemeenteId && s.StraatNaam.Contains(filter)).ToList();
         }
 
-        public Straat GetStraatByNaamAndGemeente(string naam, Gemeente gemeente)
-        {
-            return GetStraten().Where(s => s.StraatNaam == naam && s.Gemeente == gemeente).FirstOrDefault();
-        }
+        //public Straat GetStraatByNaamAndGemeente(string naam, Gemeente gemeente)
+        //{
+        //    return GetStraten().Where(s => s.StraatNaam == naam && s.Gemeente == gemeente).FirstOrDefault();
+        //}
     }
 }

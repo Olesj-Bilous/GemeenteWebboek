@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+//gemeente- en straatfilters zouden niet case sensitive moeten zijn
+//
+
 namespace ForumWeb.Models
 {
     public class RegistrerenViewModel
@@ -77,14 +80,13 @@ namespace ForumWeb.Models
 
         [Required]
         [Display(Name = "Straatnaam*")]
-        public string StraatNaam { get; set; }
+        public string Straat { get; set; }
 
         [Required]
         [Display(Name = "Huisnummer*")]
         public string HuisNr { get; set; }
 
-        [Required]
-        [Display(Name = "Busnummer*")]
+        [Display(Name = "Busnummer")]
         public string BusNr { get; set; }
 
         [Required]

@@ -36,10 +36,12 @@ namespace ForumWeb.Controllers
                 profiel.WoontHierSinds = model.WoontHierSinds;
                 profiel.Taal = taalService.GetTaalById(int.Parse(model.Taal));
                 profiel.GeboortePlaats = gemeenteService.GetGemeenteById(int.Parse(model.GeboortePlaats));
+                profiel.LoginNaam = model.LoginNaam;
+                profiel.LoginPaswoord = model.LoginPaswoord;
 
                 //adres
                 Gemeente woonPlaats = gemeenteService.GetGemeenteById(int.Parse(model.WoonPlaats));
-                Straat straat = straatService.GetStraatByNaamAndGemeente(model.StraatNaam, woonPlaats);
+                Straat straat = straatService.GetStraatById(int.Parse(model.Straat));
                 profiel.Adres = adresService.GetOrCreateAndReturnAdres(straat, model.HuisNr, model.BusNr);
 
                 try

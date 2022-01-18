@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ForumWeb.Controllers
 {
-    [Route("select")]
+    [Route("Select")]
     [ApiController]
     public class SelectController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace ForumWeb.Controllers
             this.straatService = straatService;
         }
 
-        [HttpGet("{filter}")]
+        [HttpGet("Gemeenten/{filter}")]
         public ActionResult GetGemeentenByFilter(string filter)
         {
             List<SelectListItem> items = gemeenteService
@@ -31,7 +31,7 @@ namespace ForumWeb.Controllers
             return items.Any() ? base.Ok(items) : base.NotFound();
         }
 
-        [HttpGet("{gemeenteId}/{filter}")]
+        [HttpGet("Straten/{gemeenteId}/{filter}")]
         public ActionResult GetStratenByGemeenteIdAndFilter(int gemeenteId, string filter)
         {
             return base.Ok(straatService
