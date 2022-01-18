@@ -26,10 +26,18 @@ async function FilterItems(e)
     const response = await fetch(`http://localhost:5000/Select/${domain}/${gemeenteIdSlash}${filter}`);
     if (response.ok)
     {
+        //clear target of previous items if necessary
+        while (select.firstChild)
+        {
+            select.removeChild(select.lastChild);
+        }
+    
         //remove warning previous read source fail if necessary
         const warning = document.getElementById(naam + "Warning");
-        if (warning != null)
+        if (warning)
+        {
             document.getElementById("Search" + naam + "Div").removeChild(warning);
+        }
 
         //assign values to target from source
         const items = await response.json();
@@ -52,7 +60,7 @@ async function FilterItems(e)
     {
         //issue warning if read source failed, if necessary
         var warning = document.getElementById(naam + "Warning");
-        if (warning == null)
+        if (!warning)
         {
             warning = document.createElement("p");
             warning.id = naam + "Warning";
@@ -66,11 +74,14 @@ async function FilterItems(e)
 
         //hide next step in process from user
         document.getElementById(naam + "Div").hidden = true;
-        if (naam == "WoonPlaats") {
+        if (naam == "WoonPlaats")
+        {
             document.getElementById("SearchStraatDiv").hidden = true;
+        }
 
         //clear target of previous items if necessary
         while (select.firstChild)
+        {
             select.removeChild(select.lastChild);
         }
     }
