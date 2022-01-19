@@ -103,6 +103,25 @@ namespace ForumWeb.Controllers
                 return View("EditForm", updatePersoon);
             }
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> EditFormProfiel(int Id)
+        {
+            return View(await profielService.GetProfielByPersoonIdAsync(Id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProfiel(Profiel updateProfiel)
+        {
+            if (this.ModelState.IsValid)
+            {
+                await profielService.UpdateProfielAsync(updateProfiel);
+                return RedirectToAction("ProfielBeheer");
+            }else
+            {
+                return View("EditFormProfiel", updateProfiel);
+            }
+        }
 
         public IActionResult Uitloggen()
         {

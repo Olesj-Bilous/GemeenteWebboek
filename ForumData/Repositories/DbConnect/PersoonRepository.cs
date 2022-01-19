@@ -28,8 +28,7 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task UpdatePersoonAsync(Persoon updatePersoon)
         {
-            var update = context.Personen.Attach(updatePersoon);
-            update.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.Personen.Update(updatePersoon);
             await context.SaveChangesAsync();
         }
     }

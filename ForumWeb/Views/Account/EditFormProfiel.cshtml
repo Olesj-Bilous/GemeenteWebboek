@@ -1,0 +1,48 @@
+﻿@model ForumData.Entities.Profiel
+
+@{ ViewData["Title"] = "U profiel details aanpassen"; }
+
+<h2>Profiel details wijzigen</h2>
+<form asp-action="EditProfiel" method="post">
+    <div class="form-group">
+        <label asp-for="WoontHierSinds">Ik woon hier sinds</label>
+        <input asp-for="WoontHierSinds" />
+    </div>
+
+    <div class="formgroup">
+        <label asp-for="EmailAdres">Email adres</label>
+        <input asp-for="EmailAdres" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FacebookNaam">Facebook profiel</label>
+        <input asp-for="FacebookNaam" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WebsiteAdres">Website adres</label>
+        <input asp-for="WebsiteAdres" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BeroepTekst">Beroep tekstje</label>
+        <input asp-for="BeroepTekst" />
+    </div>
+
+    <div class="Form-group">
+        <label asp-for="FirmaNaam">Firma naam</label>
+        <input asp-for="FirmaNaam" />
+    </div>
+
+    <div class="Form-group">
+        <label asp-for="KennismakingTekst">Kennismaking teskt</label>
+        <input asp-for="KennismakingTekst" />
+    </div>
+
+    <div class="Form-group">
+        <p>Interrese lijst + uitleg</p>
+    </div>
+
+    <input type="submit" value="Wijzigen" />
+    <div asp-validation-summary="All"></div>
+</form>
