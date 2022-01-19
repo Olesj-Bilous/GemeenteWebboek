@@ -13,10 +13,20 @@ namespace ForumWeb.Controllers
         public IActionResult Interesses(Profiel profiel)
         {
             InteressesViewModel model = new InteressesViewModel();
-            model.Interesses = interesseService
-                .GetInteresses()
-                .ToSelectList(i => i.InteresseId.ToString(), i => i.InteresseNaam);
-            model.ProfielInteresses = profiel.ProfielInteresses.ToList();
+
+            //get interesses and profielInteresses
+            IEnumerable<Interesse> interesses = interesseService.GetInteresses();
+            List<ProfielInteresse> profielInteresses = profiel.ProfielInteresses.ToList();
+
+            //filter profielInteresses from interesses
+            foreach (ProfielInteresse pi in profielInteresses)
+            {
+                interesses = interesses.Where(i => i != pi.Interesse);
+            }
+
+            //fill ViewModel
+            model.Interesses = interesses.ToList().ToSelectList(i => i.InteresseId.ToString(), i => i.InteresseNaam);
+            model.ProfielInteresses = profielInteresses;
             return View(model);
         }
     }
