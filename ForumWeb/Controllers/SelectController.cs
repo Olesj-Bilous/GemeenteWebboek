@@ -37,6 +37,9 @@ namespace ForumWeb.Controllers
             List<SelectListItem> items = straatService
                 .GetStratenByGemeenteIdAndFilter(gemeenteId, filter)
                 .ToSelectList(s => s.StraatId.ToString(), s => s.StraatNaam);
+            //alternatief:
+            //Gemeente gemeente = gemeenteService.GetGemeenteById(gemeenteId);
+            //items = gemeente.Straten.Where(...)...
             return items.Any() ? base.Ok(items) : base.NotFound();
         }
     }

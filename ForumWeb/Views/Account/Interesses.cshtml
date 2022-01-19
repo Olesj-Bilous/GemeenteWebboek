@@ -1,0 +1,27 @@
+﻿@using ForumData.Entities
+@model InteressesViewModel
+@{
+    ViewData["Title"] = "Interesses";
+}
+<select id="InteressesSelect" asp-items="Model.Interesses"></select>
+<button id="InteressesButton" type="button">Toevoegen</button>
+
+<table>
+    <tr>
+        <th>Interesse</th>
+        <th>Beschrijving</th>
+        <th></th>
+    </tr>
+    @foreach (ProfielInteresse pi in Model.ProfielInteresses)
+    {
+        string rijNaam = pi.Interesse.InteresseNaam + "Row";
+
+        <tr id="@rijNaam">
+            <td>@pi.Interesse.InteresseNaam</td>
+            <td>@pi.ProfielInteresseTekst</td>
+            <td>
+                <img src="~/img/crossIcon.svg" />
+            </td>
+        </tr>
+    }
+</table>

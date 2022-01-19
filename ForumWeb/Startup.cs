@@ -36,6 +36,7 @@ namespace ForumWeb
             //Layer service
             services.AddTransient<AdresService>();
             services.AddTransient<IAdresRepository, AdresRepository>();
+
             services.AddTransient<IAfdelingRepository, AfdelingRepository>();
             services.AddTransient<IBerichtRepository, BerichtRepository>();
             services.AddTransient<IBerichtTypeRepository, BerichtTypeRepository>();
@@ -43,11 +44,13 @@ namespace ForumWeb
             services.AddTransient<GemeenteService>();
             services.AddTransient<IGemeenteRepository, GemeenteRepository>();
 
+            services.AddTransient<InteresseService>();
             services.AddTransient<IInteresseRepository, InteresseRepository>();
+
             services.AddTransient<IPersoonRepository, PersoonRepository>();
             services.AddTransient<IMedewerkerRepository, MedewerkerRepository>();
             services.AddTransient<IProfielRepository, ProfielRepository>();
-            services.AddTransient<IProfielInteresse, ProfielInteresseRepository>();
+            services.AddTransient<IProfielInteresseRepository, ProfielInteresseRepository>();
             services.AddTransient<IProvincieRepository, ProvincieRepository>();
 
             services.AddTransient<StraatService>();

@@ -7,8 +7,8 @@ namespace ForumService
     public class ProfielInteresseService
     {
         //INJECTIE
-        private IProfielInteresse profielInteresse;
-        public ProfielInteresseService(IProfielInteresse profielInteresse) => this.profielInteresse = profielInteresse;
+        private IProfielInteresseRepository piRepo;
+        public ProfielInteresseService(IProfielInteresseRepository piRepo) => this.piRepo = piRepo;
 
         //METHODS
 

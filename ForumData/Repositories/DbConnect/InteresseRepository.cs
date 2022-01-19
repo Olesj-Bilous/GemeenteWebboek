@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ForumData.Entities;
 using ForumData.Repositories.Interface;
@@ -14,6 +15,11 @@ namespace ForumData.Repositories.DbConnect
         public async Task<List<Interesse>> GetInteressesToListAsync()
         {
             return await context.Interesses.ToListAsync();
+        }
+        
+        public List<Interesse> GetInteresses()
+        {
+            return context.Interesses.ToList();
         }
     }
 }

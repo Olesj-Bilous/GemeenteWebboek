@@ -17,5 +17,9 @@ namespace ForumService
             return await interesseRepository.GetInteressesToListAsync();
         }
 
+        public List<Interesse> GetInteresses()
+        {
+            return interesseRepository.GetInteresses();
+        }
     }
 }

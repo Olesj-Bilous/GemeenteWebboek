@@ -1,8 +1,10 @@
 ﻿using ForumData.Entities;
+using System.Collections.Generic;
+
 namespace ForumData.Repositories.Interface
 {
-    public interface IProfielInteresse
+    public interface IProfielInteresseRepository
     {
-        //NOT YET
+        List<ProfielInteresse> GetProfielenInteresses();
     }
 }

@@ -7,5 +7,6 @@ namespace ForumData.Repositories.Interface
     public interface IInteresseRepository
     {
         Task <List<Interesse>> GetInteressesToListAsync();
+        List<Interesse> GetInteresses();
     }
 }

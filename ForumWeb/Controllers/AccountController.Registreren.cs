@@ -13,7 +13,9 @@ namespace ForumWeb.Controllers
         public IActionResult Registreren()
         {
             RegistrerenViewModel model = new RegistrerenViewModel();
-            model.Talen = taalService.GetTalen().ToSelectList(t => t.TaalId.ToString(), t => t.TaalNaam);
+            model.Talen = taalService
+                .GetTalen()
+                .ToSelectList(t => t.TaalId.ToString(), t => t.TaalNaam);
             return View(model);
         }
 
@@ -40,7 +42,7 @@ namespace ForumWeb.Controllers
                 profiel.LoginPaswoord = model.LoginPaswoord;
 
                 //adres
-                Gemeente woonPlaats = gemeenteService.GetGemeenteById(int.Parse(model.WoonPlaats));
+                //Gemeente woonPlaats = gemeenteService.GetGemeenteById(int.Parse(model.WoonPlaats));
                 Straat straat = straatService.GetStraatById(int.Parse(model.Straat));
                 profiel.Adres = adresService.GetOrCreateAndReturnAdres(straat, model.HuisNr, model.BusNr);
 
