@@ -10,12 +10,12 @@ namespace ForumData.Entities
     {
         public string KennismakingTekst { get; set; }
         public DateTime? WoontHierSinds { get; set; }
-#nullable enable
+        #nullable enable
         public string? BeroepTekst { get; set; }
         public string? FirmaNaam { get; set; }
         public string? WebsiteAdres { get; set; }
         public string? FacebookNaam { get; set; }
-#nullable disable
+        #nullable disable
         public string EmailAdres { get; set; }
 
         public DateTime? GoedkeuringTijdstip { get; set; }

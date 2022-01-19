@@ -86,21 +86,21 @@ namespace ForumWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditForm(int Id)
+        public async Task<IActionResult> EditFormPersoon(int Id)
         {
             return View(await persoonService.GetPersoonByIdAsync(Id));
         }
 
         [HttpPost]
-        public IActionResult Edit(Profiel updateProfiel)
+        public async Task<IActionResult> EditPersoon(Persoon updatePersoon)
         {
             if (this.ModelState.IsValid)
             {
-                    profielService.UpdateProfiel(updateProfiel);
+                    await persoonService.UpdatePersoonAsync(updatePersoon);
                     return RedirectToAction("ProfielBeheer");
             }else
             {
-                return View("EditForm", updateProfiel);
+                return View("EditForm", updatePersoon);
             }
         }
 
