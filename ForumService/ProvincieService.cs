@@ -8,7 +8,7 @@ namespace ForumService
     public class ProvincieService
     {
         //INJECTIE
-        private IProvincieRepository provincieRepository;
+        readonly private IProvincieRepository provincieRepository;
         public ProvincieService(IProvincieRepository provincieRepository) => this.provincieRepository = provincieRepository;
 
         //METHODS

@@ -12,7 +12,7 @@ namespace ForumData.Repositories.DbConnect
     public class PersoonRepository : IPersoonRepository
     {
         //INJECTIE
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public PersoonRepository(GemeenteForumDbContext context) => this.context = context;
 
         //METHODS

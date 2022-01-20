@@ -8,7 +8,7 @@ namespace ForumService
     public class ProfielService
     {
         //INJECTION
-        private IProfielRepository profielRepository;
+        readonly private IProfielRepository profielRepository;
         public ProfielService(IProfielRepository profielRepository) => this.profielRepository = profielRepository;
 
         //METHODS

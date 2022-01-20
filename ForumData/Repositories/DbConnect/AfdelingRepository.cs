@@ -6,7 +6,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class AfdelingRepository : IAfdelingRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public AfdelingRepository(GemeenteForumDbContext context) => this.context = context;
 
         public async Task<Afdeling> GetAfdelingByIdAsync(int id)

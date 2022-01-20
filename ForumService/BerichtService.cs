@@ -8,7 +8,7 @@ namespace ForumService
     public class BerichtService
     {
         //INJECTION
-        private IBerichtRepository berichtRepository;
+        readonly private IBerichtRepository berichtRepository;
         public BerichtService(IBerichtRepository berichtRepository) => this.berichtRepository = berichtRepository;
 
         //METHODS

@@ -13,13 +13,11 @@ namespace ForumWeb.Controllers
     public class AccountController : Controller
     {
     
-        private PersoonService persoonService;
-        private ProfielService profielService;
-        private MedewerkerService medewerkerService;
+        readonly private PersoonService persoonService;
+        readonly private ProfielService profielService;
 
-        public AccountController(PersoonService persoonService, ProfielService profielService, MedewerkerService medewerkerService)
+        public AccountController(PersoonService persoonService, ProfielService profielService)
         {
-            this.medewerkerService = medewerkerService;
             this.profielService = profielService;
             this.persoonService = persoonService;
         }
@@ -86,40 +84,40 @@ namespace ForumWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditFormPersoon(int Id)
-        {
-            return View(await persoonService.GetPersoonByIdAsync(Id));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> EditPersoon(Persoon updatePersoon)
-        {
-            if (this.ModelState.IsValid)
-            {
-                    await persoonService.UpdatePersoonAsync(updatePersoon);
-                    return RedirectToAction("ProfielBeheer");
-            }else
-            {
-                return View("EditForm", updatePersoon);
-            }
-        }
-        
-        [HttpGet]
-        public async Task<IActionResult> EditFormProfiel(int Id)
+        public async Task<IActionResult> EditFormPersoonDetail(int Id)
         {
             return View(await profielService.GetProfielByPersoonIdAsync(Id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditProfiel(Profiel updateProfiel)
+        public async Task<IActionResult> EditPersoonDetail(Profiel updatePersoonDetail)
         {
             if (this.ModelState.IsValid)
             {
-                await profielService.UpdateProfielAsync(updateProfiel);
+                    await profielService.UpdateProfielAsync(updatePersoonDetail);
+                    return RedirectToAction("ProfielBeheer");
+            }else
+            {
+                return View("EditForm", updatePersoonDetail);
+            }
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> EditFormProfielDetail(int Id)
+        {
+            return View(await profielService.GetProfielByPersoonIdAsync(Id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProfielDetail(Profiel updateProfielDetail  )
+        {
+            if (this.ModelState.IsValid)
+            {
+                await profielService.UpdateProfielAsync(updateProfielDetail);
                 return RedirectToAction("ProfielBeheer");
             }else
             {
-                return View("EditFormProfiel", updateProfiel);
+                return View("EditFormProfiel", updateProfielDetail);
             }
         }
 

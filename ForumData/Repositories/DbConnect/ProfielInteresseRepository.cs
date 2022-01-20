@@ -5,7 +5,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class ProfielInteresseRepository : IProfielInteresse
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public ProfielInteresseRepository(GemeenteForumDbContext context) => this.context = context;
 
     }

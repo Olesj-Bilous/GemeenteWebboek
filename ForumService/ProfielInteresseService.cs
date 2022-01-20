@@ -7,7 +7,7 @@ namespace ForumService
     public class ProfielInteresseService
     {
         //INJECTIE
-        private IProfielInteresse profielInteresse;
+        readonly private IProfielInteresse profielInteresse;
         public ProfielInteresseService(IProfielInteresse profielInteresse) => this.profielInteresse = profielInteresse;
 
         //METHODS

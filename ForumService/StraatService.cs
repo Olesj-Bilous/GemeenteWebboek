@@ -8,7 +8,7 @@ namespace ForumService
     public class StraatService
     {   
         //INJECTIE
-        private IStraatRepository straatRepository;
+        readonly private IStraatRepository straatRepository;
         public StraatService(IStraatRepository straatRepository) => this.straatRepository = straatRepository;
 
         //METHODS

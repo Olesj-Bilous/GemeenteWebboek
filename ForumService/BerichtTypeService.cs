@@ -9,7 +9,7 @@ namespace ForumService
     public class BerichtTypeService
     {
         //INJECTIE
-        private IBerichtTypeRepository berichtTypeRepository;
+        readonly private IBerichtTypeRepository berichtTypeRepository;
         public BerichtTypeService(IBerichtTypeRepository berichtTypeRepository) => this.berichtTypeRepository = berichtTypeRepository;
 
         //METHODS

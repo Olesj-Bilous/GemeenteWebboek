@@ -7,7 +7,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class MedewerkerRepository: IMedewerkerRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public MedewerkerRepository(GemeenteForumDbContext context) => this.context = context;
 
         public async Task AddMedewerkerAsync(Medewerker nieuwMedewerker)

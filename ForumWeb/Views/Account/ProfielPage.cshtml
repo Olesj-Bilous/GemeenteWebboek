@@ -48,7 +48,15 @@
 
 @section Scripts
 {
-    <script>
-        $('#show-partial').click(function () { $('#partialDetail').show(); })
+    <script language="Javascript">
+        $('#show-partial').click(function ()
+        {
+            var state = document.getElementById("partialDetail").style.display;
+            if (state == 'block') {
+                document.getElementById("partialDetail").style.display = 'none';
+            } else {
+                document.getElementById("partialDetail").style.display = 'block';
+            }
+        })
     </script>
 }

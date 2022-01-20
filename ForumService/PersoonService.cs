@@ -7,7 +7,7 @@ namespace ForumService
 {
     public class PersoonService
     {
-        private IPersoonRepository persoonRepository;
+        readonly private IPersoonRepository persoonRepository;
         public PersoonService(IPersoonRepository persoonRepository) => this.persoonRepository = persoonRepository;
 
        public async Task<Persoon> GetPersoonByLoginNaamAndPaswoordAsync(string Naam, string paswoord)

@@ -8,7 +8,7 @@ namespace ForumService
     public class AfdelingService
     {
         //INJECTION
-        private IAfdelingRepository afdelingRepository;
+        readonly private IAfdelingRepository afdelingRepository;
         public AfdelingService(IAfdelingRepository afdelingRepository) => this.afdelingRepository = afdelingRepository;
 
         //METHODS

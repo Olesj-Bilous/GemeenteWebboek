@@ -8,7 +8,7 @@ namespace ForumService
     public class AdresService
     {
         //INJECTION
-        private IAdresRepository adresRepository;
+        readonly private IAdresRepository adresRepository;
         public AdresService(IAdresRepository adresRepository) => this.adresRepository = adresRepository;
 
         //METHODS

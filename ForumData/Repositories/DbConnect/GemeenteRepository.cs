@@ -9,7 +9,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class GemeenteRepository : IGemeenteRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public GemeenteRepository(GemeenteForumDbContext context) => this.context = context;
 
         public async Task<Gemeente> GetGemeenteByIdAsync(int id)

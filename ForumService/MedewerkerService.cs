@@ -8,7 +8,7 @@ namespace ForumService
     public class MedewerkerService
     {
         //INJECTIE    
-        private IMedewerkerRepository medewerkerRepository;
+        readonly private IMedewerkerRepository medewerkerRepository;
         public MedewerkerService(IMedewerkerRepository medewerkerRepository) => this.medewerkerRepository = medewerkerRepository;
 
         //METHODS

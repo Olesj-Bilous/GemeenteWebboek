@@ -8,7 +8,7 @@ namespace ForumService
     public class TaalService
     {
         //INJECTIE     
-        private ITaalRepository taalRepository;
+        readonly private ITaalRepository taalRepository;
         public TaalService(ITaalRepository taalRepository) => this.taalRepository = taalRepository;
 
         //METHODS

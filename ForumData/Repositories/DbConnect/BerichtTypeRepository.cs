@@ -6,7 +6,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class BerichtTypeRepository: IBerichtTypeRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public BerichtTypeRepository(GemeenteForumDbContext context) => this.context = context;
 
 

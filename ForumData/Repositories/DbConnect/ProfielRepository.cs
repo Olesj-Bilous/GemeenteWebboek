@@ -7,7 +7,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class ProfielRepository : IProfielRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public ProfielRepository(GemeenteForumDbContext context) => this.context = context;
 
         public async Task AddProfielAsync(Profiel nieuwProfiel)
@@ -30,6 +30,9 @@ namespace ForumData.Repositories.DbConnect
         public async Task UpdateProfielAsync(Profiel updateProfiel)
         {
             context.Profielen.Update(updateProfiel);
+            //var update = context.Profielen.Attach(updatePorfiel)
+            //update.state = Mircrosoft.EntityFrameworkCore.EntityState.Modified;
+            //Wat is het verschil? Wat is beter?
             await context.SaveChangesAsync();
         }
     }

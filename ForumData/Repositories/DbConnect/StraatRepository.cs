@@ -9,7 +9,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class StraatRepository : IStraatRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public StraatRepository(GemeenteForumDbContext context) => this.context = context;
 
         public async Task<List<Straat>> GetStratenMet2FiltersToListAsync(string filter1, string filter2)

@@ -8,7 +8,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class TaalRepository : ITaalRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public TaalRepository(GemeenteForumDbContext context) => this.context = context;
 
         public async Task<List<Taal>> GetTalenToListAsync()

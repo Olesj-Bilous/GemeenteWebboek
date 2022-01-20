@@ -6,7 +6,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class BerichtRepository : IBerichtRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public BerichtRepository(GemeenteForumDbContext context) => this.context = context;
 
         public async Task AddBerichtAsync(Bericht newBericht)

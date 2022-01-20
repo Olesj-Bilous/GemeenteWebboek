@@ -8,7 +8,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class AdresRepository : IAdresRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public AdresRepository(GemeenteForumDbContext context) => this.context = context;
 
 

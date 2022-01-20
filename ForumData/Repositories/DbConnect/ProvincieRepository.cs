@@ -8,7 +8,7 @@ namespace ForumData.Repositories.DbConnect
 {
     public class ProvincieRepository :IProvincieRepository
     {
-        private GemeenteForumDbContext context;
+        readonly private GemeenteForumDbContext context;
         public ProvincieRepository(GemeenteForumDbContext context) => this.context = context;
 
         public async Task<List<Provincie>> GetProvinciesToListAsync()

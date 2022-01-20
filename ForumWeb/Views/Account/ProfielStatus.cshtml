@@ -1,0 +1,10 @@
+﻿@using ForumData.Entities
+@model IEnumerable<Profiel>
+@{ 
+    ViewData["Title"] = "Profiel details";
+}
+
+@foreach(var profiel in Model)
+            {
+                <p>@profiel.VoorNaam</p>
+            }

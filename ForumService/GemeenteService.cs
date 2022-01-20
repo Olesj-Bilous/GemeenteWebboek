@@ -8,7 +8,7 @@ namespace ForumService
     public class GemeenteService
     {
         //INJECTIE
-        private IGemeenteRepository gemeenteRepository;
+        readonly private IGemeenteRepository gemeenteRepository;
         public GemeenteService(IGemeenteRepository gemeenteRepository) => this.gemeenteRepository = gemeenteRepository;
 
         //METHODS

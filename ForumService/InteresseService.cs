@@ -8,7 +8,7 @@ namespace ForumService
     public class InteresseService
     {
         //INJECTIE
-        private IInteresseRepository interesseRepository;
+        readonly private IInteresseRepository interesseRepository;
         public InteresseService(IInteresseRepository interesseRepository) => this.interesseRepository = interesseRepository;
 
         //METHODS
