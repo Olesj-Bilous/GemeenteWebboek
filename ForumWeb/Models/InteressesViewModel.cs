@@ -9,6 +9,7 @@ namespace ForumWeb.Models
 {
     public class InteressesViewModel
     {
+        public string ProfielId { get; set; }
         public List<SelectListItem> Interesses { get; set; }
         public List<ProfielInteresse> ProfielInteresses { get; set; }
     }

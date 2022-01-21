@@ -1,32 +1,38 @@
 ﻿@using ForumData.Entities
+@section Scripts
+{
+    <script src="~/js/interesses.js"></script>
+}
 @model InteressesViewModel
 @{
     ViewData["Title"] = "Interesses";
 }
+<p id="profielId" hidden>@Model.ProfielId</p>
 <select id="Select" asp-items="Model.Interesses"></select>
-<button id="Button" type="button">Toevoegen</button>
+<button id="Button" type="button">Interesse toevoegen</button>
 
-if (Model.ProfielInteresses is not null)
+@if (Model.ProfielInteresses.Any())
 {
-    <table id="Tabel">
-        <tr>
-            <th>Interesse</th>
-            <th>Beschrijving</th>
-            <th></th>
+<table id="Table" name="@Model.ProfielId">
+    <tr>
+        <th>Interesse</th>
+        <th>Beschrijving</th>
+        <th>Verwijder</th>
+        <th hidden>Original</th>
+    </tr>
+    @foreach (ProfielInteresse pi in Model.ProfielInteresses)
+    {
+        <tr id="@pi.Interesse.InteresseId.ToString();" name="old">
+            <td>@pi.Interesse.InteresseNaam</td>
+            <td>
+                <input type="text" value="@pi.ProfielInteresseTekst" />
+            </td>
+            <td>
+                <img name="delete" src="~/img/crossIcon.svg" alt="verwijder" />
+            </td>
+            <td hidden>"@pi.ProfielInteresseTekst"</td>
         </tr>
-        @foreach (ProfielInteresse pi in Model.ProfielInteresses)
-        {
-            string naam = pi.Interesse.InteresseNaam;
-            string rijNaam = naam + "Row";
-            string imgNaam = naam + "Img";
-
-            <tr id="@rijNaam" name="old">
-                <td>@naam</td>
-                <td>@pi.ProfielInteresseTekst</td>
-                <td>
-                    <img id="@imgNaam" src="~/img/crossIcon.svg" />
-                </td>
-            </tr>
-        }
-    </table>
+    }
+</table>
 }
+<button id="Submit" type="button">Wijzigingen doorvoeren</button>

@@ -25,6 +25,7 @@ namespace ForumWeb.Controllers
             }
 
             //fill ViewModel
+            model.ProfielId = profiel.PersoonId.ToString();
             model.Interesses = interesses.ToList().ToSelectList(i => i.InteresseId.ToString(), i => i.InteresseNaam);
             model.ProfielInteresses = profielInteresses;
             return View(model);

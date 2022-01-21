@@ -4,10 +4,14 @@ namespace ForumData.Repositories.Interface
 {
     public interface IProfielRepository
     {
+        //async
         Task<Profiel> GetProfielByPersoonIdAsync(int id);
         Task AddProfielAsync (Profiel nieuwProfiel);
-        void AddProfiel(Profiel profiel);
         Task DeleteProfielAsync (Profiel deleteProfiel);
         Task UpdateProfielAsync (Profiel updateProfiel);
+
+        //sync
+        void AddProfiel(Profiel profiel);
+        Profiel GetProfielById(int id);
     }
 }

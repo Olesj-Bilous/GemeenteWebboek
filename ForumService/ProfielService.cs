@@ -11,7 +11,7 @@ namespace ForumService
         private IProfielRepository profielRepository;
         public ProfielService(IProfielRepository profielRepository) => this.profielRepository = profielRepository;
 
-        //METHODS
+        //async repo METHODS
         public async Task AddProfielAsync(Profiel nieuwProfiel)
         {
             await profielRepository.AddProfielAsync(nieuwProfiel);
@@ -30,6 +30,17 @@ namespace ForumService
         public async Task UpdateProfielAsync(Profiel updateProfiel)
         {
             await profielRepository.UpdateProfielAsync(updateProfiel);
+        }
+
+        //sync repo methods
+        public void AddProfiel(Profiel profiel)
+        {
+            profielRepository.AddProfiel(profiel);
+        }
+
+        public Profiel GetProfielById(int id)
+        {
+            return profielRepository.GetProfielById(id);
         }
     }
 }

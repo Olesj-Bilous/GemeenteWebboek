@@ -1,6 +1,9 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ForumData.Repositories.DbConnect
 {
@@ -9,9 +12,33 @@ namespace ForumData.Repositories.DbConnect
         private GemeenteForumDbContext context;
         public ProfielInteresseRepository(GemeenteForumDbContext context) => this.context = context;
 
-        public List<ProfielInteresse> GetProfielenInteresses()
+        public void AddRange(List<ProfielInteresse> profielInteresses)
         {
-            throw new System.NotImplementedException();
+            context.ProfielenInteresses.AddRange(profielInteresses);
+            context.SaveChanges();
+        }
+        public void UpdateRange(List<ProfielInteresse> profielInteresses)
+        {
+            foreach (ProfielInteresse pi in profielInteresses)
+            {
+                EntityEntry<ProfielInteresse> newPi = context.ProfielenInteresses.Attach(pi);
+                newPi.State = EntityState.Modified;
+            }
+            context.SaveChanges();
+        }
+
+        public ProfielInteresse GetById(int id)
+        {
+            return context.ProfielenInteresses.Find(id);
+        }
+        public void Delete(ProfielInteresse pi)
+        {
+            context.ProfielenInteresses.Remove(pi);
+        }
+
+        public List<ProfielInteresse> GetAll()
+        {
+            return context.ProfielenInteresses.ToList();
         }
     }
 }

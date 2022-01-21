@@ -1,4 +1,4 @@
-﻿//prepare callers for listener identification and assign listener
+﻿//prepare caller for listener identification and assign listener
 const geboortePlaatsButton = document.getElementById("GeboortePlaatsButton");
 geboortePlaatsButton.naam = "GeboortePlaats";
 geboortePlaatsButton.onclick = FilterItems;
