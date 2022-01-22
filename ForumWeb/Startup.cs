@@ -24,6 +24,15 @@ namespace ForumWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("corsPolicy",
+            //                      builder =>
+            //                      {
+            //                          builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            //                      });
+            //});
+
             services.AddControllersWithViews();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
@@ -49,8 +58,13 @@ namespace ForumWeb
 
             services.AddTransient<IPersoonRepository, PersoonRepository>();
             services.AddTransient<IMedewerkerRepository, MedewerkerRepository>();
+
+            services.AddTransient<ProfielService>();
             services.AddTransient<IProfielRepository, ProfielRepository>();
+
+            services.AddTransient<ProfielInteresseService>();
             services.AddTransient<IProfielInteresseRepository, ProfielInteresseRepository>();
+
             services.AddTransient<IProvincieRepository, ProvincieRepository>();
 
             services.AddTransient<StraatService>();

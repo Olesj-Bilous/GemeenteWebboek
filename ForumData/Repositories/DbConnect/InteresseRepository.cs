@@ -16,7 +16,12 @@ namespace ForumData.Repositories.DbConnect
         {
             return await context.Interesses.ToListAsync();
         }
-        
+
+        public Interesse GetById(int id)
+        {
+            return context.Interesses.Find(id);
+        }
+
         public List<Interesse> GetInteresses()
         {
             return context.Interesses.ToList();

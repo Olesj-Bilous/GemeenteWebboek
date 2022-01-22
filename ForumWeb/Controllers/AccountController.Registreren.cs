@@ -37,6 +37,7 @@ namespace ForumWeb.Controllers
                 profiel.Geslacht = model.Geslacht == "M" ? Geslacht.M : Geslacht.V;
                 profiel.WoontHierSinds = model.WoontHierSinds;
                 profiel.Taal = taalService.GetTaalById(int.Parse(model.Taal));
+                //must check for null first
                 profiel.GeboortePlaats = gemeenteService.GetGemeenteById(int.Parse(model.GeboortePlaats));
                 profiel.LoginNaam = model.LoginNaam;
                 profiel.LoginPaswoord = model.LoginPaswoord;

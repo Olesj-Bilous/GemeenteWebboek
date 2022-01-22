@@ -8,5 +8,7 @@ namespace ForumData.Repositories.Interface
     {
         Task <List<Interesse>> GetInteressesToListAsync();
         List<Interesse> GetInteresses();
+
+        Interesse GetById(int id);
     }
 }

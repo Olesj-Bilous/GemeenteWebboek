@@ -10,11 +10,12 @@ namespace ForumWeb.Controllers
 {
     public partial class AccountController
     {
-        public IActionResult Interesses(Profiel profiel)
+        public IActionResult Interesses()
         {
             InteressesViewModel model = new InteressesViewModel();
 
             //get interesses and profielInteresses
+            Profiel profiel = (Profiel)HttpContext.Session.GetUser();
             IEnumerable<Interesse> interesses = interesseService.GetInteresses();
             List<ProfielInteresse> profielInteresses = profiel.ProfielInteresses.ToList();
 

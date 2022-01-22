@@ -11,28 +11,32 @@
 <select id="Select" asp-items="Model.Interesses"></select>
 <button id="Button" type="button">Interesse toevoegen</button>
 
-@if (Model.ProfielInteresses.Any())
-{
-<table id="Table" name="@Model.ProfielId">
-    <tr>
-        <th>Interesse</th>
-        <th>Beschrijving</th>
-        <th>Verwijder</th>
-        <th hidden>Original</th>
-    </tr>
-    @foreach (ProfielInteresse pi in Model.ProfielInteresses)
-    {
-        <tr id="@pi.Interesse.InteresseId.ToString();" name="old">
-            <td>@pi.Interesse.InteresseNaam</td>
-            <td>
-                <input type="text" value="@pi.ProfielInteresseTekst" />
-            </td>
-            <td>
-                <img name="delete" src="~/img/crossIcon.svg" alt="verwijder" />
-            </td>
-            <td hidden>"@pi.ProfielInteresseTekst"</td>
+<table id="Table" name="@Model.ProfielId" hidden>
+    <thead>
+        <tr id="TitleRow">
+            <th>Interesse</th>
+            <th>Beschrijving</th>
+            <th>Verwijder</th>
+            <th hidden>Original</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @if (Model.ProfielInteresses.Any())
+        {
+            @foreach (ProfielInteresse pi in Model.ProfielInteresses)
+            {
+                <tr id="@pi.Interesse.InteresseId.ToString();" name="old">
+                    <td>@pi.Interesse.InteresseNaam</td>
+                    <td>
+                        <input type="text" value="@pi.ProfielInteresseTekst" />
+                    </td>
+                    <td>
+                        <img name="delete" src="~/img/crossIcon.svg" alt="verwijder" class="img-fluid" />
+                    </td>
+                    <td hidden>"@pi.ProfielInteresseTekst"</td>
+                </tr>
+            }
+        }
+    </tbody>
 </table>
-}
-<button id="Submit" type="button">Wijzigingen doorvoeren</button>
+<button id="Submit" type="button" disabled>Wijzigingen doorvoeren</button>
