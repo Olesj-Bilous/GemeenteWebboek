@@ -27,9 +27,9 @@ namespace ForumData.Repositories.DbConnect
             context.SaveChanges();
         }
 
-        public ProfielInteresse GetById(int id)
+        public ProfielInteresse GetByProfielIdAndInteresseId(int profielId, int interesseId)
         {
-            return context.ProfielenInteresses.Find(id);
+            return context.ProfielenInteresses.Find(profielId, interesseId);
         }
         public void Delete(ProfielInteresse pi)
         {

@@ -11,7 +11,7 @@
 <select id="Select" asp-items="Model.Interesses"></select>
 <button id="Button" type="button">Interesse toevoegen</button>
 
-<table id="Table" name="@Model.ProfielId" hidden>
+<table id="Table" class="table table-striped"name="@Model.ProfielId" hidden>
     <thead>
         <tr id="TitleRow">
             <th>Interesse</th>
@@ -39,4 +39,5 @@
         }
     </tbody>
 </table>
+<h3 id="Msg" hidden></h3>
 <button id="Submit" type="button" disabled>Wijzigingen doorvoeren</button>

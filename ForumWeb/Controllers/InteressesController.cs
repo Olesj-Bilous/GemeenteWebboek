@@ -52,21 +52,21 @@ namespace ForumWeb.Controllers
                 altPIs.Add(pi);
             }
 
-            try
-            {
+            //try
+            //{
                 foreach (string id in model.Verwijderd)
                 {
-                    piService.DeleteById(int.Parse(id));
+                    piService.DeleteByProfielIdAndInteresseId(profielId, int.Parse(id));
                 }
 
                 piService.AddRange(newPIs);
                 piService.UpdateRange(newPIs);
                 return base.Ok();
-            }
-            catch (Exception)
-            {
-                return base.Problem();
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return base.Problem();
+            //}
         }
     }
 }

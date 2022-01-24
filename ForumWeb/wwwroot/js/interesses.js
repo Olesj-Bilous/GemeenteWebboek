@@ -1,13 +1,12 @@
-﻿//enable submit if at least one old value != original || at least one old row == hidden || at least one new row not hidden
-
-//fix img width and hover
+﻿//eliminate use of classes for event programming
+//hide dropdown list when empty
 
 const select = document.getElementById("Select");
 const button = document.getElementById("Button");
 const submit = document.getElementById("Submit");
 const table = document.getElementById("Table");
 const tbody = table.children[1];
-var msg = document.getElementById("Msg");
+const msg = document.getElementById("Msg");
 
 if (tbody.children) {
     table.hidden = false;
@@ -16,10 +15,10 @@ if (tbody.children) {
 //assign listeners
 button.onclick = ToonRij;
 for (img of document.getElementsByClassName("delete")) {
-    img.onclick = VerbergRij;
+    img.addEventListener("click", VerbergRij);
 }
 for (row of Array.from(tbody.children).filter(c => c.classList.contains("old"))) {
-    row.children[1].firstElementChild.onchange = WijzigRij;
+    row.children[1].firstElementChild.addEventListener("change", WijzigRij);
 }
 submit.onclick = Opslaan;
 
@@ -34,6 +33,8 @@ function WijzigRij(e) {
         //disable submit if all changes now reverted
         submit.disabled = !TestChanged();
     }
+
+    msg.hidden = true;
 }
 
 function ToonRij()
@@ -54,6 +55,8 @@ function ToonRij()
         if (row.classList.contains("old")) {
             //disable submit if all changes now reverted
             submit.disabled = !TestChanged();
+        } else {
+            submit.disabled = false;
         }
     }
     else
@@ -103,6 +106,8 @@ function ToonRij()
     }
     //reveal table
     table.hidden = false;
+
+    msg.hidden = true;
 }
 
 function VerbergRij(e)
@@ -133,6 +138,8 @@ function VerbergRij(e)
     } else {
         submit.disabled = !TestChanged();
     }
+
+    msg.hidden = true;
 }
 
 async function Opslaan() {
@@ -182,15 +189,33 @@ async function Opslaan() {
         });
 
     //report on post
-    if (!msg) {
-        msg = document.createElement("h3")
-        document.querySelector("main").insertBefore(msg, submit);
-    }
     if (response.ok) {
         msg.textContent = "Uw wijzigingen werden doorgevoerd.";
+        msg.hidden = false;
+        AcceptChanges();
     } else {
-        msg.textContent = "Er was een probleem bij het doorvoeren van uw wijzigingen."
+        msg.textContent = "Er was een probleem bij het doorvoeren van uw wijzigingen.";
+        msg.hidden = false;
     }
+}
+
+function AcceptChanges() {
+    for (child of tbody.children) {
+        const classList = child.classList;
+        if (!classList.contains("old")) {
+            if (!child.hidden) {
+                classList.add("old");
+                child.children[3].textContent = child.children[1].firstElementChild.value;
+                row.children[1].firstElementChild.addEventListener("change", WijzigRij);
+            }
+        } else {
+            if (child.hidden) {
+                classList.remove("old");
+                row.children[1].firstElementChild.removeEventListener("change", WijzigRij);
+            }
+        }
+    }
+    submit.disabled = true;
 }
 
 function TestChanged() {

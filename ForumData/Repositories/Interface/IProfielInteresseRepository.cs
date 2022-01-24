@@ -7,7 +7,7 @@ namespace ForumData.Repositories.Interface
     {
         List<ProfielInteresse> GetAll();
 
-        ProfielInteresse GetById(int id);
+        ProfielInteresse GetByProfielIdAndInteresseId(int profielId, int interesseId);
 
         void AddRange(List<ProfielInteresse> profielInteresses);
 

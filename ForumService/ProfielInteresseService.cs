@@ -17,9 +17,9 @@ namespace ForumService
             return piRepo.GetAll();
         }
 
-        public ProfielInteresse GetById(int id)
+        public ProfielInteresse GetByProfielIdAndInteresseId(int profielId, int interesseId)
         {
-            return piRepo.GetById(id);
+            return piRepo.GetByProfielIdAndInteresseId(profielId, interesseId);
         }
 
         public void Delete(ProfielInteresse pi)
@@ -38,19 +38,14 @@ namespace ForumService
         }
 
         //sync services
-        public void DeleteById(int id)
+        public void DeleteByProfielIdAndInteresseId(int profielId, int interesseId)
         {
-            Delete(GetById(id));
+            Delete(GetByProfielIdAndInteresseId(profielId, interesseId));
         }
 
         public List<ProfielInteresse> GetManyByProfielId(int profielId) 
         {
             return GetAll().Where(pi => pi.ProfielId == profielId).ToList();
-        }
-
-        public ProfielInteresse GetByProfielIdAndInteresseId(int profielId, int interesseId)
-        {
-            return GetAll().Where(pi => pi.ProfielId == profielId && pi.InteresseId == interesseId).FirstOrDefault();
         }
     }
 }
