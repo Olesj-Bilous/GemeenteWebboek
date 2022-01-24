@@ -15,13 +15,26 @@ if (tbody.children) {
 
 //assign listeners
 button.onclick = ToonRij;
-for (img of document.getElementsByName("delete")) {
+for (img of document.getElementsByClassName("delete")) {
     img.onclick = VerbergRij;
 }
-for (row of Array.from(table.children).filter(c => c.name == "old")) {
-    row.children[1].firstChild.onchange = WijzigRij;
+for (row of Array.from(tbody.children).filter(c => c.classList.contains("old"))) {
+    row.children[1].firstElementChild.onchange = WijzigRij;
 }
 submit.onclick = Opslaan;
+
+function WijzigRij(e) {
+    const caller = e.currentTarget;
+    const original = caller.parentNode.parentNode.children[3].textContent;
+
+    //enable submit if change is not to original
+    if (caller.value != original) {
+        submit.disabled = false;
+    } else {
+        //disable submit if all changes now reverted
+        submit.disabled = !TestChanged();
+    }
+}
 
 function ToonRij()
 {
@@ -38,7 +51,7 @@ function ToonRij()
         //reveal hidden row
         row.hidden = false;
 
-        if (row.name == "old") {
+        if (row.classList.contains("old")) {
             //disable submit if all changes now reverted
             submit.disabled = !TestChanged();
         }
@@ -67,7 +80,9 @@ function ToonRij()
         const img = document.createElement("img");
         img.src = "/img/crossIcon.svg";
         img.alt = "verwijder";
+        img.width = 20;
         img.classList.add("img-fluid");
+        img.classList.add("thumbnail");
         img.onclick = VerbergRij;
         imgData.appendChild(img);
         row.appendChild(imgData);
@@ -100,7 +115,7 @@ function VerbergRij(e)
     //remember: row id was assigned InteresseId
     const option = document.createElement("option");
     option.value = row.id;
-    option.text = row.firstChild.textContent;
+    option.text = row.firstElementChild.textContent;
 
     //append option, hide row
     select.appendChild(option);
@@ -112,23 +127,10 @@ function VerbergRij(e)
     }
 
     //enable submit if hidden row is old
-    if (row.name == "old") {
+    if (row.classList.contains("old")) {
         submit.disabled = false;
     //disable submit if all changes now reverted
     } else {
-        submit.disabled = !TestChanged();
-    }
-}
-
-function WijzigRij(e) {
-    const caller = e.currentTarget;
-    const original = caller.parentNode.parentNode.children[3].textContent;
-
-    //enable submit if change is not to original
-    if (caller.value != original) {
-        submit.disabled = false;
-    } else {
-        //disable submit if all changes now reverted
         submit.disabled = !TestChanged();
     }
 }
@@ -140,8 +142,8 @@ async function Opslaan() {
     const verwijderd = [];
 
     for (row of tbody.children) {
-        const tekst = row.children[1].firstChild.value;
-        if (row.name == "old")
+        const tekst = row.children[1].firstElementChild.value;
+        if (row.classList.contains("old"))
         {
             //old and hidden: verwijderd
             if (row.hidden) {
@@ -194,13 +196,13 @@ async function Opslaan() {
 function TestChanged() {
     //enable submit if at least one old value != original || at least one old row == hidden || at least one new row not hidden
     for (child of tbody.children) {
-        if (child.name == "old") {
+        if (child.classList.contains("old")) {
             //at least one old row is hidden
             if (child.hidden) {
                 return true;
             }
             //at least one old description != original
-            if (child.children[1].firstChild.value != child.children[3].textContent) {
+            if (child.children[1].firstElementChild.value != child.children[3].textContent) {
                 return true;
             }
         } else {

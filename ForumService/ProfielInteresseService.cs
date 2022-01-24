@@ -43,6 +43,11 @@ namespace ForumService
             Delete(GetById(id));
         }
 
+        public List<ProfielInteresse> GetManyByProfielId(int profielId) 
+        {
+            return GetAll().Where(pi => pi.ProfielId == profielId).ToList();
+        }
+
         public ProfielInteresse GetByProfielIdAndInteresseId(int profielId, int interesseId)
         {
             return GetAll().Where(pi => pi.ProfielId == profielId && pi.InteresseId == interesseId).FirstOrDefault();

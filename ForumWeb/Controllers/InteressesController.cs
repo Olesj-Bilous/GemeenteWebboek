@@ -29,7 +29,6 @@ namespace ForumWeb.Controllers
         [HttpPost]
         public IActionResult Wijzigen([FromBody] InteressesWijzigenViewModel model)
         {
-            //InteressesWijzigenViewModel model = JsonConvert.DeserializeObject<InteressesWijzigenViewModel>(jsonModel);
             int profielId = int.Parse(model.ProfielId);
             Profiel profiel = profielService.GetProfielById(profielId);
             List<ProfielInteresse> newPIs = new List<ProfielInteresse>();
@@ -38,12 +37,6 @@ namespace ForumWeb.Controllers
             foreach (InteresseViewModel i in model.Toegevoegd)
             {
                 Interesse interesse = interesseService.GetById(int.Parse(i.Id));
-                //constructor met parameters nodig voor pi!!
-                //anders invalid operation exception:
-                //"ProfielInteresse.ProfielId is unknown when attempting to save changes.
-                //"This is because the property is also part of a foreign key
-                //"for which the principal entity in the relationship is not known."
-                //reden: {profielId, interesseId} is PK voor pi!!
                 ProfielInteresse pi = new ProfielInteresse {
                     ProfielId = profielId,
                     InteresseId = int.Parse(i.Id),
@@ -59,8 +52,8 @@ namespace ForumWeb.Controllers
                 altPIs.Add(pi);
             }
 
-            //try
-            //{
+            try
+            {
                 foreach (string id in model.Verwijderd)
                 {
                     piService.DeleteById(int.Parse(id));
@@ -69,11 +62,11 @@ namespace ForumWeb.Controllers
                 piService.AddRange(newPIs);
                 piService.UpdateRange(newPIs);
                 return base.Ok();
-            //}
-            //catch (Exception)
-            //{
-            //    return base.Problem();
-            //}
+            }
+            catch (Exception)
+            {
+                return base.Problem();
+            }
         }
     }
 }
