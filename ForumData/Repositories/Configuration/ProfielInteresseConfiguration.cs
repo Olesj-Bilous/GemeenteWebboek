@@ -15,11 +15,7 @@ namespace Model.Repositories.Configuration
         {
             builder.ToTable("ProfielenInteresses");
 
-            builder.HasKey(pi => pi.Id);
-
-            builder.HasIndex(c => new { c.ProfielId, c.InteresseId })
-                .HasDatabaseName("Idx_ProfielEnInteresse")
-                .IsUnique();
+            builder.HasKey(c => new { c.ProfielId, c.InteresseId });
 
             builder.HasOne(b => b.Profiel)
                 .WithMany(c => c.ProfielInteresses)

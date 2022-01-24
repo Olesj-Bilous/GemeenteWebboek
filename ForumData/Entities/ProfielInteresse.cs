@@ -15,7 +15,6 @@ namespace ForumData.Entities
             Profiel = profiel;
             Interesse = interesse;
         }
-        public int Id { get; set; }
         public int ProfielId { get; set; }
         public virtual Profiel Profiel { get; set; }
         public int InteresseId { get; set; }
