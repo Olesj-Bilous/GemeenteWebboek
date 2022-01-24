@@ -23,17 +23,17 @@
     <tbody>
         @if (Model.ProfielInteresses.Any())
         {
-            @foreach (ProfielInteresse pi in Model.ProfielInteresses)
+            foreach (ProfielInteresse pi in Model.ProfielInteresses)
             {
-                <tr id="@pi.Interesse.InteresseId.ToString();" name="old">
+                <tr id="@pi.Interesse.InteresseId.ToString()" class="old">
                     <td>@pi.Interesse.InteresseNaam</td>
                     <td>
                         <input type="text" value="@pi.ProfielInteresseTekst" />
                     </td>
                     <td>
-                        <img name="delete" src="~/img/crossIcon.svg" alt="verwijder" class="img-fluid" />
+                        <img width="20" src="~/img/crossIcon.svg" alt="verwijder" class="img-fluid thumbnail delete" />
                     </td>
-                    <td hidden>"@pi.ProfielInteresseTekst"</td>
+                    <td hidden>@pi.ProfielInteresseTekst</td>
                 </tr>
             }
         }

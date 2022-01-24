@@ -17,7 +17,7 @@ namespace ForumWeb.Controllers
             //get interesses and profielInteresses
             Profiel profiel = (Profiel)HttpContext.Session.GetUser();
             IEnumerable<Interesse> interesses = interesseService.GetInteresses();
-            List<ProfielInteresse> profielInteresses = profiel.ProfielInteresses.ToList();
+            List<ProfielInteresse> profielInteresses = piService.GetManyByProfielId(profiel.PersoonId);
 
             //filter profielInteresses from interesses
             foreach (ProfielInteresse pi in profielInteresses)
