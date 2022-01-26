@@ -83,7 +83,7 @@ namespace ForumData.Entities
                 modelBuilder.ApplyConfiguration(new StraatSeeding());
                 modelBuilder.ApplyConfiguration(new AdresSeeding());
                 modelBuilder.ApplyConfiguration(new AfdelingSeeding());
-                modelBuilder.ApplyConfiguration(new BerichtTypeSeeding());
+                modelBuilder.ApplyConfiguration(new BerichtThemaSeeding());
                 modelBuilder.ApplyConfiguration(new InteresseSeeding());
                 modelBuilder.ApplyConfiguration(new MedewerkerSeeding());
             //}

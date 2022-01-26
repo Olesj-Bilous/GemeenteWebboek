@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ForumData.Repositories.Seeding
 {
-    public class BerichtTypeSeeding : IEntityTypeConfiguration<BerichtThema>
+    public class BerichtThemaSeeding : IEntityTypeConfiguration<BerichtThema>
     {
         public void Configure(EntityTypeBuilder<BerichtThema> builder)
         {
