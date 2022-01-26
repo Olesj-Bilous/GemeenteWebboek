@@ -49,7 +49,7 @@ namespace ForumWeb.Controllers
 
                 try
                 {
-                    profielRepo.AddProfiel(profiel);
+                    profielService.AddProfiel(profiel);
                 }
                 catch (Exception)
                 {

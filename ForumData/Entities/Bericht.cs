@@ -8,15 +8,6 @@ namespace ForumData.Entities
 {
     public class Bericht
     {
-        public Bericht() { }
-        public Bericht(BerichtType type, Profiel profiel, DateTime datum, string titel, string tekst)
-        {
-            BerichtType = type;
-            Profiel = profiel;
-            BerichtTijdstip = datum;
-            BerichtTitel = titel;
-            BerichtTekst = tekst;
-        }
         public int BerichtId { get; set; }
         public int? HoofdBerichtId { get; set; }
         public virtual Bericht HoofdBericht { get; set; }
@@ -28,5 +19,15 @@ namespace ForumData.Entities
         public string BerichtTitel { get; set; }
         public string BerichtTekst { get; set; }
         public virtual ICollection<Bericht> OnderBerichten { get; set; } = new List<Bericht>();
+        
+        //public Bericht() { }
+        //public Bericht(BerichtType type, Profiel profiel, DateTime datum, string titel, string tekst)
+        //{
+        //    BerichtType = type;
+        //    Profiel = profiel;
+        //    BerichtTijdstip = datum;
+        //    BerichtTitel = titel;
+        //    BerichtTekst = tekst;
+        //}
     }
 }

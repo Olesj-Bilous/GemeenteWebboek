@@ -12,10 +12,9 @@ namespace ForumData.Repositories.DbConnect
     {
         private GemeenteForumDbContext context;
         public PersoonRepository(GemeenteForumDbContext context) => this.context = context;
-
-        public Persoon GetPersoonByLoginNaamAndPaswoord(string naam, string pas)
+        public List<Persoon> GetAll()
         {
-            return context.Personen.Where(p => p.LoginNaam == naam && p.LoginPaswoord == pas).FirstOrDefault();
+            return context.Personen.ToList();
         }
     }
 }

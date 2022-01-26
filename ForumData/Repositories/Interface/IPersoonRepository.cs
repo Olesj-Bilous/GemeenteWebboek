@@ -9,6 +9,6 @@ namespace ForumData.Repositories.Interface
 {
     public interface IPersoonRepository
     {
-        public Persoon GetPersoonByLoginNaamAndPaswoord(string naam, string pas);
+        public List<Persoon> GetAll();
     }
 }

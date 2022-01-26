@@ -13,22 +13,29 @@ namespace ForumWeb.Controllers
 {
     public partial class AccountController : Controller
     {
-        private readonly IPersoonRepository persoonRepo;
-        private readonly IProfielRepository profielRepo;
+        private readonly PersoonService persoonService;
+        private readonly ProfielService profielService;
         private readonly InteresseService interesseService;
         private readonly ProfielInteresseService piService;
         private readonly TaalService taalService;
         private readonly AdresService adresService;
         private readonly GemeenteService gemeenteService;
         private readonly StraatService straatService;
-        public AccountController(IPersoonRepository persoonRepo, IProfielRepository profielRepo,
+
+        public AccountController
+        (
+            PersoonService persoonService,
+            ProfielService profielService,
             InteresseService interesseService,
             ProfielInteresseService piService,
+            TaalService taalService,
             AdresService adresService,
-            GemeenteService gemeenteService, StraatService straatService, TaalService taalService)
+            GemeenteService gemeenteService,
+            StraatService straatService
+        )
         {
-            this.persoonRepo = persoonRepo;
-            this.profielRepo = profielRepo;
+            this.persoonService = persoonService;
+            this.profielService = profielService;
             this.piService = piService;
             this.interesseService = interesseService;
             this.adresService = adresService;
@@ -36,47 +43,12 @@ namespace ForumWeb.Controllers
             this.straatService = straatService;
             this.taalService = taalService;
         }
+
         public IActionResult Index()
         {
             AccountViewModel model = new AccountViewModel();
             model.Gebruiker = HttpContext.Session.GetUser();
             return View(model);
-        }
-
-        public IActionResult Inloggen()
-        {
-            return View(new InloggenViewModel());
-        }
-
-        [HttpPost]
-        public IActionResult Inloggen(InloggenViewModel model)
-        {
-            if (this.ModelState.IsValid)
-            {
-                Persoon gebruiker = persoonRepo.GetPersoonByLoginNaamAndPaswoord(model.Naam, model.Paswoord);
-                if (gebruiker is not null)
-                {
-                    HttpContext.Session.SetObject("Gebruiker", gebruiker);
-                    HttpContext.Session.SetBoolean("IsMedewerker", gebruiker is Medewerker);
-                    AccountViewModel accModel = new AccountViewModel();
-                    accModel.Gebruiker = gebruiker;
-                    return View("Index", accModel);
-                }
-                else
-                {
-                    return View(model);
-                }
-            }
-            else
-            {
-                return View(model);
-            }
-        }
-
-        public IActionResult Uitloggen()
-        {
-            HttpContext.Session.Clear();
-            return View("Index", new AccountViewModel());
         }
     }
 }
