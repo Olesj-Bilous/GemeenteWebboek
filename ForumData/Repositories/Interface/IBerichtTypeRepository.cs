@@ -4,8 +4,8 @@ namespace ForumData.Repositories.Interface
 {
     public interface IBerichtTypeRepository
     {
-        Task<BerichtType> GetBerichtTypeByIdAsync (int id);
-        Task AddBerichtTypeAsync (BerichtType nieuwBerichtType);
-        Task DeleteBerichtTypeAsync (BerichtType deleteBerichtType);
+        Task<BerichtThema> GetBerichtTypeByIdAsync (int id);
+        Task AddBerichtTypeAsync (BerichtThema nieuwBerichtType);
+        Task DeleteBerichtTypeAsync (BerichtThema deleteBerichtType);
     }
 }

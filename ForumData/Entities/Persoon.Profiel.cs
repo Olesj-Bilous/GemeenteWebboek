@@ -24,5 +24,6 @@ namespace ForumData.Entities
         public virtual ICollection<ProfielInteresse> ProfielInteresses { get; set; } = new List<ProfielInteresse>();
 
         public virtual ICollection<Bericht> Berichten { get; set; } = new List<Bericht>();
+        public virtual ICollection<HoofdBericht> HoofdBerichten { get; set; } = new List<HoofdBericht>();
     }
 }

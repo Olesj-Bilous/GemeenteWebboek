@@ -13,17 +13,17 @@ namespace ForumService
         public BerichtTypeService(IBerichtTypeRepository berichtTypeRepository) => this.berichtTypeRepository = berichtTypeRepository;
 
         //METHODS
-        public async Task<BerichtType> GetBerichtTypeByIdAsync(int Id)
+        public async Task<BerichtThema> GetBerichtTypeByIdAsync(int Id)
         {
             return await berichtTypeRepository.GetBerichtTypeByIdAsync(Id);
         }
 
-        public async Task AddBerichtTypeAsync (BerichtType nieuwBerichtType)
+        public async Task AddBerichtTypeAsync (BerichtThema nieuwBerichtType)
         {
             await berichtTypeRepository.AddBerichtTypeAsync(nieuwBerichtType);
         }
 
-        public async Task DeleteBerichtTypeAsync (BerichtType deleteBerichtType)
+        public async Task DeleteBerichtTypeAsync (BerichtThema deleteBerichtType)
         {
             await berichtTypeRepository.DeleteBerichtTypeAsync(deleteBerichtType);
         }

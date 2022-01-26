@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Repositories.Configuration
+namespace ForumData.Repositories.Configuration
 {
     public class BerichtConfiguration : IEntityTypeConfiguration<Bericht>
     {
@@ -15,34 +15,27 @@ namespace Model.Repositories.Configuration
         {
             builder.ToTable("Berichten");
 
-            builder.HasKey(c => c.BerichtId);
+            //primary key
+            builder.HasKey(c => c.Id);
 
-            builder.Property(b => b.BerichtId)
+            builder.Property(b => b.Id)
                 .ValueGeneratedOnAdd();
 
-            builder.HasOne(b => b.HoofdBericht)
-                .WithMany(c => c.OnderBerichten)
-                .HasForeignKey(b => b.HoofdBerichtId);
+            //discriminator
+            builder.HasDiscriminator<string>("BerichtType")
+                .HasValue<HoofdBericht>("H")
+                .HasValue<Antwoord>("A");
 
+            //foreign keys
             builder.HasOne(b => b.Profiel)
                 .WithMany(c => c.Berichten)
                 .HasForeignKey(b => b.ProfielId);
 
-            builder.HasOne(b => b.BerichtType)
-                .WithMany(c => c.Berichten)
-                .HasForeignKey(b => b.BerichtTypeId);
-
+            //required properties
             builder.Property(b => b.ProfielId)
                 .IsRequired();
 
-            builder.Property(b => b.BerichtTypeId)
-                .IsRequired();
-
             builder.Property(b => b.BerichtTijdstip)
-                .IsRequired();
-
-            builder.Property(b => b.BerichtTitel)
-                .HasMaxLength(50)
                 .IsRequired();
 
             builder.Property(b => b.BerichtTekst)

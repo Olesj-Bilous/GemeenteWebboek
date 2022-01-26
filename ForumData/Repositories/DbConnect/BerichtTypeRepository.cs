@@ -10,18 +10,18 @@ namespace ForumData.Repositories.DbConnect
         public BerichtTypeRepository(GemeenteForumDbContext context) => this.context = context;
 
 
-        public async Task AddBerichtTypeAsync(BerichtType nieuwBerichtType)
+        public async Task AddBerichtTypeAsync(BerichtThema nieuwBerichtType)
         {
             await context.BerichtTypes.AddAsync(nieuwBerichtType);
         }
 
-        public async Task DeleteBerichtTypeAsync(BerichtType deleteBerichtType)
+        public async Task DeleteBerichtTypeAsync(BerichtThema deleteBerichtType)
         {
            context.BerichtTypes.Remove(deleteBerichtType);
             await context.SaveChangesAsync();
         }
 
-        public async Task<BerichtType> GetBerichtTypeByIdAsync(int id)
+        public async Task<BerichtThema> GetBerichtTypeByIdAsync(int id)
         {
             return
                 await context.BerichtTypes.FindAsync(id);

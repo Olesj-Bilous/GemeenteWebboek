@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Repositories.Configuration
+namespace ForumData.Repositories.Configuration
 {
     class ProfielInteresseConfiguration : IEntityTypeConfiguration<ProfielInteresse>
     {
