@@ -31,5 +31,10 @@ namespace ForumService
         {
             await profielRepository.UpdateProfielAsync(updateProfiel);
         }
+
+        public async Task <IEnumerable<Profiel>> GetAllProfiels()
+        {
+            return await profielRepository.GetAllProfiels();
+        }
     }
 }

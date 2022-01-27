@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ForumData.Entities;
 namespace ForumData.Repositories.Interface
 {
@@ -8,5 +9,6 @@ namespace ForumData.Repositories.Interface
         Task AddProfielAsync (Profiel nieuwProfiel);
         Task DeleteProfielAsync (Profiel deleteProfiel);
         Task UpdateProfielAsync (Profiel updateProfiel);
+        Task <IEnumerable<Profiel>> GetAllProfiels();
     }
 }

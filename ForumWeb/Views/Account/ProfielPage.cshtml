@@ -1,26 +1,23 @@
 ﻿@using ForumData.Entities
-@model ForumData.Entities.Profiel
+@model Profiel
 @{
     ViewData["Title"] = "profiel beheer";
-    var persoonDetail = new PersoonDetailViewModel();
-    persoonDetail.Id = Model.PersoonId;
-    persoonDetail.Voornaam = Model.VoorNaam;
-    persoonDetail.FamilieNaam = Model.FamilieNaam;
-    persoonDetail.Straatnaam = "STRAAT NAAM ";
-    persoonDetail.HuisNr = "111111 ";
-    persoonDetail.BusNr = "111111 ";
-    persoonDetail.Postcode = 1111111;
-    persoonDetail.Gemeente = "GEEN GEMEENTE ";
-    persoonDetail.TelefoonNr = Model.TelefoonNr;
-    persoonDetail.GeboorteDatum = Model.GeboorteDatum;
-    persoonDetail.Geslacht = Model.Geslacht;
-    persoonDetail.LoginNaam = Model.LoginNaam;
-    persoonDetail.Geblokkeerd = Model.Geblokkeerd;
-    persoonDetail.LoginTal = Model.LoginTal;
-    persoonDetail.LoginFaalTal = Model.LoginFaalTal;
-
     var profielDetail = new ProfielDetailViewModel();
-    profielDetail.Id = Model.PersoonId;
+    profielDetail.PersoonId = Model.PersoonId;
+    profielDetail.VoorNaam = Model.VoorNaam;
+    profielDetail.FamilieNaam = Model.FamilieNaam;
+    profielDetail.straatNaam = Model.Adres.Straat.StraatNaam;
+    profielDetail.HuisNr = Model.Adres.HuisNr;
+    profielDetail.BusNr = Model.Adres.BusNr;
+    profielDetail.TelefoonNr = Model.TelefoonNr;
+    profielDetail.GeboorteDatum = Model.GeboorteDatum;
+    profielDetail.Geslacht = Model.Geslacht;
+    profielDetail.LoginNaam = Model.LoginNaam;
+    profielDetail.Geblokkeerd = Model.Geblokkeerd;
+    profielDetail.LoginTal = Model.LoginTal;
+    profielDetail.LoginFaalTal = Model.LoginFaalTal;
+    profielDetail.AdresId = Model.AdresId;
+    profielDetail.TaalId = Model.TaalId;
     profielDetail.WoontHierSinds = Model.WoontHierSinds;
     profielDetail.EmailAdres = Model.EmailAdres;
     profielDetail.FacebookNaam = Model.FacebookNaam;
@@ -32,15 +29,17 @@
     profielDetail.LaatstBijgewerkt = Model.LaatstBijgewerkt;
     profielDetail.KennismakingTekst = Model.KennismakingTekst;
     profielDetail.ProfielInteresses = Model.ProfielInteresses;
-
-
 }
 
 <p>Welkom op je profiel pagina @Model.VoorNaam @Model.FamilieNaam</p>
-<button class="btn btn-primary" id="show-partial">Details profiel </button>
+<div style="display:inline-block">
+    <button class="btn btn-primary" id="show-partial">Details profiel </button>
+    <a class="btn btn-primary" asp-action="EditFormProfiel" method="get" asp-route-id="@Model.PersoonId">Wijzig persoonsdata</a>
+</div>
+
 <p></p>
 <div style="display:none;" id="partialDetail">
-   <partial name="PersoonDetail", model="persoonDetail" />
+   <partial name="PersoonDetail", model="profielDetail"/>
    <partial name="ProfielDetail", model="profielDetail" />
 </div>
 

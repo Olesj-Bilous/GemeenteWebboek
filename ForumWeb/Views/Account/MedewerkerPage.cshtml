@@ -1,16 +1,11 @@
 ﻿@using ForumData.Entities
-@model ForumData.Entities.Medewerker
+@model Medewerker
 @{
     ViewData["Title"] = "profiel beheer";
-    var persoonDetail = new PersoonDetailViewModel();
-    persoonDetail.Id = Model.PersoonId;
-    persoonDetail.Voornaam = Model.VoorNaam;
+    var persoonDetail = new ProfielDetailViewModel();
+    persoonDetail.PersoonId = Model.PersoonId;
+    persoonDetail.VoorNaam = Model.VoorNaam;
     persoonDetail.FamilieNaam = Model.FamilieNaam;
-    persoonDetail.Straatnaam = "STRAAT NAAM";
-    persoonDetail.HuisNr = "11111111 ";
-    persoonDetail.BusNr = "1111111 ";
-    persoonDetail.Postcode = 1111111;
-    persoonDetail.Gemeente = "GEEN GEMEENTE ";
     persoonDetail.TelefoonNr = Model.TelefoonNr;
     persoonDetail.GeboorteDatum = Model.GeboorteDatum;
     persoonDetail.Geslacht = Model.Geslacht;
@@ -26,9 +21,15 @@
 <p></p>
 <div style="display:none;" id="partialDetail">
 
-    <partial name="PersoonDetail" , model="persoonDetail" />
+    <partial name="PersoonDetail" , model=persoonDetail />
 
 </div>
+
+@*<div style="display:block" id="statuspages">
+
+    @Html.Partial("ProfielStatus", (IEnumerable<Profiel>)ViewBag.profielStatusLijst));
+
+</div>*@
 
 @section Scripts
 {

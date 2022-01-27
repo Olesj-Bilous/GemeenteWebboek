@@ -28,8 +28,43 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task UpdatePersoonAsync(Persoon updatePersoon)
         {
-            context.Personen.Update(updatePersoon);
+            var existingPersoon = context.Personen.Find(updatePersoon.PersoonId);
+            existingPersoon = updatePersoon;
             await context.SaveChangesAsync();
+
+
+
+
+            //if (existingPersoon != null)
+            //{
+            //    var attachedEntry = context.Entry(existingPersoon);
+            //    attachedEntry.CurrentValues.SetValues(updatePersoon);
+            //    await context.SaveChangesAsync();
+            //}
+
+            //context.Personen.Update(updatePersoon);
+            //await context.SaveChangesAsync();
+
+
+
+
+            ////context profiel ophalen
+            //var existingProfiel = context.Profielen.Find(updateProfiel.PersoonId);
+
+            //if (existingProfiel != null)
+            //{
+            //    //Context entry openzetten
+            //    var attachedEntry = context.Entry(existingProfiel);
+            //    //Context values plaatsn - opgepas met FK -> FK moet je meegeven
+            //    attachedEntry.CurrentValues.SetValues(updateProfiel);
+            //    //Context saven
+            //    await context.SaveChangesAsync();
+
+            //}
+            //else
+            //{
+            //    throw new System.Exception("Update van het profiel is mislukt");
+            //}
         }
     }
 }

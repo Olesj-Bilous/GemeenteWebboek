@@ -30,5 +30,6 @@ namespace ForumData.Entities
         public virtual Taal Taal { get; set; }
 
         public byte[] Aangepast { get; set; }
+
     }
 }

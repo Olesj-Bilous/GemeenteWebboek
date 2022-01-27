@@ -57,8 +57,7 @@ namespace ForumWeb.Controllers
 
         public IActionResult ProfielBeheer()
         {
-
-            Persoon IngelogdPersoon = HttpContext.Session.GetUser();
+            var IngelogdPersoon = HttpContext.Session.GetUser();
             if (IngelogdPersoon is Profiel)
             {
                 return RedirectToAction("ProfielPage", IngelogdPersoon);
@@ -74,8 +73,12 @@ namespace ForumWeb.Controllers
         }       
 
         public IActionResult MedewerkerPage(Medewerker IngelogdMedewerker)
-        {   
-            return View(IngelogdMedewerker);
+        {
+            //var profielStatusLijst = profielService.GetAllProfiels();
+            //ProfielStatusLijstViewModel profielStatusLijstVM = new ProfielStatusLijstViewModel();
+            //profielStatusLijstVM.profielStatusLijst = (System.Collections.IEnumerable)profielStatusLijst;
+
+            return View(IngelogdMedewerker); 
         }
 
         public IActionResult ProfielPage(Profiel IngelogdProfiel)
@@ -84,40 +87,33 @@ namespace ForumWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditFormPersoonDetail(int Id)
+        public async Task<IActionResult> EditFormProfiel(int Id)
         {
-            return View(await profielService.GetProfielByPersoonIdAsync(Id));
+            
+            return View(await profielService.GetProfielByPersoonIdAsync(Id));       
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditPersoonDetail(Profiel updatePersoonDetail)
+        public async Task<IActionResult> EditProfiel(Profiel updateProfiel)
         {
             if (this.ModelState.IsValid)
             {
-                    await profielService.UpdateProfielAsync(updatePersoonDetail);
+                try
+                {
+                    await profielService.UpdateProfielAsync(updateProfiel);
+                    HttpContext.Session.SetObject("Gebruiker", updateProfiel);
                     return RedirectToAction("ProfielBeheer");
-            }else
-            {
-                return View("EditForm", updatePersoonDetail);
-            }
-        }
-        
-        [HttpGet]
-        public async Task<IActionResult> EditFormProfielDetail(int Id)
-        {
-            return View(await profielService.GetProfielByPersoonIdAsync(Id));
-        }
+                }
+                catch (Exception)
+                {
+                    ErrorViewModel errorVM = new ErrorViewModel();
+                    return View("Error", errorVM);
+                }
 
-        [HttpPost]
-        public async Task<IActionResult> EditProfielDetail(Profiel updateProfielDetail  )
-        {
-            if (this.ModelState.IsValid)
+            }
+            else
             {
-                await profielService.UpdateProfielAsync(updateProfielDetail);
-                return RedirectToAction("ProfielBeheer");
-            }else
-            {
-                return View("EditFormProfiel", updateProfielDetail);
+                return View("EditFormProfiel", updateProfiel);
             }
         }
 

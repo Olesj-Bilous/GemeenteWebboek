@@ -1,0 +1,103 @@
+﻿@model ForumData.Entities.Profiel
+
+@{ ViewData["Title"] = "U profiel details aanpassen"; }
+
+<h2>Profiel details wijzigen</h2>
+<form asp-action="EditProfiel" method="post">
+    <div class="form-group" style="display:none">
+        <label asp-for="PersoonId">Persoon Id meegeven</label>
+        <input asp-for="PersoonId" />
+        <label asp-for="AdresId">Adres id meegeven</label>
+        <input asp-for="AdresId" />
+        <label asp-for="TaalId">Taal id meegegeven</label>
+        <input asp-for="TaalId" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VoorNaam">Voornaam</label>
+        <input asp-for="VoorNaam" />
+    </div>
+    <div class="form-group" ^>
+        <label asp-for="FamilieNaam">Familienaam</label>
+        <input asp-for="@Model.FamilieNaam" />
+    </div>
+
+   
+    <label asp-for="Adres.Straat.StraatNaam">Straatnaam</label>
+    <input asp-for="Adres.Straat.StraatNaam" />
+    <label asp-for="Adres.HuisNr">Huisnummer</label>
+    <input asp-for="Adres.HuisNr" />
+    <label asp-for="Adres.BusNr">Busnummer</label>
+    <input asp-for="Adres.BusNr" />
+    <label>Postcode</label>
+    <label>Gemeente naam</label>
+
+    <div class="form-group">
+        <label asp-for="GeboorteDatum">Geboorte datum</label>
+        <input asp-for="GeboorteDatum" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Geslacht">Geslacht </label>
+        <input asp-for="Geslacht" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LoginNaam">Login naam</label>
+        <input asp-for="LoginNaam" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LoginPaswoord">Login paswoord</label>
+        <input asp-for="LoginPaswoord" />
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="WoontHierSinds">Ik woon hier sinds</label>
+        <input asp-for="WoontHierSinds" />
+    </div>
+
+    <div class="formgroup">
+        <label asp-for="EmailAdres">Email adres</label>
+        <input asp-for="EmailAdres" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FacebookNaam">Facebook profiel</label>
+        <input asp-for="FacebookNaam" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WebsiteAdres">Website adres</label>
+        <input asp-for="WebsiteAdres" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BeroepTekst">Beroep tekstje</label>
+        <input asp-for="BeroepTekst" />
+    </div>
+
+    <div class="Form-group">
+        <label asp-for="FirmaNaam">Firma naam</label>
+        <input asp-for="FirmaNaam" />
+    </div>
+
+    <div class="Form-group">
+        <label asp-for="KennismakingTekst">Kennismaking tekst</label>
+        <input asp-for="KennismakingTekst" />
+    </div>
+
+    <div class="Form-group">
+        @foreach(var interesse in Model.ProfielInteresses)
+            {
+                <label asp-for="@interesse.Interesse.InteresseNaam">Interesse Naam</label>
+                <input asp-for="@interesse.Interesse.InteresseNaam" />
+                <label asp-for="@interesse.ProfielInteresseTekst">Interesse tekst</label>
+                <input asp-for="@interesse.ProfielInteresseTekst" />
+            }
+    </div>
+
+    <input type="submit" value="Wijzigen" />
+    <div asp-validation-summary="All"></div>
+</form>

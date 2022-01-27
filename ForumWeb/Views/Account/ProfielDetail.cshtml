@@ -48,13 +48,10 @@
             <td>@Model.KennismakingTekst</td>
         </tr>
         <tr>
-            <td>Interresses</td>
-            @foreach (var interesse in Model.ProfielInteresses)
+            @foreach(var interesse in Model.ProfielInteresses)
             {
-                <td>@interesse.Interesse.InteresseNaam</td>
-                <td>INTERRESE TEKST</td>
+                <td>@interesse.Interesse.InteresseNaam : @interesse.ProfielInteresseTekst</td>
             }
         </tr>
     </tbody>
 </table>
-<a class="btn btn-primary" asp-action="EditFormProfielDetail" method="get" asp-route-id="@Model.Id">Wijzig profieldata</a>

@@ -1,5 +1,4 @@
-﻿@using ForumData.Entities
-@model PersoonDetailViewModel
+﻿@model ProfielDetailViewModel
 
 @{
     ViewData["Title"] = "Persoon details";
@@ -10,7 +9,7 @@
     <tbody>
         <tr>
             <td>Voornaam</td>
-            <td>@Model.Voornaam</td>
+            <td>@Model.VoorNaam</td>
         </tr>
         <tr>
             <td>Familienaam</td>
@@ -18,8 +17,8 @@
         </tr>
         <tr>
             <td>adres</td>
-            <td>@Model.Straatnaam @Model.HuisNr @Model.BusNr</td>
-            <td>Aanvullen</td>
+            <td>@Model.straatNaam @Model.HuisNr @Model.BusNr</td>
+            <td>GEMEENTE + POSTCODE </td>
         </tr>
         <tr>
             <td>Telefoonnummer</td>
@@ -51,13 +50,3 @@
         </tr>
     </tbody>
 </table>
-
-@if (Model.Id >4)
-{
-    <a class="btn btn-primary" asp-action="EditFormPersoonDetail" method="get" asp-route-id="@Model.Id">Wijzig persoonsdata</a>
-} else
-            {
-                <p></p>
-                <p>WIJZIGEN DOORVOEREN?</p>    
-                <p>Medewerker gegevens wijzigen ==> vraag admin</p>
-            }

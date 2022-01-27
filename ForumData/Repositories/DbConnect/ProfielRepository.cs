@@ -21,6 +21,12 @@ namespace ForumData.Repositories.DbConnect
             await context.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<Profiel>> GetAllProfiels()
+        {
+            return
+               context.Profielen;
+        }
+
         public async Task<Profiel> GetProfielByPersoonIdAsync(int id)
         {
             return
@@ -29,11 +35,27 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task UpdateProfielAsync(Profiel updateProfiel)
         {
-            context.Profielen.Update(updateProfiel);
-            //var update = context.Profielen.Attach(updatePorfiel)
-            //update.state = Mircrosoft.EntityFrameworkCore.EntityState.Modified;
-            //Wat is het verschil? Wat is beter?
-            await context.SaveChangesAsync();
+
+            //context profiel ophalen
+            var existingProfiel = context.Profielen.Find(updateProfiel.PersoonId);
+
+            if(existingProfiel != null)
+            {
+                //Context entry openzetten
+                var attachedEntry = context.Entry(existingProfiel);
+                //Context values plaatsn - opgepas met FK -> FK moet je meegeven
+                attachedEntry.CurrentValues.SetValues(updateProfiel);
+                //Context saven
+                await context.SaveChangesAsync();
+
+            }
+            else
+            {
+                throw new System.Exception("Update van het profiel is mislukt");
+            }
+
         }
+
+        
     }
 }
