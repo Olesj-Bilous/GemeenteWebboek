@@ -38,8 +38,8 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="Geslacht">Geslacht </label>
-        <input asp-for="Geslacht" />
+        @Html.LabelFor(m=>m.Geslacht)
+        @Html.EditorFor(m=>m.Geslacht)
     </div>
 
     <div class="form-group">

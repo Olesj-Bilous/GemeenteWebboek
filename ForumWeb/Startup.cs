@@ -31,7 +31,9 @@ namespace ForumWeb
             
             //Database connection
             services.AddDbContext<GemeenteForumDbContext>(options =>
-              options.UseSqlServer(Configuration.GetConnectionString("EFGemeenteForum"),
+              options
+              .UseLazyLoadingProxies()
+              .UseSqlServer(Configuration.GetConnectionString("EFGemeenteForum"),
               x => x.MigrationsAssembly("ForumData")));
 
 

@@ -81,8 +81,10 @@ namespace ForumWeb.Controllers
             return View(IngelogdMedewerker); 
         }
 
-        public IActionResult ProfielPage(Profiel IngelogdProfiel)
-        {   
+        public async Task<IActionResult> ProfielPage(Profiel ingelogdProfiel)
+        {
+
+            var IngelogdProfiel = await profielService.GetProfielByPersoonIdAsync(ingelogdProfiel.PersoonId);
             return View(IngelogdProfiel);
         }
 
