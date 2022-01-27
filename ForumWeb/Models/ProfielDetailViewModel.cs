@@ -28,9 +28,7 @@ namespace ForumWeb.Models
         public Geslacht Geslacht { get; set; }
 
         //ADRES
-        public string straatNaam { get; set; }
-        public string HuisNr { get; set; }
-        public string? BusNr { get; set; }
+        public Adres Adres { get; set; }
 
 
         //USER DATA

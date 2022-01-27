@@ -22,9 +22,9 @@ namespace ForumWeb.Controllers
             this.persoonService = persoonService;
         }
         
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(HttpContext.Session.GetUser());
+            return View(await HttpContext.Session.GetUser(persoonService));
         }
 
         public IActionResult Inloggen()
@@ -40,9 +40,9 @@ namespace ForumWeb.Controllers
                 Persoon gebruiker = await persoonService.GetPersoonByLoginNaamAndPaswoordAsync(model.Naam, model.Paswoord);
                 if (gebruiker is not null)
                 {
-                    HttpContext.Session.SetObject("Gebruiker", gebruiker);
+                    HttpContext.Session.SetObject("Gebruiker", gebruiker.PersoonId);
                     HttpContext.Session.SetObject("IsMedewerker", gebruiker is Medewerker);
-                    return RedirectToAction("index");
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -55,9 +55,9 @@ namespace ForumWeb.Controllers
             }
         }
 
-        public IActionResult ProfielBeheer()
+        public async Task<IActionResult> ProfielBeheer()
         {
-            var IngelogdPersoon = HttpContext.Session.GetUser();
+            var IngelogdPersoon = await HttpContext.Session.GetUser(persoonService);
             if (IngelogdPersoon is Profiel)
             {
                 return RedirectToAction("ProfielPage", IngelogdPersoon);

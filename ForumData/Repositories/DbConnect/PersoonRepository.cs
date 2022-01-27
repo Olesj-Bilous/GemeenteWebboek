@@ -15,7 +15,7 @@ namespace ForumData.Repositories.DbConnect
         readonly private GemeenteForumDbContext context;
         public PersoonRepository(GemeenteForumDbContext context) => this.context = context;
 
-        //METHODS
+        //async METHODS
         public async Task<Persoon> GetPersoonByIdAsync(int Id)
         {
             return await context.Personen.FindAsync(Id);

@@ -33,13 +33,13 @@ namespace ForumData.Entities
         // testmode ? + Sql properties (maxBatchSize) --> zie swimlane "Brainstorm"
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //    }
-        //    else
-        //    {
-        //        testMode = true;
-        //    }
+        //    //if (!optionsBuilder.IsConfigured)
+        //    //{
+        //    //}
+        //    //else
+        //    //{
+        //    //    testMode = true;
+        //    //}
         //}
 
 

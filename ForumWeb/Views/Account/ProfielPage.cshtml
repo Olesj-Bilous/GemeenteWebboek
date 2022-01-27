@@ -6,9 +6,7 @@
     profielDetail.PersoonId = Model.PersoonId;
     profielDetail.VoorNaam = Model.VoorNaam;
     profielDetail.FamilieNaam = Model.FamilieNaam;
-    profielDetail.straatNaam = Model.Adres.Straat.StraatNaam;
-    profielDetail.HuisNr = Model.Adres.HuisNr;
-    profielDetail.BusNr = Model.Adres.BusNr;
+    profielDetail.Adres = Model.Adres;
     profielDetail.TelefoonNr = Model.TelefoonNr;
     profielDetail.GeboorteDatum = Model.GeboorteDatum;
     profielDetail.Geslacht = Model.Geslacht;
@@ -32,6 +30,7 @@
 }
 
 <p>Welkom op je profiel pagina @Model.VoorNaam @Model.FamilieNaam</p>
+<p>@Model.Adres.Straat.StraatNaam</p>
 <div style="display:inline-block">
     <button class="btn btn-primary" id="show-partial">Details profiel </button>
     <a class="btn btn-primary" asp-action="EditFormProfiel" method="get" asp-route-id="@Model.PersoonId">Wijzig persoonsdata</a>

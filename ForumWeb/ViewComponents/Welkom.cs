@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ForumService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,14 @@ namespace ForumWeb.ViewComponents
 {
     public class Welkom : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        private readonly PersoonService persoonService;
+        public Welkom(PersoonService persoonService)
         {
-            return View(HttpContext.Session.GetUser());
+            this.persoonService = persoonService;
+        }
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            return View(await HttpContext.Session.GetUser(persoonService));
         }
     }
 }
