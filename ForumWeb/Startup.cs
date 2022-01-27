@@ -48,7 +48,7 @@ namespace ForumWeb
 
             services.AddTransient<IAfdelingRepository, AfdelingRepository>();
             services.AddTransient<IBerichtRepository, BerichtRepository>();
-            services.AddTransient<IBerichtTypeRepository, BerichtTypeRepository>();
+            services.AddTransient<IBerichtThemaRepository, BerichtThemaRepository>();
 
             services.AddTransient<GemeenteService>();
             services.AddTransient<IGemeenteRepository, GemeenteRepository>();
@@ -56,6 +56,7 @@ namespace ForumWeb
             services.AddTransient<InteresseService>();
             services.AddTransient<IInteresseRepository, InteresseRepository>();
 
+            services.AddTransient<PersoonService>();
             services.AddTransient<IPersoonRepository, PersoonRepository>();
             services.AddTransient<IMedewerkerRepository, MedewerkerRepository>();
 
