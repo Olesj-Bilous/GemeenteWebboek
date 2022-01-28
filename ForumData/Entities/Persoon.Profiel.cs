@@ -41,7 +41,7 @@ namespace ForumData.Entities
         [DataType(DataType.DateTime)]
         public DateTime LaatstBijgewerkt { get; set; }
         
-        public virtual ICollection<ProfielInteresse> ProfielInteresses { get; set; } = new List<ProfielInteresse>();
-        public virtual ICollection<Bericht> Berichten { get; set; } = new List<Bericht>();
+        public ICollection<ProfielInteresse> ProfielInteresses { get; set; } = new List<ProfielInteresse>();
+        public ICollection<Bericht> Berichten { get; set; } = new List<Bericht>();
     }
 }

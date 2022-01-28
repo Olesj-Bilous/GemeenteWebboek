@@ -9,6 +9,6 @@ namespace ForumData.Entities
     public class Medewerker : Persoon
     {
         public int AfdelingId { get; set; }
-        public virtual Afdeling Afdeling { get; set; }
+        public Afdeling Afdeling { get; set; }
     }
 }

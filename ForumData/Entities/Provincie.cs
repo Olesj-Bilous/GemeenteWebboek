@@ -21,6 +21,6 @@ namespace ForumData.Entities
         public string ProvincieNaam { get; set; }
 
         //navigation
-        public virtual ICollection<Gemeente> Gemeenten { get; set; } = new List<Gemeente>();
+        public ICollection<Gemeente> Gemeenten { get; set; } = new List<Gemeente>();
     }
 }

@@ -19,12 +19,12 @@ namespace ForumData.Entities
 
         public int AdresId { get; set; }
         public int StraatId { get; set; }
-        public virtual Straat Straat { get; set; }
+        public Straat Straat { get; set; }
         public string HuisNr { get; set; }
         #nullable enable
         public string? BusNr { get; set; }
         #nullable disable
-        public virtual ICollection<Persoon> Personen { get; set; } = new List<Persoon>();
+        public ICollection<Persoon> Personen { get; set; } = new List<Persoon>();
 
         public byte[] Aangepast { get; set; }
     }

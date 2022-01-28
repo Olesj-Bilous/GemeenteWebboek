@@ -19,14 +19,14 @@ namespace ForumData.Entities
         }
         public int BerichtId { get; set; }
         public int? HoofdBerichtId { get; set; }
-        public virtual Bericht HoofdBericht { get; set; }
+        public Bericht HoofdBericht { get; set; }
         public int ProfielId { get; set; }
-        public virtual Profiel Profiel { get; set; }
+        public Profiel Profiel { get; set; }
         public int BerichtTypeId { get; set; }
-        public virtual BerichtType BerichtType { get; set; }
+        public BerichtType BerichtType { get; set; }
         public DateTime BerichtTijdstip { get; set; }
         public string BerichtTitel { get; set; }
         public string BerichtTekst { get; set; }
-        public virtual ICollection<Bericht> OnderBerichten { get; set; } = new List<Bericht>();
+        public ICollection<Bericht> OnderBerichten { get; set; } = new List<Bericht>();
     }
 }

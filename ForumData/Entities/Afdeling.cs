@@ -14,6 +14,6 @@ namespace ForumData.Entities
 #nullable enable
         public string? AfdelingTekst { get; set; }
 #nullable disable
-        public virtual ICollection<Medewerker> Medewerkers { get; set; } = new List<Medewerker>();
+        public ICollection<Medewerker> Medewerkers { get; set; } = new List<Medewerker>();
     }
 }

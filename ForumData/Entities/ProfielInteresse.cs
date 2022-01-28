@@ -16,9 +16,9 @@ namespace ForumData.Entities
             Interesse = interesse;
         }
         public int ProfielId { get; set; }
-        public virtual Profiel Profiel { get; set; }
+        public Profiel Profiel { get; set; }
         public int InteresseId { get; set; }
-        public virtual Interesse Interesse { get; set; }
+        public Interesse Interesse { get; set; }
 #nullable enable
         public string? ProfielInteresseTekst { get; set; }
 #nullable disable

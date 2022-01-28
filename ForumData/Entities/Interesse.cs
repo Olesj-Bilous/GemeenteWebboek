@@ -11,6 +11,6 @@ namespace ForumData.Entities
         public int InteresseId { get; set; }
         public string InteresseNaam { get; set; }
 
-        public virtual ICollection<ProfielInteresse> InteresseProfielen { get; set; } = new List<ProfielInteresse>();
+        public ICollection<ProfielInteresse> InteresseProfielen { get; set; } = new List<ProfielInteresse>();
     }
 }

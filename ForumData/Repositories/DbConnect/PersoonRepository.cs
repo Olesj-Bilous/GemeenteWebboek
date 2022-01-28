@@ -16,9 +16,10 @@ namespace ForumData.Repositories.DbConnect
         public PersoonRepository(GemeenteForumDbContext context) => this.context = context;
 
         //async METHODS
-        public async Task<Persoon> GetPersoonByIdAsync(int Id)
+        public async Task<Persoon> GetPersoonByIdAsync(int id)
         {
-            return await context.Personen.FindAsync(Id);
+            return await context.Personen.Include(p => p.Adres).ThenInclude(p => p.Straat).FirstOrDefaultAsync(p => p.PersoonId == id);
+                //.FindAsync(id);
         }
 
         public async Task<Persoon> GetPersoonByLoginNaamAndPaswoordAsync(string naam, string pas)

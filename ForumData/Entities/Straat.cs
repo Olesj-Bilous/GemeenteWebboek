@@ -11,7 +11,7 @@ namespace ForumData.Entities
         public int StraatId { get; set; }
         public string StraatNaam { get; set; }
         public int GemeenteId { get; set; }
-        public virtual Gemeente Gemeente { get; set; }
-        public virtual ICollection<Adres> Adressen { get; set; } = new List<Adres>();
+        public Gemeente Gemeente { get; set; }
+        public ICollection<Adres> Adressen { get; set; } = new List<Adres>();
     }
 }

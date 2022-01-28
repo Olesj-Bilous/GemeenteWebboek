@@ -26,12 +26,12 @@ namespace ForumData.Entities
         
         public int AdresId { get; set; }
         
-        public virtual Adres Adres { get; set; }
+        public Adres Adres { get; set; }
         
         public int? GeboortePlaatsId { get; set; }
         #nullable enable
         
-        public virtual Gemeente? GeboortePlaats { get; set; }
+        public Gemeente? GeboortePlaats { get; set; }
         
         public string? TelefoonNr { get; set; }
         #nullable disable
@@ -49,7 +49,7 @@ namespace ForumData.Entities
         
         public int TaalId { get; set; }
         
-        public virtual Taal Taal { get; set; }
+        public Taal Taal { get; set; }
 
         public byte[] Aangepast { get; set; }
 

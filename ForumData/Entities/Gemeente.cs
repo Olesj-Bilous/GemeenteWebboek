@@ -14,19 +14,19 @@ namespace ForumData.Entities
         public int PostCode { get; set; }
 
         public int ProvincieId { get; set; }
-        public virtual Provincie Provincie { get; set; }
+        public Provincie Provincie { get; set; }
 
         public int? HoofdGemeenteId { get; set; }
-        public virtual Gemeente HoofdGemeente { get; set; }
-        public virtual ICollection<Gemeente> DeelGemeenten { get; set; } = new List<Gemeente>();
+        public Gemeente HoofdGemeente { get; set; }
+        public ICollection<Gemeente> DeelGemeenten { get; set; } = new List<Gemeente>();
 
         public int TaalId { get; set; }
-        public virtual Taal Taal { get; set; }
+        public Taal Taal { get; set; }
 
-        public virtual ICollection<Straat> Straten { get; set; } = new List<Straat>();
+        public ICollection<Straat> Straten { get; set; } = new List<Straat>();
 
-        public virtual ICollection<Persoon> Personen { get; set; } = new List<Persoon>();
+        public ICollection<Persoon> Personen { get; set; } = new List<Persoon>();
 
-        public virtual ICollection<Bericht> Berichten { get; set; } = new List<Bericht>();
+        public ICollection<Bericht> Berichten { get; set; } = new List<Bericht>();
     }
 }

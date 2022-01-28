@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumData.Repositories.DbConnect
 {
@@ -30,7 +31,7 @@ namespace ForumData.Repositories.DbConnect
         public async Task<Profiel> GetProfielByPersoonIdAsync(int id)
         {
             return
-                await context.Profielen.FindAsync(id);
+                await context.Profielen.Include(p => p.Adres).ThenInclude(p => p.Straat).FirstOrDefaultAsync(p => p.PersoonId == id);
         }
 
         public async Task UpdateProfielAsync(Profiel updateProfiel)

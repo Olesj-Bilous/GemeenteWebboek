@@ -14,6 +14,6 @@ namespace ForumData.Entities
 #nullable enable
         public string? BerichtTypeTekst { get; set; }
 #nullable disable
-        public virtual ICollection<Bericht> Berichten { get; set; } = new List<Bericht>();
+        public ICollection<Bericht> Berichten { get; set; } = new List<Bericht>();
     }
 }
