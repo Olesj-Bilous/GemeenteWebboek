@@ -9,6 +9,6 @@ namespace ForumData.Repositories.Interface
         Task AddProfielAsync (Profiel nieuwProfiel);
         Task DeleteProfielAsync (Profiel deleteProfiel);
         Task UpdateProfielAsync (Profiel updateProfiel);
-        Task <IEnumerable<Profiel>> GetAllProfiels();
+        Task <List<Profiel>> GetAllAsync();
     }
 }

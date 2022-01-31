@@ -22,10 +22,9 @@ namespace ForumData.Repositories.DbConnect
             await context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Profiel>> GetAllProfiels()
+        public async Task<List<Profiel>> GetAllAsync()
         {
-            return
-               context.Profielen;
+            return await context.Profielen.ToListAsync();
         }
 
         public async Task<Profiel> GetProfielByPersoonIdAsync(int id)
