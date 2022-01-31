@@ -24,7 +24,19 @@ namespace ForumWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+<<<<<<< .merge_file_a18832
             //Sessionstate
+=======
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("corsPolicy",
+            //                      builder =>
+            //                      {
+            //                          builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            //                      });
+            //});
+
+>>>>>>> .merge_file_a16300
             services.AddControllersWithViews();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
@@ -38,6 +50,7 @@ namespace ForumWeb
 
             //Layer service
             services.AddTransient<AdresService>();
+<<<<<<< .merge_file_a18832
             services.AddTransient<AfdelingService>();
             services.AddTransient<BerichtService>();
             services.AddTransient<BerichtTypeService>();
@@ -51,18 +64,36 @@ namespace ForumWeb
             services.AddTransient<StraatService>();
             services.AddTransient<TaalService>();
 
+=======
+>>>>>>> .merge_file_a16300
             services.AddTransient<IAdresRepository, AdresRepository>();
+
             services.AddTransient<IAfdelingRepository, AfdelingRepository>();
             services.AddTransient<IBerichtRepository, BerichtRepository>();
-            services.AddTransient<IBerichtTypeRepository, BerichtTypeRepository>();
+            services.AddTransient<IBerichtThemaRepository, BerichtThemaRepository>();
+
+            services.AddTransient<GemeenteService>();
             services.AddTransient<IGemeenteRepository, GemeenteRepository>();
+
+            services.AddTransient<InteresseService>();
             services.AddTransient<IInteresseRepository, InteresseRepository>();
+
+            services.AddTransient<PersoonService>();
             services.AddTransient<IPersoonRepository, PersoonRepository>();
             services.AddTransient<IMedewerkerRepository, MedewerkerRepository>();
+
+            services.AddTransient<ProfielService>();
             services.AddTransient<IProfielRepository, ProfielRepository>();
-            services.AddTransient<IProfielInteresse, ProfielInteresseRepository>();
+
+            services.AddTransient<ProfielInteresseService>();
+            services.AddTransient<IProfielInteresseRepository, ProfielInteresseRepository>();
+
             services.AddTransient<IProvincieRepository, ProvincieRepository>();
+
+            services.AddTransient<StraatService>();
             services.AddTransient<IStraatRepository, StraatRepository>();
+
+            services.AddTransient<TaalService>();
             services.AddTransient<ITaalRepository, TaalRepository>();
 
         }
@@ -84,7 +115,6 @@ namespace ForumWeb
             app.UseSession();
             
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthorization();

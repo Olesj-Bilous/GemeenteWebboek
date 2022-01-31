@@ -16,5 +16,6 @@ namespace ForumData.Repositories.Interface
 
         //sync
         //Persoon GetById(int id);
+        public List<Persoon> GetAll();
     }
 }

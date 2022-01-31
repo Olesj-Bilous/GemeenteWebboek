@@ -11,10 +11,12 @@ namespace ForumData.Repositories.DbConnect
         readonly private GemeenteForumDbContext context;
         public ProfielRepository(GemeenteForumDbContext context) => this.context = context;
 
+        //async
         public async Task AddProfielAsync(Profiel nieuwProfiel)
         {
             await context.Profielen.AddAsync(nieuwProfiel);
         }
+
 
         public async Task DeleteProfielAsync(Profiel deleteProfiel)
         {
@@ -56,6 +58,15 @@ namespace ForumData.Repositories.DbConnect
 
         }
 
-        
+        //sync
+        public void AddProfiel(Profiel profiel)
+        {
+            context.Profielen.Add(profiel);
+            context.SaveChanges();
+        }
+        public Profiel GetProfielById(int id)
+        {
+            return context.Profielen.Find(id);
+        }
     }
 }

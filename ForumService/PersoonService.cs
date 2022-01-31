@@ -10,7 +10,7 @@ namespace ForumService
         readonly private IPersoonRepository persoonRepository;
         public PersoonService(IPersoonRepository persoonRepository) => this.persoonRepository = persoonRepository;
 
-       public async Task<Persoon> GetPersoonByLoginNaamAndPaswoordAsync(string Naam, string paswoord)
+       public async Task<Persoon> GetByLoginNaamAndPaswoordAsync(string Naam, string paswoord)
        {
             return await persoonRepository.GetPersoonByLoginNaamAndPaswoordAsync(Naam, paswoord);
        }

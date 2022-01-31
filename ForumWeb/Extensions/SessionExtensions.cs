@@ -34,11 +34,7 @@ namespace ForumWeb
         public static bool? GetBoolean(this ISession session, string key)
         {
             byte[] data = session.Get(key);
-            if (data is null)
-            {
-                return null;
-            }
-            return BitConverter.ToBoolean(data, 0);
+            return data is null ? null : BitConverter.ToBoolean(data, 0);
         }
     }
 }

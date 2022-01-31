@@ -1,8 +1,9 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
-using ForumWeb.Models;
 using ForumService;
+using ForumWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,49 +11,41 @@ using System.Threading.Tasks;
 
 namespace ForumWeb.Controllers
 {
-    public class AccountController : Controller
+    public partial class AccountController : Controller
     {
-    
-        readonly private PersoonService persoonService;
-        readonly private ProfielService profielService;
+        private readonly PersoonService persoonService;
+        private readonly ProfielService profielService;
+        private readonly InteresseService interesseService;
+        private readonly ProfielInteresseService piService;
+        private readonly TaalService taalService;
+        private readonly AdresService adresService;
+        private readonly GemeenteService gemeenteService;
+        private readonly StraatService straatService;
 
-        public AccountController(PersoonService persoonService, ProfielService profielService)
+        public AccountController
+        (
+            PersoonService persoonService,
+            ProfielService profielService,
+            InteresseService interesseService,
+            ProfielInteresseService piService,
+            TaalService taalService,
+            AdresService adresService,
+            GemeenteService gemeenteService,
+            StraatService straatService
+        )
         {
-            this.profielService = profielService;
             this.persoonService = persoonService;
+            this.profielService = profielService;
+            this.piService = piService;
+            this.interesseService = interesseService;
+            this.adresService = adresService;
+            this.gemeenteService = gemeenteService;
+            this.straatService = straatService;
+            this.taalService = taalService;
         }
-        
         public async Task<IActionResult> Index()
         {
             return View(await HttpContext.Session.GetUser(persoonService));
-        }
-
-        public IActionResult Inloggen()
-        {
-            return View(new InloggenViewModel());
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Inloggen(InloggenViewModel model)
-        {
-            if (this.ModelState.IsValid)
-            {
-                Persoon gebruiker = await persoonService.GetPersoonByLoginNaamAndPaswoordAsync(model.Naam, model.Paswoord);
-                if (gebruiker is not null)
-                {
-                    HttpContext.Session.SetObject("Gebruiker", gebruiker.PersoonId);
-                    HttpContext.Session.SetObject("IsMedewerker", gebruiker is Medewerker);
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View(model);
-                }
-            }
-            else
-            {
-                return View(model);
-            }
         }
 
         public async Task<IActionResult> ProfielBeheer()
@@ -117,12 +110,6 @@ namespace ForumWeb.Controllers
             {
                 return View("EditFormProfiel", updateProfiel);
             }
-        }
-
-        public IActionResult Uitloggen()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Index");
         }
     }
 }

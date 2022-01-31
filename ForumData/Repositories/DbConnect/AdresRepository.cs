@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ForumData.Entities;
 using ForumData.Repositories.Interface;
@@ -11,13 +12,28 @@ namespace ForumData.Repositories.DbConnect
         readonly private GemeenteForumDbContext context;
         public AdresRepository(GemeenteForumDbContext context) => this.context = context;
 
-
-        public async Task<Adres> CheckAdresAsync(string straat, string huisNr, string busNr)
+        public void AddAdres(Adres adres)
         {
-            return
-                await context.Adressen
-                .Where(f => f.Straat.StraatNaam == straat && f.HuisNr == huisNr && f.BusNr == busNr)
+            context.Adressen.Add(adres);
+            context.SaveChanges();
+        }
+        public async Task<Adres> CheckAdresAsync(Straat straat, string huisNr, string busNr)
+        {
+            return await context.Adressen
+                .Where(f => f.Straat == straat && f.HuisNr == huisNr && f.BusNr == busNr)
                 .FirstOrDefaultAsync();
+        }
+
+        public Adres CheckAdres(Straat straat, string huisNr, string busNr)
+        {
+            return context.Adressen
+                .Where(f => f.Straat == straat && f.HuisNr == huisNr && f.BusNr == busNr)
+                .FirstOrDefault();
+        }
+
+        public List<Adres> GetAdressen()
+        {
+            return context.Adressen.ToList();
         }
     }
 }

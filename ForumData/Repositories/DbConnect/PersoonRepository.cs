@@ -32,7 +32,7 @@ namespace ForumData.Repositories.DbConnect
             var existingPersoon = context.Personen.Find(updatePersoon.PersoonId);
             existingPersoon = updatePersoon;
             await context.SaveChangesAsync();
-
+        }
 
 
 
@@ -66,6 +66,9 @@ namespace ForumData.Repositories.DbConnect
             //{
             //    throw new System.Exception("Update van het profiel is mislukt");
             //}
+        public List<Persoon> GetAll()
+        {
+            return context.Personen.ToList();
         }
     }
 }

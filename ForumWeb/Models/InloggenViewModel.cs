@@ -13,6 +13,7 @@ namespace ForumWeb.Models
         public string Naam { get; set; }
 
         [Required(ErrorMessage ="Geef een paswoord op")]
+        [DataType(DataType.Password)]
         public string Paswoord { get; set; }
     }
 }

@@ -1,22 +1,35 @@
-﻿@using ForumData.Entities 
+﻿@using ForumData.Entities
 @model Persoon
 @if (Model is not null)
 {
-    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">
-        @Model.VoorNaam @Model.FamilieNaam:
-        @if (Model is Medewerker)
-        {
-            <span>Medewerker</span>
-        }
-        else
-        {
-            <span>Profiel</span>
-        }
-    </a>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">
+            @Model.VoorNaam @Model.FamilieNaam:
+            @if (Model is Medewerker)
+            {
+                <span>Medewerker</span>
+            }
+            else
+            {
+                <span>Profiel</span>
+            }
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Account" asp-action="Uitloggen">Uitloggen</a>
+    </li>
 }
 else
 {
-    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">
-        Account
-    </a>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Inloggen">
+            Inloggen
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Registreren">
+            Registreren
+        </a>
+    </li>
+
 }

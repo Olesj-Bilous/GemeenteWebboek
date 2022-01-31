@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Repositories.Seeding
+namespace ForumData.Repositories.Seeding
 {
-    public class BerichtTypeSeeding : IEntityTypeConfiguration<BerichtType>
+    public class BerichtThemaSeeding : IEntityTypeConfiguration<BerichtThema>
     {
-        public void Configure(EntityTypeBuilder<BerichtType> builder)
+        public void Configure(EntityTypeBuilder<BerichtThema> builder)
         {
             builder.HasData
             (

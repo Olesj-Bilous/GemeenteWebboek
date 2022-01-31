@@ -11,7 +11,7 @@ namespace ForumService
         readonly private IProfielRepository profielRepository;
         public ProfielService(IProfielRepository profielRepository) => this.profielRepository = profielRepository;
 
-        //METHODS
+        //async repo METHODS
         public async Task AddProfielAsync(Profiel nieuwProfiel)
         {
             await profielRepository.AddProfielAsync(nieuwProfiel);
@@ -31,10 +31,20 @@ namespace ForumService
         {
             await profielRepository.UpdateProfielAsync(updateProfiel);
         }
-
-        public async Task <IEnumerable<Profiel>> GetAllProfiels()
+        public async Task<List<Profiel>> GetAllAsync()
         {
-            return await profielRepository.GetAllProfiels();
+            return await profielRepository.GetAllAsync();
+        }
+
+        //sync repo methods
+        public void AddProfiel(Profiel profiel)
+        {
+            profielRepository.AddProfiel(profiel);
+        }
+
+        public Profiel GetProfielById(int id)
+        {
+            return profielRepository.GetProfielById(id);
         }
     }
 }

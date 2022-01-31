@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Repositories.Configuration
+namespace ForumData.Repositories.Configuration
 {
-    public class BerichtTypeConfiguration : IEntityTypeConfiguration<BerichtType>
+    public class BerichtThemaConfiguration : IEntityTypeConfiguration<BerichtThema>
     {
-        public void Configure(EntityTypeBuilder<BerichtType> builder)
+        public void Configure(EntityTypeBuilder<BerichtThema> builder)
         {
             builder.HasKey(c => c.BerichtTypeId);
 

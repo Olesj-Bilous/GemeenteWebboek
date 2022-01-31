@@ -1,0 +1,43 @@
+﻿@using ForumData.Entities
+@section Scripts
+{
+    <script src="~/js/interesses.js"></script>
+}
+@model InteressesViewModel
+@{
+    ViewData["Title"] = "Interesses";
+}
+<p id="profielId" hidden>@Model.ProfielId</p>
+<select id="Select" asp-items="Model.Interesses"></select>
+<button id="Button" type="button">Interesse toevoegen</button>
+
+<table id="Table" class="table table-striped"name="@Model.ProfielId" hidden>
+    <thead>
+        <tr id="TitleRow">
+            <th>Interesse</th>
+            <th>Beschrijving</th>
+            <th>Verwijder</th>
+            <th hidden>Original</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ProfielInteresses.Any())
+        {
+            foreach (ProfielInteresse pi in Model.ProfielInteresses)
+            {
+                <tr id="@pi.Interesse.InteresseId.ToString()" class="old">
+                    <td>@pi.Interesse.InteresseNaam</td>
+                    <td>
+                        <input type="text" value="@pi.ProfielInteresseTekst" />
+                    </td>
+                    <td>
+                        <img width="20" src="~/img/crossIcon.svg" alt="verwijder" class="img-fluid thumbnail delete" />
+                    </td>
+                    <td hidden>@pi.ProfielInteresseTekst</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<h3 id="Msg" hidden></h3>
+<button id="Submit" type="button" disabled>Wijzigingen doorvoeren</button>
