@@ -49,7 +49,6 @@ namespace ForumData.Entities
         //navigation properties
         public ICollection<ProfielInteresse> ProfielInteresses { get; set; } = new List<ProfielInteresse>();
 
-        public ICollection<Antwoord> Antwoorden { get; set; } = new List<Antwoord>();
-        public ICollection<HoofdBericht> HoofdBerichten { get; set; } = new List<HoofdBericht>();
+        public ICollection<Bericht> Berichten { get; set; } = new List<Bericht>();
     }
 }

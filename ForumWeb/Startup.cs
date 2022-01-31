@@ -24,20 +24,9 @@ namespace ForumWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-<<<<<<< .merge_file_a18832
-            //Sessionstate
-=======
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("corsPolicy",
-            //                      builder =>
-            //                      {
-            //                          builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-            //                      });
-            //});
-
->>>>>>> .merge_file_a16300
             services.AddControllersWithViews();
+
+            //Sessionstate
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
             
@@ -50,22 +39,6 @@ namespace ForumWeb
 
             //Layer service
             services.AddTransient<AdresService>();
-<<<<<<< .merge_file_a18832
-            services.AddTransient<AfdelingService>();
-            services.AddTransient<BerichtService>();
-            services.AddTransient<BerichtTypeService>();
-            services.AddTransient<GemeenteService>();
-            services.AddTransient<InteresseService>();
-            services.AddTransient<MedewerkerService>();
-            services.AddTransient<PersoonService>();
-            services.AddTransient<ProfielInteresseService>();
-            services.AddTransient<ProfielService>();
-            services.AddTransient<ProvincieService>();
-            services.AddTransient<StraatService>();
-            services.AddTransient<TaalService>();
-
-=======
->>>>>>> .merge_file_a16300
             services.AddTransient<IAdresRepository, AdresRepository>();
 
             services.AddTransient<IAfdelingRepository, AfdelingRepository>();
@@ -126,7 +99,5 @@ namespace ForumWeb
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-
-        
     }
 }

@@ -17,13 +17,11 @@
 }
 else
 {
-    <p>@Model.Adres.Straat.StraatNaam</p>
     <a class="btn btn-primary" asp-controller="Account" asp-action="profielBeheer">Profiel beheren</a>
     <a class="btn btn-primary" asp-controller="Account" asp-action="Uitloggen">Uitloggen</a>
 
     if (Model.Gebruiker is Profiel)
     {
-        Profiel profiel = (Profiel)Model.Gebruiker;
         <a class="btn btn-primary" asp-controller="Account" asp-action="Interesses">Interesses</a>
     }
 }

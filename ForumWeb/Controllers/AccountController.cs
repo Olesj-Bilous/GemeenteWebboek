@@ -45,7 +45,9 @@ namespace ForumWeb.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await HttpContext.Session.GetUser(persoonService));
+            AccountViewModel model = new AccountViewModel();
+            model.Gebruiker = await HttpContext.Session.GetUser(persoonService);
+            return View(model);
         }
     }
 }

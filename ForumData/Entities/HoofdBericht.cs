@@ -13,9 +13,9 @@ namespace ForumData.Entities
         //navigation properties
         //BerichtType
         public int BerichtThemaId { get; set; }
-        public virtual BerichtThema BerichtThema { get; set; }
+        public BerichtThema BerichtThema { get; set; }
 
         //ChildAntwoorden
-        public virtual ICollection<Antwoord> ChildAntwoorden { get; set; } = new List<Antwoord>();
+        public ICollection<Antwoord> ChildAntwoorden { get; set; } = new List<Antwoord>();
     }
 }

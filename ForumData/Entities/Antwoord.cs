@@ -11,11 +11,11 @@ namespace ForumData.Entities
         //navigation properties
         //HoofdBericht
         public int HoofdBerichtId { get; set; }
-        public virtual HoofdBericht HoofdBericht { get; set; }
+        public HoofdBericht HoofdBericht { get; set; }
 
         //ParentAntwoord and ChildAntwoorden
         public int? ParentAntwoordId { get; set; }
         public Antwoord ParentAntwoord { get; set; }
-        public virtual ICollection<Antwoord> ChildAntwoorden { get; set; } = new List<Antwoord>();
+        public ICollection<Antwoord> ChildAntwoorden { get; set; } = new List<Antwoord>();
     }
 }

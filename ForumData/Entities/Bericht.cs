@@ -15,6 +15,6 @@ namespace ForumData.Entities
         //navigation properties
         //Profiel
         public int ProfielId { get; set; }
-        public virtual Profiel Profiel { get; set; }
+        public Profiel Profiel { get; set; }
     }
 }
