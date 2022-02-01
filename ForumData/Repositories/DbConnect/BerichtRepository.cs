@@ -12,6 +12,7 @@ namespace ForumData.Repositories.DbConnect
         public async Task AddBerichtAsync(Bericht newBericht)
         {
             await context.Berichten.AddAsync(newBericht);
+            await context.SaveChangesAsync();
         }
 
         public async Task DeleteBerichtAsync(Bericht deleteBericht)

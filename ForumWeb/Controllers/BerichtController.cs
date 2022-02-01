@@ -36,7 +36,7 @@ namespace ForumWeb.Controllers
             if (this.ModelState.IsValid)
             {
                 HoofdBericht bericht = new HoofdBericht();
-                bericht.ProfielId = HttpContext.Session.GetObject<int>("Gebruiker");
+                bericht.ProfielId = HttpContext.Session.GetObject<int>("GebruikerId");
                 bericht.BerichtTijdstip = DateTime.Now;
                 bericht.BerichtThemaId = int.Parse(model.ThemaId);
                 bericht.BerichtTitel = model.Titel;
