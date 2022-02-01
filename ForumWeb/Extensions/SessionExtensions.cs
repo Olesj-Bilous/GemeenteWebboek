@@ -14,7 +14,7 @@ namespace ForumWeb
     {
         public static async Task<Persoon> GetUser(this ISession session, PersoonService service)
         {
-            return await service.GetPersoonByIdAsync(session.GetObject<int>("Gebruiker"));
+            return await service.GetPersoonByIdAsync(session.GetObject<int>("GebruikerId"));
         }
         public static void SetObject(this ISession session, string key, object value)
         {

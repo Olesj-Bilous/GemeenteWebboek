@@ -26,7 +26,5 @@ namespace ForumData.Entities
         public ICollection<Straat> Straten { get; set; } = new List<Straat>();
 
         public ICollection<Persoon> Personen { get; set; } = new List<Persoon>();
-
-        public ICollection<Bericht> Berichten { get; set; } = new List<Bericht>();
     }
 }

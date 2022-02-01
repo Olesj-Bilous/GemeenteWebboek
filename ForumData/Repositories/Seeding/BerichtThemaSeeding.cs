@@ -17,24 +17,24 @@ namespace ForumData.Repositories.Seeding
             (
                 new
                 {
-                    BerichtTypeId = 1,
-                    BerichtTypeCode = "AL",
-                    BerichtTypeNaam = "Algemeen",
-                    BerichtTypeTekst = "Wat je maar wilt"
+                    Id = 1,
+                    Code = "AL",
+                    Naam = "Algemeen",
+                    Tekst = "Wat je maar wilt"
                 },
                 new
                 {
-                    BerichtTypeId = 2,
-                    BerichtTypeCode = "ID",
-                    BerichtTypeNaam = "Idee",
-                    BerichtTypeTekst = "Wat je maar bedenkt"
+                    Id = 2,
+                    Code = "ID",
+                    Naam = "Idee",
+                    Tekst = "Wat je maar bedenkt"
                 },
                 new
                 {
-                    BerichtTypeId = 3,
-                    BerichtTypeCode = "AC",
-                    BerichtTypeNaam = "Activiteit",
-                    BerichtTypeTekst = "Wat je maar doet"
+                    Id = 3,
+                    Code = "AC",
+                    Naam = "Activiteit",
+                    Tekst = "Wat je maar doet"
                 }
             );
         }

@@ -1,4 +1,33 @@
 ﻿@model HoofdBerichtViewModel
 @{
-    ViewData["Titel"] = "Nieuw bericht";
+    ViewData["Title"] = "Nieuw bericht";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Nieuw" method="post">
+            <div class="form-group">
+                <label asp-for="ThemaId" class="control-label"></label>
+                <select asp-for="ThemaId" class="form-control" asp-items="Model.Themas"></select>
+                <span asp-validation-for="ThemaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Titel" class="control-label"></label>
+                <input asp-for="Titel" class="form-control" />
+                <span asp-validation-for="Titel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tekst" class="control-label"></label>
+                <textarea asp-for="Tekst" class="form-control"></textarea>
+                <span asp-validation-for="Tekst" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Toevoegen" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

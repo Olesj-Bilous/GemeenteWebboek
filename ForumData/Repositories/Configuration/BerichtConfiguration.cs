@@ -29,7 +29,8 @@ namespace ForumData.Repositories.Configuration
             //foreign keys
             builder.HasOne(b => b.Profiel)
                 .WithMany(c => c.Berichten)
-                .HasForeignKey(b => b.ProfielId);
+                .HasForeignKey(b => b.ProfielId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             //required properties
             builder.Property(b => b.ProfielId)

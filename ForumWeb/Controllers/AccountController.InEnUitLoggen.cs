@@ -24,7 +24,7 @@ namespace ForumWeb.Controllers
                 Persoon gebruiker = await persoonService.GetByLoginNaamAndPaswoordAsync(model.Naam, model.Paswoord);
                 if (gebruiker is not null)
                 {
-                    HttpContext.Session.SetObject("Gebruiker", gebruiker.PersoonId);
+                    HttpContext.Session.SetObject("GebruikerId", gebruiker.PersoonId);
                     HttpContext.Session.SetBoolean("IsMedewerker", gebruiker is Medewerker);
                     AccountViewModel accModel = new AccountViewModel();
                     accModel.Gebruiker = gebruiker;

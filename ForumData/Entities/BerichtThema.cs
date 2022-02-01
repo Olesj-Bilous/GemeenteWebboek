@@ -8,11 +8,11 @@ namespace ForumData.Entities
 {
     public class BerichtThema
     {
-        public int BerichtTypeId { get; set; }
-        public string BerichtTypeCode { get; set; }
-        public string BerichtTypeNaam { get; set; }
+        public int Id { get; set; }
+        public string Code { get; set; }
+        public string Naam { get; set; }
 #nullable enable
-        public string? BerichtTypeTekst { get; set; }
+        public string? Tekst { get; set; }
 #nullable disable
         public virtual ICollection<HoofdBericht> HoofdBerichten { get; set; } = new List<HoofdBericht>();
     }

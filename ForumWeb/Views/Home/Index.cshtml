@@ -1,5 +1,11 @@
-﻿@{
+﻿@using ForumData.Entities
+@model Persoon
+@{
     ViewData["Title"] = "Home";
 }
 
 <a class="btn btn-primary" asp-controller="Account" asp-action="Index">Account</a>
+@if (Model is not null)
+{
+    <a class="btn btn-primary" asp-controller="Bericht" asp-action="Nieuw">Nieuw bericht</a>
+}

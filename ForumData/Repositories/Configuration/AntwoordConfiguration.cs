@@ -16,7 +16,8 @@ namespace ForumData.Repositories.Configuration
             //foreign keys
             builder.HasOne(b => b.HoofdBericht)
                 .WithMany(c => c.ChildAntwoorden)
-                .HasForeignKey(b => b.HoofdBerichtId);
+                .HasForeignKey(b => b.HoofdBerichtId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(b => b.ParentAntwoord)
                 .WithMany(c => c.ChildAntwoorden)

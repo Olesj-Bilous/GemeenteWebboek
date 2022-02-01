@@ -11,18 +11,40 @@ namespace ForumWeb.Controllers
 {
     public class BerichtController : Controller
     {
+        private readonly BerichtService berichtService;
         private readonly BerichtThemaService themaService;
         private readonly PersoonService persoonService;
-        public BerichtController(BerichtThemaService themaService, PersoonService persoonService)
+        public BerichtController(
+            BerichtService berichtService,
+            BerichtThemaService themaService,
+            PersoonService persoonService)
         {
+            this.berichtService = berichtService;
             this.themaService = themaService;
             this.persoonService = persoonService;
         }
-        public async Task<IActionResult> Nieuw()
+        public IActionResult Nieuw()
         {
             HoofdBerichtViewModel model = new HoofdBerichtViewModel();
-            model.Profiel = (Profiel) await HttpContext.Session.GetUser(persoonService);
-            model.BerichtThemas = themaService.GetAll().ToSelectList(t => t.BerichtTypeId.ToString(), t => t.BerichtTypeNaam);
+            model.Themas = themaService.GetAll().ToSelectList(t => t.Id.ToString(), t => t.Naam);
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Nieuw(HoofdBerichtViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                HoofdBericht bericht = new HoofdBericht();
+                bericht.ProfielId = HttpContext.Session.GetObject<int>("Gebruiker");
+                bericht.BerichtTijdstip = DateTime.Now;
+                bericht.BerichtThemaId = int.Parse(model.ThemaId);
+                bericht.BerichtTitel = model.Titel;
+                bericht.BerichtTekst = model.Tekst;
+
+                await berichtService.AddBerichtAsync(bericht);
+                return View("../Home/Index");
+            }
             return View(model);
         }
     }

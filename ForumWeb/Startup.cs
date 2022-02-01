@@ -42,7 +42,11 @@ namespace ForumWeb
             services.AddTransient<IAdresRepository, AdresRepository>();
 
             services.AddTransient<IAfdelingRepository, AfdelingRepository>();
+
+            services.AddTransient<BerichtService>();
             services.AddTransient<IBerichtRepository, BerichtRepository>();
+
+            services.AddTransient<BerichtThemaService>();
             services.AddTransient<IBerichtThemaRepository, BerichtThemaRepository>();
 
             services.AddTransient<GemeenteService>();

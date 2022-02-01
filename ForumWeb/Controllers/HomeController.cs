@@ -1,4 +1,5 @@
-﻿using ForumWeb.Models;
+﻿using ForumService;
+using ForumWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,20 +14,18 @@ namespace ForumWeb.Controllers
     {
         //INJECTIE
         private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger)
+        private readonly PersoonService persoonService;
+        public HomeController(ILogger<HomeController> logger,
+            PersoonService persoonService)
         {
             _logger = logger;
+            this.persoonService = persoonService;
         }
 
         //METHODS
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(await HttpContext.Session.GetUser(persoonService));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
