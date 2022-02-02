@@ -1,0 +1,47 @@
+﻿@using ForumData.Entities
+@model List<HoofdBericht>
+@{
+    ViewData["Title"] = "Alle berichten van uw gemeente";
+}
+
+@if (Model.Any())
+{
+    void SchrijfAntwoorden(Antwoord antwoord)
+    {
+        <div class="pl-2">
+            <h5>Auteur: @antwoord.Profiel.LoginNaam</h5>
+            <p>@antwoord.BerichtTekst</p>
+
+            @if (antwoord.ChildAntwoorden.Any())
+            {
+                foreach (Antwoord childAntwoord in antwoord.ChildAntwoorden)
+                {
+                    SchrijfAntwoorden(childAntwoord);
+                }
+            }
+        </div>
+    }
+
+    foreach (HoofdBericht hb in Model)
+    {
+    <div>
+        <h4>@hb.BerichtTitel</h4>
+        <h5>Thema: @hb.BerichtThema.Naam</h5>
+        <h5>Auteur: @hb.Profiel.LoginNaam</h5>
+        <p>@hb.BerichtTekst</p>
+
+        @if (hb.ChildAntwoorden.Any())
+        {
+            foreach (Antwoord antwoord in hb.ChildAntwoorden)
+            {
+                SchrijfAntwoorden(antwoord);
+            }
+        }
+    </div>
+    }
+}
+else
+{
+    <p>Er zijn momenteel nog geen berichten</p>
+}
+<a class="btn btn-primary" asp-action="Nieuw">Nieuw bericht</a>

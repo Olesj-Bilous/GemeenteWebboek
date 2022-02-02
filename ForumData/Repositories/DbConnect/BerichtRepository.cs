@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForumData.Repositories.DbConnect
 {
@@ -9,26 +12,31 @@ namespace ForumData.Repositories.DbConnect
         readonly private GemeenteForumDbContext context;
         public BerichtRepository(GemeenteForumDbContext context) => this.context = context;
 
-        public async Task AddBerichtAsync(Bericht newBericht)
+        public async Task<List<Bericht>> GetAllAsync() 
         {
-            await context.Berichten.AddAsync(newBericht);
-            await context.SaveChangesAsync();
+            return await context.Berichten.ToListAsync();
         }
 
-        public async Task DeleteBerichtAsync(Bericht deleteBericht)
-        {
-            context.Berichten.Remove(deleteBericht);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task<Bericht> GetBerichtByIdAsync(int id)
+        public async Task<Bericht> GetByIdAsync(int id)
         {
             return await context.Berichten.FindAsync(id);
         }
 
-        public async Task UpdateBerichtAsync(Bericht aangepastBericht)
+        public async Task AddAsync(Bericht bericht)
         {
-            context.Berichten.Update(aangepastBericht);
+            await context.Berichten.AddAsync(bericht);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Bericht bericht)
+        {
+            context.Berichten.Remove(bericht);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(Bericht bericht)
+        {
+            context.Berichten.Update(bericht);
             await context.SaveChangesAsync();
         }
     }

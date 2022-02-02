@@ -18,8 +18,11 @@ namespace ForumData.Repositories.DbConnect
         //async METHODS
         public async Task<Persoon> GetPersoonByIdAsync(int id)
         {
-            return await context.Personen.Include(p => p.Adres).ThenInclude(p => p.Straat).FirstOrDefaultAsync(p => p.PersoonId == id);
-                //.FindAsync(id);
+            return await context.Personen
+                .Include(p => p.Adres)
+                    .ThenInclude(a => a.Straat)
+                        .ThenInclude(s => s.Gemeente)
+                .FirstOrDefaultAsync(p => p.PersoonId == id);
         }
 
         public async Task<Persoon> GetPersoonByLoginNaamAndPaswoordAsync(string naam, string pas)

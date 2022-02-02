@@ -14,6 +14,7 @@ namespace ForumWeb.Controllers
         private readonly BerichtService berichtService;
         private readonly BerichtThemaService themaService;
         private readonly PersoonService persoonService;
+
         public BerichtController(
             BerichtService berichtService,
             BerichtThemaService themaService,
@@ -23,6 +24,7 @@ namespace ForumWeb.Controllers
             this.themaService = themaService;
             this.persoonService = persoonService;
         }
+
         public IActionResult Nieuw()
         {
             HoofdBerichtViewModel model = new HoofdBerichtViewModel();
@@ -42,10 +44,18 @@ namespace ForumWeb.Controllers
                 bericht.BerichtTitel = model.Titel;
                 bericht.BerichtTekst = model.Tekst;
 
-                await berichtService.AddBerichtAsync(bericht);
+                await berichtService.AddAsync(bericht);
                 return View("../Home/Index");
             }
             return View(model);
+        }
+
+        public async Task<IActionResult> Alle()
+        {
+            Profiel profiel = (Profiel)await HttpContext.Session.GetUser(persoonService);
+            int gemeenteId = profiel.Adres.Straat.GemeenteId;
+            List<HoofdBericht> hBerichten = await berichtService.GetAllHoofdByGemeenteIdAsync(gemeenteId);
+            return View(hBerichten);
         }
     }
 }

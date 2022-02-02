@@ -1,6 +1,8 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ForumService
@@ -9,28 +11,50 @@ namespace ForumService
     {
         //INJECTION
         readonly private IBerichtRepository berichtRepository;
-        public BerichtService(IBerichtRepository berichtRepository) => this.berichtRepository = berichtRepository;
+        readonly private IHoofdBerichtRepository hoofdBerichtRepository;
 
-        //METHODS
-        public async Task<Bericht> GetBerichtById (int Id)
+        public BerichtService(IBerichtRepository berichtRepository,
+            IHoofdBerichtRepository hoofdBerichtRepository)
         {
-            return await berichtRepository.GetBerichtByIdAsync(Id);
+            this.berichtRepository = berichtRepository;
+            this.hoofdBerichtRepository = hoofdBerichtRepository;
         }
 
-        public async Task AddBerichtAsync (Bericht newBericht)
+        //general repo METHODS
+        public async Task<Bericht> GetByIdAsync(int Id)
         {
-            await berichtRepository.AddBerichtAsync(newBericht);
+            return await berichtRepository.GetByIdAsync(Id);
         }
 
-        public async Task DeleteBerichtAsync (Bericht deleteBericht)
+        public async Task AddAsync(Bericht bericht)
         {
-            await berichtRepository.DeleteBerichtAsync(deleteBericht);
+            await berichtRepository.AddAsync(bericht);
         }
 
-        public async Task UpdateBerichtAsync (Bericht updateBericht)
+        public async Task DeleteAsync(Bericht bericht)
         {
-            await berichtRepository.UpdateBerichtAsync(updateBericht);
+            await berichtRepository.DeleteAsync(bericht);
         }
 
+        public async Task UpdateAsync(Bericht bericht)
+        {
+            await berichtRepository.UpdateAsync(bericht);
+        }
+
+        //hoofd repo methods
+        public async Task<List<HoofdBericht>> GetAllHoofdAsync()
+        {
+            return await hoofdBerichtRepository.GetAllAsync();
+        }
+
+        //eigen methods
+        public async Task<List<HoofdBericht>> GetAllHoofdByGemeenteIdAsync(int gemeenteId)
+        {
+            List<HoofdBericht> all = await GetAllHoofdAsync();
+            return all
+                .Where(hb => hb.Profiel.Adres.Straat.GemeenteId == gemeenteId)
+                .OrderBy(hb => hb.BerichtTijdstip)
+                .ToList();
+        }
     }
 }
