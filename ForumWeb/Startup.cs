@@ -46,6 +46,7 @@ namespace ForumWeb
             services.AddTransient<BerichtService>();
             services.AddTransient<IBerichtRepository, BerichtRepository>();
             services.AddTransient<IHoofdBerichtRepository, HoofdBerichtRepository>();
+            services.AddTransient<IAntwoordRepository, AntwoordRepository>();
 
             services.AddTransient<BerichtThemaService>();
             services.AddTransient<IBerichtThemaRepository, BerichtThemaRepository>();

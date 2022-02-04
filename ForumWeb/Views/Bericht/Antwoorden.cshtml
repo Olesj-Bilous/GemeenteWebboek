@@ -1,0 +1,39 @@
+﻿@using ForumData.Entities
+@model AntwoordViewModel
+@{
+    ViewData["Title"] = "Antwoorden";
+    HoofdBericht oorsprongHoofd;
+    int oorsprongId;
+    bool oorsprongIsHoofd;
+}
+<div class="shadow p-3">
+    @if (Model.OorsprongHoofd is not null)
+    {
+        oorsprongHoofd = Model.OorsprongHoofd;
+        oorsprongId = Model.OorsprongHoofd.Id;
+        oorsprongIsHoofd = true;
+        <p>U bent aan het antwoorden op een hoofdbericht.</p>
+        <h4>Titel hoofdbericht: @oorsprongHoofd.BerichtTitel</h4>
+        <h5>Thema: @oorsprongHoofd.BerichtThema.Naam</h5>
+        <h5>Auteur te beantwoorden bericht: @oorsprongHoofd.Profiel.LoginNaam</h5>
+        <div>@oorsprongHoofd.BerichtTekst</div>
+    }
+    else
+    {
+        oorsprongHoofd = Model.OorsprongAntwoord.HoofdBericht;
+        oorsprongId = Model.OorsprongAntwoord.Id;
+        oorsprongIsHoofd = false;
+        <p>U bent aan het antwoorden op een antwoord onder het hoofdbericht</p>
+        <h4>Titel hoofdbericht: @oorsprongHoofd.BerichtTitel</h4>
+        <h5>Thema: @oorsprongHoofd.BerichtThema.Naam</h5>
+        <h5>Auteur te beantwoorden bericht: @Model.OorsprongAntwoord.Profiel.LoginNaam</h5>
+        <div>@Model.OorsprongAntwoord.BerichtTekst</div>
+    }
+</div>
+
+<form asp-action="Antwoorden" method="post">
+    <textarea asp-for="Tekst"></textarea>
+    <input type="submit" value="Antwoorden" class="btn btn-primary" />
+    <input type="hidden" asp-for="OorsprongId" value="@oorsprongId" />
+    <input type="hidden" asp-for="OorsprongIsHoofd" value="@oorsprongIsHoofd" />
+</form>

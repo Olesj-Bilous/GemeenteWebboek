@@ -18,12 +18,24 @@ namespace ForumData.Repositories.DbConnect
         {
             return await context.HoofdBerichten
                 .Include(hb => hb.Profiel)
-                    .ThenInclude(p => p.Adres)
-                        .ThenInclude(a => a.Straat)
-                            .ThenInclude(s => s.Gemeente)
+                //.ThenInclude(p => p.Adres)
+                //    .ThenInclude(a => a.Straat)
+                //        .ThenInclude(s => s.Gemeente)
                 .Include(hb => hb.BerichtThema)
                 .Include(hb => hb.ChildAntwoorden)
                 .ToListAsync();
+        }
+
+        public async Task<HoofdBericht> GetByIdAsync(int id)
+        {
+            return await context.HoofdBerichten
+                .Include(hb => hb.Profiel)
+                //.ThenInclude(p => p.Adres)
+                //    .ThenInclude(a => a.Straat)
+                //        .ThenInclude(s => s.Gemeente)
+                .Include(hb => hb.BerichtThema)
+                //.Include(hb => hb.ChildAntwoorden)
+                .FirstOrDefaultAsync(hb => hb.Id == id);
         }
     }
 }

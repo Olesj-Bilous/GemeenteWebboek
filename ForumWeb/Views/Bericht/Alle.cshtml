@@ -6,17 +6,18 @@
 
 @if (Model.Any())
 {
-    void SchrijfAntwoorden(Antwoord antwoord)
+    async Task SchrijfAntwoorden(Antwoord antwoord)
     {
-        <div class="pl-2">
+        <div class="shadow-sm ml-2 p-3">
             <h5>Auteur: @antwoord.Profiel.LoginNaam</h5>
             <p>@antwoord.BerichtTekst</p>
+            <a class="btn btn-primary" asp-action="Antwoorden" asp-route-berichtId="@antwoord.Id">Antwoorden</a>
 
             @if (antwoord.ChildAntwoorden.Any())
             {
                 foreach (Antwoord childAntwoord in antwoord.ChildAntwoorden)
                 {
-                    SchrijfAntwoorden(childAntwoord);
+                    await SchrijfAntwoorden(childAntwoord);
                 }
             }
         </div>
@@ -24,17 +25,18 @@
 
     foreach (HoofdBericht hb in Model)
     {
-    <div>
+    <div class="shadow p-3">
         <h4>@hb.BerichtTitel</h4>
         <h5>Thema: @hb.BerichtThema.Naam</h5>
         <h5>Auteur: @hb.Profiel.LoginNaam</h5>
-        <p>@hb.BerichtTekst</p>
+        <div>@hb.BerichtTekst</div>
+        <a class="btn btn-primary" asp-action="Antwoorden" asp-route-berichtId="@hb.Id">Antwoorden</a>
 
         @if (hb.ChildAntwoorden.Any())
         {
-            foreach (Antwoord antwoord in hb.ChildAntwoorden)
+            foreach (Antwoord antwoord in hb.ChildAntwoorden.Where(a => a.ParentAntwoord is null))
             {
-                SchrijfAntwoorden(antwoord);
+                await SchrijfAntwoorden(antwoord);
             }
         }
     </div>

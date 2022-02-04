@@ -14,12 +14,16 @@ namespace ForumData.Repositories.DbConnect
 
         public async Task<List<Bericht>> GetAllAsync() 
         {
-            return await context.Berichten.ToListAsync();
+            return await context.Berichten
+                //.Include(b => b.Profiel)
+                .ToListAsync();
         }
 
         public async Task<Bericht> GetByIdAsync(int id)
         {
-            return await context.Berichten.FindAsync(id);
+            return await context.Berichten
+                .Include(b => b.Profiel)
+                .FirstOrDefaultAsync(b => b.Id == id);
         }
 
         public async Task AddAsync(Bericht bericht)

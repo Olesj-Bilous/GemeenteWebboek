@@ -45,7 +45,7 @@ namespace ForumWeb.Controllers
                 bericht.BerichtTekst = model.Tekst;
 
                 await berichtService.AddAsync(bericht);
-                return View("../Home/Index");
+                return View("Alle");
             }
             return View(model);
         }
@@ -56,6 +56,49 @@ namespace ForumWeb.Controllers
             int gemeenteId = profiel.Adres.Straat.GemeenteId;
             List<HoofdBericht> hBerichten = await berichtService.GetAllHoofdByGemeenteIdAsync(gemeenteId);
             return View(hBerichten);
+        }
+
+        public async Task<IActionResult> Antwoorden(int berichtId)
+        {
+            AntwoordViewModel model = new();
+            Bericht oorsprong = await berichtService.GetByIdAsync(berichtId);
+            if (oorsprong is HoofdBericht)
+            {
+                model.OorsprongHoofd = await berichtService.GetHoofdByIdAsync(berichtId);
+            }
+            else
+            {
+                model.OorsprongAntwoord = await berichtService.GetAntwoordByIdAsync(berichtId);
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Antwoorden(AntwoordViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                Antwoord antwoord = new();
+                antwoord.BerichtTekst = model.Tekst;
+                antwoord.BerichtTijdstip = DateTime.Now;
+                antwoord.ProfielId = HttpContext.Session.GetObject<int>("GebruikerId");
+
+                if (model.OorsprongIsHoofd)
+                {
+                    antwoord.HoofdBericht = await berichtService.GetHoofdByIdAsync(model.OorsprongId);
+                }
+                else
+                {
+                    antwoord.ParentAntwoord = await berichtService.GetAntwoordByIdAsync(model.OorsprongId);
+                    antwoord.HoofdBericht = antwoord.ParentAntwoord.HoofdBericht;
+                }
+                await berichtService.AddAsync(antwoord);
+                return RedirectToAction("Alle");
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }

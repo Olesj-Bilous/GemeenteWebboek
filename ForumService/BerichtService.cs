@@ -12,12 +12,15 @@ namespace ForumService
         //INJECTION
         readonly private IBerichtRepository berichtRepository;
         readonly private IHoofdBerichtRepository hoofdBerichtRepository;
+        readonly private IAntwoordRepository antwoordRepository;
 
         public BerichtService(IBerichtRepository berichtRepository,
-            IHoofdBerichtRepository hoofdBerichtRepository)
+            IHoofdBerichtRepository hoofdBerichtRepository,
+            IAntwoordRepository antwoordRepository)
         {
             this.berichtRepository = berichtRepository;
             this.hoofdBerichtRepository = hoofdBerichtRepository;
+            this.antwoordRepository = antwoordRepository;
         }
 
         //general repo METHODS
@@ -45,6 +48,17 @@ namespace ForumService
         public async Task<List<HoofdBericht>> GetAllHoofdAsync()
         {
             return await hoofdBerichtRepository.GetAllAsync();
+        }
+
+        public async Task<HoofdBericht> GetHoofdByIdAsync(int id)
+        {
+            return await hoofdBerichtRepository.GetByIdAsync(id);
+        }
+
+        //antwoord repo methods
+        public async Task<Antwoord> GetAntwoordByIdAsync(int id)
+        {
+            return await antwoordRepository.GetByIdAsync(id);
         }
 
         //eigen methods

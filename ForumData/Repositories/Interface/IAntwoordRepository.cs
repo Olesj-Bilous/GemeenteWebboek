@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace ForumData.Repositories.Interface
 {
-    public interface IHoofdBerichtRepository
+    public interface IAntwoordRepository
     {
-        Task<List<HoofdBericht>> GetAllAsync();
-        Task<HoofdBericht> GetByIdAsync(int id);
+        Task<Antwoord> GetByIdAsync(int id);
     }
 }
