@@ -62,7 +62,6 @@ namespace ForumWeb.Controllers
         public async Task<IActionResult> Antwoorden(int bronId)
         {
             AntwoordViewModel model = new();
-            model.BronId = bronId;
             Bericht bron = await berichtService.GetByIdAsync(bronId);
             model.BronIsHoofd = bron is HoofdBericht;
             if (model.BronIsHoofd)

@@ -12,7 +12,6 @@ namespace ForumWeb.Models
         public HoofdBericht BronHoofd { get; set; }
         public int BronAntwoordId { get; set; }
         public Antwoord BronAntwoord { get; set; }
-        public int BronId { get; set; }
         public bool BronIsHoofd { get; set; }
         public string Tekst { get; set; }
     }
