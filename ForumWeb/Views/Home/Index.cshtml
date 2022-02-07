@@ -8,5 +8,5 @@
 @if (Model is not null && Model is Profiel)
 {
     <a class="btn btn-primary" asp-controller="Bericht" asp-action="Nieuw">Nieuw bericht</a>
-    <a class="btn btn-primary" asp-controller="Bericht" asp-action="Alle">Alle berichten van uw gemeente @Model.Adres.Straat.Gemeente.GemeenteNaam</a>
+    <a class="btn btn-primary" asp-controller="Bericht" asp-action="Alle">Alle berichten uit @Model.Adres.Straat.Gemeente.GemeenteNaam</a>
 }

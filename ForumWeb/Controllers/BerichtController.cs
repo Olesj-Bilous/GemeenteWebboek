@@ -45,30 +45,35 @@ namespace ForumWeb.Controllers
                 bericht.BerichtTekst = model.Tekst;
 
                 await berichtService.AddAsync(bericht);
-                return View("Alle");
+                return RedirectToAction("Alle");
             }
             return View(model);
         }
 
         public async Task<IActionResult> Alle()
         {
+            BerichtenViewModel model = new();
             Profiel profiel = (Profiel)await HttpContext.Session.GetUser(persoonService);
-            int gemeenteId = profiel.Adres.Straat.GemeenteId;
-            List<HoofdBericht> hBerichten = await berichtService.GetAllHoofdByGemeenteIdAsync(gemeenteId);
-            return View(hBerichten);
+            model.Gemeente = profiel.Adres.Straat.Gemeente;
+            model.HoofdBerichten = await berichtService.GetAllHoofdByGemeenteIdAsync(model.Gemeente.GemeenteId);
+            return View(model);
         }
 
-        public async Task<IActionResult> Antwoorden(int berichtId)
+        public async Task<IActionResult> Antwoorden(int bronId)
         {
             AntwoordViewModel model = new();
-            Bericht oorsprong = await berichtService.GetByIdAsync(berichtId);
-            if (oorsprong is HoofdBericht)
+            model.BronId = bronId;
+            Bericht bron = await berichtService.GetByIdAsync(bronId);
+            model.BronIsHoofd = bron is HoofdBericht;
+            if (model.BronIsHoofd)
             {
-                model.OorsprongHoofd = await berichtService.GetHoofdByIdAsync(berichtId);
+                model.BronHoofd = await berichtService.GetHoofdByIdAsync(bronId);
             }
             else
             {
-                model.OorsprongAntwoord = await berichtService.GetAntwoordByIdAsync(berichtId);
+                Antwoord bronAntwoord = await berichtService.GetAntwoordByIdAsync(bronId);
+                model.BronAntwoord = bronAntwoord;
+                model.BronHoofd = bronAntwoord.HoofdBericht;
             }
             return View(model);
         }
@@ -82,17 +87,13 @@ namespace ForumWeb.Controllers
                 antwoord.BerichtTekst = model.Tekst;
                 antwoord.BerichtTijdstip = DateTime.Now;
                 antwoord.ProfielId = HttpContext.Session.GetObject<int>("GebruikerId");
-
-                if (model.OorsprongIsHoofd)
+                antwoord.HoofdBericht = await berichtService.GetHoofdByIdAsync(model.BronHoofdId);
+                if (!model.BronIsHoofd)
                 {
-                    antwoord.HoofdBericht = await berichtService.GetHoofdByIdAsync(model.OorsprongId);
-                }
-                else
-                {
-                    antwoord.ParentAntwoord = await berichtService.GetAntwoordByIdAsync(model.OorsprongId);
-                    antwoord.HoofdBericht = antwoord.ParentAntwoord.HoofdBericht;
+                    antwoord.ParentAntwoord = await berichtService.GetAntwoordByIdAsync(model.BronAntwoordId);
                 }
                 await berichtService.AddAsync(antwoord);
+
                 return RedirectToAction("Alle");
             }
             else

@@ -2,38 +2,45 @@
 @model AntwoordViewModel
 @{
     ViewData["Title"] = "Antwoorden";
-    HoofdBericht oorsprongHoofd;
-    int oorsprongId;
-    bool oorsprongIsHoofd;
 }
-<div class="shadow p-3">
-    @if (Model.OorsprongHoofd is not null)
+<div class="card border-primary">
+    <div class="card-header">
+        @Model.BronHoofd.BerichtTijdstip.ToString("g") @Model.BronHoofd.Profiel.LoginNaam
+    </div>
+    <div class="card-body text-primary">
+        <h4 class="card-title">@Model.BronHoofd.BerichtTitel</h4>
+        <h5 class="card-subtitle text-secondary">@Model.BronHoofd.BerichtThema.Naam</h5>
+
+        @if (Model.BronIsHoofd)
+        {
+            <p class="card-text mt-2">@Model.BronHoofd.BerichtTekst</p>
+        }
+    </div>
+
+    @if (!Model.BronIsHoofd)
     {
-        oorsprongHoofd = Model.OorsprongHoofd;
-        oorsprongId = Model.OorsprongHoofd.Id;
-        oorsprongIsHoofd = true;
-        <p>U bent aan het antwoorden op een hoofdbericht.</p>
-        <h4>Titel hoofdbericht: @oorsprongHoofd.BerichtTitel</h4>
-        <h5>Thema: @oorsprongHoofd.BerichtThema.Naam</h5>
-        <h5>Auteur te beantwoorden bericht: @oorsprongHoofd.Profiel.LoginNaam</h5>
-        <div>@oorsprongHoofd.BerichtTekst</div>
-    }
-    else
-    {
-        oorsprongHoofd = Model.OorsprongAntwoord.HoofdBericht;
-        oorsprongId = Model.OorsprongAntwoord.Id;
-        oorsprongIsHoofd = false;
-        <p>U bent aan het antwoorden op een antwoord onder het hoofdbericht</p>
-        <h4>Titel hoofdbericht: @oorsprongHoofd.BerichtTitel</h4>
-        <h5>Thema: @oorsprongHoofd.BerichtThema.Naam</h5>
-        <h5>Auteur te beantwoorden bericht: @Model.OorsprongAntwoord.Profiel.LoginNaam</h5>
-        <div>@Model.OorsprongAntwoord.BerichtTekst</div>
+        <div class="card border-secondary ml-3 mr-1 mb-2">
+            <div class="card-header">
+                @Model.BronAntwoord.BerichtTijdstip.ToString("g") @Model.BronAntwoord.Profiel.LoginNaam
+            </div>
+            <div class="card-body text-secondary">
+                <p class="card-text">@Model.BronAntwoord.BerichtTekst</p>
+            </div>
+        </div>
     }
 </div>
 
-<form asp-action="Antwoorden" method="post">
-    <textarea asp-for="Tekst"></textarea>
-    <input type="submit" value="Antwoorden" class="btn btn-primary" />
-    <input type="hidden" asp-for="OorsprongId" value="@oorsprongId" />
-    <input type="hidden" asp-for="OorsprongIsHoofd" value="@oorsprongIsHoofd" />
-</form>
+<div class="card border-secondary ml-4 my-3">
+    <div class="card-body">
+        <form asp-action="Antwoorden" method="post">
+            <div class="form-group">
+                <textarea class="form-control" asp-for="Tekst"></textarea>
+            </div>
+            <input type="hidden" asp-for="BronHoofdId" value="@Model.BronHoofd.Id" />
+            @{ int bronAntwoordId = Model.BronIsHoofd ? 0 : Model.BronAntwoord.Id; }
+            <input type="hidden" asp-for="BronAntwoordId" value="@bronAntwoordId" />
+            <input type="hidden" asp-for="BronIsHoofd" value="@Model.BronIsHoofd" />
+            <input class="btn btn-primary" type="submit" value="Antwoorden" />
+        </form>
+    </div>
+</div>

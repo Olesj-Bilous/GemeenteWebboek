@@ -1,6 +1,7 @@
 ﻿using ForumData.Entities;
 using ForumData.Repositories.Interface;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ForumService
@@ -10,10 +11,11 @@ namespace ForumService
         readonly private IPersoonRepository persoonRepository;
         public PersoonService(IPersoonRepository persoonRepository) => this.persoonRepository = persoonRepository;
 
-       public async Task<Persoon> GetByLoginNaamAndPaswoordAsync(string Naam, string paswoord)
-       {
-            return await persoonRepository.GetPersoonByLoginNaamAndPaswoordAsync(Naam, paswoord);
-       }
+        //async repo methods
+        public async Task<List<Persoon>> GetAllAsync()
+        {
+            return await persoonRepository.GetAllAsync();
+        }
 
         public async Task<Persoon> GetPersoonByIdAsync(int Id)
         {
@@ -23,6 +25,15 @@ namespace ForumService
         public async Task UpdatePersoonAsync(Persoon updatePersoon)
         {
             await persoonRepository.UpdatePersoonAsync(updatePersoon);
+        }
+
+        //custom methods
+        public async Task<Persoon> GetByLoginNaamAndPaswoordAsync(string naam, string paswoord)
+        {
+            List<Persoon> all = await GetAllAsync();
+            return all
+                .Where(p => p.LoginNaam == naam && p.LoginPaswoord == paswoord)
+                .FirstOrDefault();
         }
     }
 }

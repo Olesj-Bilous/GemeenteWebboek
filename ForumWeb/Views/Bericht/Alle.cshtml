@@ -1,17 +1,54 @@
 ﻿@using ForumData.Entities
-@model List<HoofdBericht>
+@model BerichtenViewModel
 @{
-    ViewData["Title"] = "Alle berichten van uw gemeente";
+    ViewData["Title"] = "Alle berichten uit " + Model.Gemeente.GemeenteNaam;
 }
 
-@if (Model.Any())
-{
+<div class="py-4 px-1">
+    <a class="btn btn-primary" asp-action="Nieuw">Nieuw bericht</a>
+</div>
+
+@{
+    if (Model.HoofdBerichten.Any())
+    {
+        foreach (HoofdBericht hb in Model.HoofdBerichten)
+        {
+            <div class="card border-primary">
+                <div class="card-header">
+                    @hb.BerichtTijdstip.ToString("g") @hb.Profiel.LoginNaam
+                </div>
+                <div class="card-body text-primary">
+                    <h4 class="card-title">@hb.BerichtTitel</h4>
+                    <h5 class="card-subtitle text-secondary">@hb.BerichtThema.Naam</h5>
+                    <p class="card-text mt-2">@hb.BerichtTekst</p>
+                    <a class="btn btn-primary" asp-action="Antwoorden" asp-route-bronId="@hb.Id">Antwoorden</a>
+                </div>
+
+                @if (hb.ChildAntwoorden.Any())
+                {
+                    foreach (Antwoord antwoord in hb.ChildAntwoorden.Where(a => a.ParentAntwoord is null))
+                    {
+                        await SchrijfAntwoorden(antwoord);
+                    }
+                }
+            </div>
+        }
+    }
+    else
+    {
+        <p>Er zijn momenteel nog geen berichten</p>
+    }
+
     async Task SchrijfAntwoorden(Antwoord antwoord)
     {
-        <div class="shadow-sm ml-2 p-3">
-            <h5>Auteur: @antwoord.Profiel.LoginNaam</h5>
-            <p>@antwoord.BerichtTekst</p>
-            <a class="btn btn-primary" asp-action="Antwoorden" asp-route-berichtId="@antwoord.Id">Antwoorden</a>
+        <div class="card border-secondary ml-3 mr-1 mb-2">
+            <div class="card-header">
+                @antwoord.BerichtTijdstip.ToString("g") @antwoord.Profiel.LoginNaam
+            </div>
+            <div class="card-body text-secondary">
+                <p class="card-text">@antwoord.BerichtTekst</p>
+                <a class="btn btn-primary" asp-action="Antwoorden" asp-route-bronId="@antwoord.Id">Antwoorden</a>
+            </div>
 
             @if (antwoord.ChildAntwoorden.Any())
             {
@@ -22,28 +59,4 @@
             }
         </div>
     }
-
-    foreach (HoofdBericht hb in Model)
-    {
-    <div class="shadow p-3">
-        <h4>@hb.BerichtTitel</h4>
-        <h5>Thema: @hb.BerichtThema.Naam</h5>
-        <h5>Auteur: @hb.Profiel.LoginNaam</h5>
-        <div>@hb.BerichtTekst</div>
-        <a class="btn btn-primary" asp-action="Antwoorden" asp-route-berichtId="@hb.Id">Antwoorden</a>
-
-        @if (hb.ChildAntwoorden.Any())
-        {
-            foreach (Antwoord antwoord in hb.ChildAntwoorden.Where(a => a.ParentAntwoord is null))
-            {
-                await SchrijfAntwoorden(antwoord);
-            }
-        }
-    </div>
-    }
 }
-else
-{
-    <p>Er zijn momenteel nog geen berichten</p>
-}
-<a class="btn btn-primary" asp-action="Nieuw">Nieuw bericht</a>

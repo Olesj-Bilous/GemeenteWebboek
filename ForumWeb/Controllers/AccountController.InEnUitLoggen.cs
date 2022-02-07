@@ -25,10 +25,7 @@ namespace ForumWeb.Controllers
                 if (gebruiker is not null)
                 {
                     HttpContext.Session.SetObject("GebruikerId", gebruiker.PersoonId);
-                    HttpContext.Session.SetBoolean("IsMedewerker", gebruiker is Medewerker);
-                    AccountViewModel accModel = new AccountViewModel();
-                    accModel.Gebruiker = gebruiker;
-                    return View("Index", accModel);
+                    return View("../Home/Index", gebruiker);
                 }
                 else
                 {

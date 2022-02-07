@@ -16,6 +16,15 @@ namespace ForumData.Repositories.DbConnect
         public PersoonRepository(GemeenteForumDbContext context) => this.context = context;
 
         //async METHODS
+        public async Task<List<Persoon>> GetAllAsync()
+        {
+            return await context.Personen
+                   .Include(p => p.Adres)
+                       .ThenInclude(a => a.Straat)
+                           .ThenInclude(s => s.Gemeente)
+                    .ToListAsync();
+        }
+
         public async Task<Persoon> GetPersoonByIdAsync(int id)
         {
             return await context.Personen
@@ -23,11 +32,6 @@ namespace ForumData.Repositories.DbConnect
                     .ThenInclude(a => a.Straat)
                         .ThenInclude(s => s.Gemeente)
                 .FirstOrDefaultAsync(p => p.PersoonId == id);
-        }
-
-        public async Task<Persoon> GetPersoonByLoginNaamAndPaswoordAsync(string naam, string pas)
-        {
-            return await context.Personen.Where(p => p.LoginNaam == naam && p.LoginPaswoord == pas).FirstOrDefaultAsync();
         }
 
         public async Task UpdatePersoonAsync(Persoon updatePersoon)
