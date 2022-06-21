@@ -41,7 +41,7 @@ namespace ForumWeb.Controllers
 
             foreach (InteresseViewModel iModel in model.Toegevoegd)
             {
-                Interesse interesse = interesseService.GetById(int.Parse(iModel.Id));
+                //Interesse interesse = interesseService.GetById(int.Parse(iModel.Id));
                 ProfielInteresse pi = new ProfielInteresse {
                     ProfielId = profielId,
                     InteresseId = int.Parse(iModel.Id),

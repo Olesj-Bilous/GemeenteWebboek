@@ -1,5 +1,4 @@
-﻿//eliminate use of classes for event programming
-//hide dropdown list when empty
+﻿//hide dropdown list when empty
 
 const select = document.getElementById("Select");
 const button = document.getElementById("Button");
